@@ -1,23 +1,28 @@
-.PHONY: help install docs model build-db clean all
+.PHONY: help install docs model build-db build-image clean all
+
+# Variables
+IMAGE_NAME ?= quay.io/carbonin/assisted-chat-rag:latest
 
 # Default target
 help:
 	@echo "Available targets:"
-	@echo "  install    - Install dependencies (docling, git lfs)"
-	@echo "  docs       - Convert PDF to Markdown using docling"
-	@echo "  model      - Clone embedding model from HuggingFace"
-	@echo "  build-db   - Build RAG database"
-	@echo "  clean      - Clean generated files"
+	@echo "  install     - Install dependencies (uv sync, git lfs)"
+	@echo "  docs        - Convert PDF to Markdown using docling"
+	@echo "  model       - Clone embedding model from HuggingFace"
+	@echo "  build-db    - Build RAG database"
+	@echo "  build-image - Build container image"
+	@echo "  clean       - Clean generated files"
 
 # Install dependencies
 install:
 	@echo "Installing dependencies..."
 	uv sync
-	pip install docling
 	git lfs install
 
 # Download a new copy of the docs and convert it to markdown
 docs:
+	@echo "Installing docling..."
+	pip install docling
 	@echo "Downloading new docs and converting to markdown..."
 	mkdir -p docs
 	docling --from pdf --to md --output docs --num-threads $$(nproc) --image-export-mode placeholder \
@@ -27,7 +32,11 @@ docs:
 model:
 	@echo "Cloning embedding model..."
 	@if [ ! -d "all-mpnet-base-v2" ]; then \
-		git clone https://huggingface.co/sentence-transformers/all-mpnet-base-v2; \
+		git clone --filter=blob:none --no-checkout https://huggingface.co/sentence-transformers/all-mpnet-base-v2 && \
+		cd all-mpnet-base-v2 && \
+		git sparse-checkout init --cone && \
+		git sparse-checkout set 1_Pooling README.md config.json config_sentence_transformers.json data_config.json model.safetensors modules.json sentence_bert_config.json special_tokens_map.json tokenizer.json tokenizer_config.json train_script.py vocab.txt && \
+		git checkout main; \
 	else \
 		echo "Model directory already exists, skipping clone"; \
 	fi
@@ -42,6 +51,11 @@ build-db: install model
 		-mn sentence-transformers/all-mpnet-base-v2 \
 		-i ocp-assisted-installer-2025-07-18 \
 		--vector-store-type llamastack-faiss
+
+# Build container image
+build-image:
+	@echo "Building container image: $(IMAGE_NAME)"
+	podman build -f Containerfile -t $(IMAGE_NAME) .
 
 # Clean generated files
 clean:

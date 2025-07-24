@@ -16,8 +16,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN make install
-RUN make model
 RUN make build-db
 
 FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
