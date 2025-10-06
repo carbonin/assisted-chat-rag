@@ -636,7 +636,7 @@ wheels = [
 [[package]]
 name = "lightspeed-rag-content"
 version = "0.1.0"
-source = { git = "https://github.com/Akrog/lightspeed-rag-content.git?branch=llama-stack-dbs#7e1bb3386d61b7684a0449366ede0b5e398794c1" }
+source = { git = "https://github.com/syedriko/lightspeed-core-rag-content.git?branch=syedriko-update-llama-stack-version#c10d224695532586a41db8758026b91657f45264" }
 dependencies = [
     { name = "aiosqlite" },
     { name = "faiss-cpu" },
@@ -650,25 +650,9 @@ dependencies = [
     { name = "llama-stack-client" },
     { name = "pyyaml" },
     { name = "sqlite-vec" },
+    { name = "tomlkit" },
     { name = "torch", version = "2.7.1", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform == 'darwin'" },
     { name = "torch", version = "2.7.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform != 'darwin'" },
-]
-
-[[package]]
-name = "llama-api-client"
-version = "0.4.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "anyio" },
-    { name = "distro" },
-    { name = "httpx" },
-    { name = "pydantic" },
-    { name = "sniffio" },
-    { name = "typing-extensions" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/f6/fe/937935f9f8a869efbda9b563f64cd8c3d433981f9dada40521ad8eadc9dd/llama_api_client-0.4.0.tar.gz", hash = "sha256:45d37086bd7004846d90746347449ea56cc20109c06cc8d908bbaf7f36fbb931", size = 120975, upload-time = "2025-09-17T21:04:00.558Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/43/ac/0152123825a2674e06fbf1094d8f19fc2b931e84b70007c4340cc0775ce5/llama_api_client-0.4.0-py3-none-any.whl", hash = "sha256:adafdc22faaeefe944d59ff9de65f205efc79acee52d80a3f18fd8a940597368", size = 87986, upload-time = "2025-09-17T21:03:59.686Z" },
 ]
 
 [[package]]
@@ -985,8 +969,8 @@ wheels = [
 
 [[package]]
 name = "llama-stack"
-version = "0.2.15"
-source = { git = "https://github.com/meta-llama/llama-stack.git?rev=20c319795259f097101917d7304e63aeeeb21c5c#20c319795259f097101917d7304e63aeeeb21c5c" }
+version = "0.2.22"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
     { name = "aiosqlite" },
@@ -998,7 +982,6 @@ dependencies = [
     { name = "huggingface-hub" },
     { name = "jinja2" },
     { name = "jsonschema" },
-    { name = "llama-api-client" },
     { name = "llama-stack-client" },
     { name = "openai" },
     { name = "opentelemetry-exporter-otlp-proto-http" },
@@ -1015,10 +998,14 @@ dependencies = [
     { name = "tiktoken" },
     { name = "uvicorn" },
 ]
+sdist = { url = "https://files.pythonhosted.org/packages/6b/cf/c4bccdb6e218f3fda1d50aad87bf08376372c56ddc523e35f5a629c725e1/llama_stack-0.2.22.tar.gz", hash = "sha256:576752dedc9e9f0fb9da69f373d677d8b4f2ae4203428f676fa039b6813d8450", size = 3334595, upload-time = "2025-09-16T19:43:41.842Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a9/42/5ae8be5371367beb9c8e38966cd941022c072fb2133660bf0eabc7b5d08b/llama_stack-0.2.22-py3-none-any.whl", hash = "sha256:c6bbda6b5a4417b9a73ed36b9d581fd7ec689090ceefd084d9a078e7acbdc670", size = 3669928, upload-time = "2025-09-16T19:43:40.391Z" },
+]
 
 [[package]]
 name = "llama-stack-client"
-version = "0.2.16"
+version = "0.2.22"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyio" },
@@ -1037,9 +1024,9 @@ dependencies = [
     { name = "tqdm" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/db/28/74ae2faae9af51205587b33fcf2f99a8af090de7aa4122701f2f70f04233/llama_stack_client-0.2.16.tar.gz", hash = "sha256:24294acc6bf40e79900a62f4fa61009acb9af7028b198b12c0ba8adab25c2049", size = 257642, upload-time = "2025-07-28T23:13:22.793Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/60/80/4260816bfaaa889d515206c9df4906d08d405bf94c9b4d1be399b1923e46/llama_stack_client-0.2.22.tar.gz", hash = "sha256:9a0bc756b91ebd539858eeaf1f231c5e5c6900e1ea4fcced726c6717f3d27ca7", size = 318309, upload-time = "2025-09-16T19:43:33.212Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/30/ec/1874120a15b22f3a88d4e49700c870cc6540bc8c709a841db79a662d7949/llama_stack_client-0.2.16-py3-none-any.whl", hash = "sha256:5c0d13e6ac40143ce01cae4eec65fb39fe24e11f54b86afbd20f0033c38f83c0", size = 350329, upload-time = "2025-07-28T23:13:21.586Z" },
+    { url = "https://files.pythonhosted.org/packages/d1/8e/1ebf6ac0dbb62b81038e856ed00768e283d927b14fcd614e3018a227092b/llama_stack_client-0.2.22-py3-none-any.whl", hash = "sha256:b260d73aec56fcfd8fa601b3b34c2f83c4fbcfb7261a246b02bbdf6c2da184fe", size = 369901, upload-time = "2025-09-16T19:43:32.089Z" },
 ]
 
 [[package]]
@@ -1604,7 +1591,7 @@ dependencies = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "lightspeed-rag-content", git = "https://github.com/Akrog/lightspeed-rag-content.git?branch=llama-stack-dbs" }]
+requires-dist = [{ name = "lightspeed-rag-content", git = "https://github.com/syedriko/lightspeed-core-rag-content.git?branch=syedriko-update-llama-stack-version" }]
 
 [[package]]
 name = "referencing"
@@ -1963,6 +1950,15 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/36/65/7e75caea90bc73c1dd8d40438adf1a7bc26af3b8d0a6705ea190462506e1/tokenizers-0.22.1-cp39-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:a0f307d490295717726598ef6fa4f24af9d484809223bbc253b201c740a06390", size = 9681250, upload-time = "2025-09-19T09:49:21.501Z" },
     { url = "https://files.pythonhosted.org/packages/30/2c/959dddef581b46e6209da82df3b78471e96260e2bc463f89d23b1bf0e52a/tokenizers-0.22.1-cp39-abi3-win32.whl", hash = "sha256:b5120eed1442765cd90b903bb6cfef781fd8fe64e34ccaecbae4c619b7b12a82", size = 2472003, upload-time = "2025-09-19T09:49:27.089Z" },
     { url = "https://files.pythonhosted.org/packages/b3/46/e33a8c93907b631a99377ef4c5f817ab453d0b34f93529421f42ff559671/tokenizers-0.22.1-cp39-abi3-win_amd64.whl", hash = "sha256:65fd6e3fb11ca1e78a6a93602490f134d1fdeb13bcef99389d5102ea318ed138", size = 2674684, upload-time = "2025-09-19T09:49:24.953Z" },
+]
+
+[[package]]
+name = "tomlkit"
+version = "0.13.3"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/cc/18/0bbf3884e9eaa38819ebe46a7bd25dcd56b67434402b66a58c4b8e552575/tomlkit-0.13.3.tar.gz", hash = "sha256:430cf247ee57df2b94ee3fbe588e71d362a941ebb545dec29b53961d61add2a1", size = 185207, upload-time = "2025-06-05T07:13:44.947Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/bd/75/8539d011f6be8e29f339c42e633aae3cb73bffa95dd0f9adec09b9c58e85/tomlkit-0.13.3-py3-none-any.whl", hash = "sha256:c89c649d79ee40629a9fda55f8ace8c6a1b42deb912b2a8fd8d942ddadb606b0", size = 38901, upload-time = "2025-06-05T07:13:43.546Z" },
 ]
 
 [[package]]

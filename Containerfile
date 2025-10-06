@@ -8,6 +8,7 @@ RUN dnf install -y \
         make \
         gcc \
         python3-devel \
+        mesa-libGL \
         && dnf clean all
 
 RUN pip install uv
