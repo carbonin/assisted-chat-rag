@@ -34,6 +34,7 @@ if __name__ == "__main__":
         embeddings_model_dir=args.model_dir,
         num_workers=args.workers,
         vector_store_type=args.vector_store_type,
+        doc_type=args.doc_type,
     )
 
     # Load and embed the documents, this method can be called multiple times
