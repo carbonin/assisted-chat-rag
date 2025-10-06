@@ -32,7 +32,9 @@ find "${DOCS_ORIG}" -maxdepth 1 -print0 | while IFS= read -r -d $'\0' item; do
         sed -i 's/@@\sCHAPTER/# CHAPTER/g' "${PROCESSED_DOCS}/${filename}"
         sed -i '/@@\s[0-9]\+\.[0-9]\+\.\s/{ s/@@/##/g; }' "${PROCESSED_DOCS}/${filename}"
         sed -i 's/@@//g' "${PROCESSED_DOCS}/${filename}"
-        awk '/# Table of Contents/ {p=1} p' "${PROCESSED_DOCS}/${filename}" > ${PROCESSED_DOCS}/temp && mv ${PROCESSED_DOCS}/temp "${PROCESSED_DOCS}/${filename}"
+        awk '/# CHAPTER 1\. .*/ {p=1} p' "${PROCESSED_DOCS}/${filename}" > ${PROCESSED_DOCS}/temp && mv ${PROCESSED_DOCS}/temp "${PROCESSED_DOCS}/${filename}"
         sed -i 's/<!-- image -->//g' "${PROCESSED_DOCS}/${filename}"
     fi
 done
+
+sed -i '/# CHAPTER 2. .*/,/# CHAPTER 5. .*/{ /# CHAPTER 5. .*/!d; }' ${PROCESSED_DOCS}/OpenShift_Container_Platform-4.19-Installing_on_OCI-en-US.md
