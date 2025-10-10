@@ -2,6 +2,9 @@
 
 # Variables
 IMAGE_NAME ?= quay.io/carbonin/assisted-chat-rag:latest
+OUTPUT_FORMAT ?= md
+DOCS_ORIG ?= docs
+PROCESSED_DOCS ?= docs-processed
 
 # Default target
 help:
@@ -24,9 +27,12 @@ docs:
 	@echo "Installing docling..."
 	pip install docling
 	@echo "Downloading new docs and converting to markdown..."
-	mkdir -p docs
-	docling --from pdf --to md --output docs --num-threads $$(nproc) --image-export-mode placeholder \
+	mkdir -p $(DOCS_ORIG)
+	docling --from pdf --to $(OUTPUT_FORMAT) --output $(DOCS_ORIG) --num-threads $$(nproc) --image-export-mode placeholder \
 		https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025/pdf/installing_openshift_container_platform_with_the_assisted_installer/Assisted_Installer_for_OpenShift_Container_Platform-2025-Installing_OpenShift_Container_Platform_with_the_Assisted_Installer-en-US.pdf
+	chmod 775 ./scripts/add_headers_to_markdown.sh
+	./scripts/add_headers_to_markdown.sh $(DOCS_ORIG) $(PROCESSED_DOCS)
+
 
 # Clone embedding model
 all-mpnet-base-v2:
@@ -43,11 +49,12 @@ build-db: install all-mpnet-base-v2
 	@echo "Building RAG database..."
 	uv run ./main.py \
 		-o llama_stack_vector_db \
-		-f docs \
+		-f $(PROCESSED_DOCS) \
 		-md all-mpnet-base-v2 \
 		-mn sentence-transformers/all-mpnet-base-v2 \
 		-i ocp-assisted-installer-2025-07-18 \
-		--vector-store-type llamastack-faiss
+		--vector-store-type llamastack-faiss \
+		-dt markdown
 
 # Build container image
 build-image:
@@ -59,3 +66,6 @@ clean:
 	@echo "Cleaning generated files..."
 	rm -rf llama_stack_vector_db/
 	rm -rf all-mpnet-base-v2/
+
+build-local-db:
+	podman run --rm -d -v ~/current_work/rag/llama_stack_vector_db:/app/llama_stack_vector_db:Z -v ~/current_work/rag/all-mpnet-base-v2:/app/all-mpnet-base-v2:Z -v $(shell pwd):/app:Z localhost/ragbuilder:v1

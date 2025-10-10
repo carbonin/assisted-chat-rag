@@ -1,48 +1,4 @@
-<!-- image -->
-
-## Assisted Installer for OpenShift Container Platform 2025
-
-## Installing OpenShift Container Platform with the Assisted Installer
-
-User Guide
-
-Last Updated: 2025-09-30
-
-## Assisted Installer for OpenShift Container Platform 2025 Installing OpenShift Container Platform with the Assisted Installer
-
-User Guide
-
-## Legal Notice
-
-Copyright © 2025 Red Hat, Inc.
-
-The text of and illustrations in this document are licensed by Red Hat under a Creative Commons Attribution-Share Alike 3.0 Unported license ("CC-BY-SA"). An explanation of CC-BY-SA is available at http://creativecommons.org/licenses/by-sa/3.0/
-
-. In accordance with CC-BY-SA, if you distribute this document or an adaptation of it, you must provide the URL for the original version.
-
-Red Hat, as the licensor of this document, waives the right to enforce, and agrees not to assert, Section 4d of CC-BY-SA to the fullest extent permitted by applicable law.
-
-Red Hat, Red Hat Enterprise Linux, the Shadowman logo, the Red Hat logo, JBoss, OpenShift, Fedora, the Infinity logo, and RHCE are trademarks of Red Hat, Inc., registered in the United States and other countries.
-
-Linux ® is the registered trademark of Linus Torvalds in the United States and other countries.
-
-Java ® is a registered trademark of Oracle and/or its affiliates.
-
-XFS ® is a trademark of Silicon Graphics International Corp. or its subsidiaries in the United States and/or other countries.
-
-MySQL ® is a registered trademark of MySQL AB in the United States, the European Union and other countries.
-
-Node.js ® is an official trademark of Joyent. Red Hat is not formally related to or endorsed by the official Joyent Node.js open source or commercial project.
-
-The OpenStack ® Word Mark and OpenStack logo are either registered trademarks/service marks or trademarks/service marks of the OpenStack Foundation, in the United States and other countries and are used with the OpenStack Foundation's permission. We are not affiliated with, endorsed or sponsored by the OpenStack Foundation, or the OpenStack community.
-
-All other trademarks are the property of their respective owners.
-
-## Abstract
-
-Information about the Assisted Installer and its usage
-
-## Table of Contents
+# Table of Contents
 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 
@@ -244,9 +200,9 @@ Information about the Assisted Installer and its usage
 | 15.5. API CONNECTIVITY FAILURE WHEN ADDING NODES TO A CLUSTER                                                                                                                                                                                                                                                  | 209     |
 | 15.6. TROUBLESHOOTING AUTO-ASSIGN VALIDATION ERRORS                                                                                                                                                                                                                                                            | 210     |
 
-## PREFACE
+ PREFACE
 
-## PROVIDING FEEDBACK ON THE ASSISTED INSTALLER FOR OPENSHIFT CONTAINER PLATFORM DOCUMENTATION
+ PROVIDING FEEDBACK ON THE ASSISTED INSTALLER FOR OPENSHIFT CONTAINER PLATFORM DOCUMENTATION
 
 You can give feedback or report an error in our documentation by creating a Jira issue. You must have a Red Hat Jira account.
 
@@ -255,7 +211,7 @@ You can give feedback or report an error in our documentation by creating a Jira
 3.  Complete the Summary , Description , and Reporter fields.
 4.  Click Create to submit the form. The form creates an issue in the Red Hat Hybrid Cloud Infrastructure (HCIDOCS) Jira project.
 
-## CHAPTER 1. ABOUT THE ASSISTED INSTALLER
+# CHAPTER 1. ABOUT THE ASSISTED INSTALLER
 
 The Assisted Installer for Red Hat OpenShift Container Platform is a user-friendly installation solution offered on the Red Hat Hybrid Cloud Console . The Assisted Installer supports various deployment platforms with a focus on bare metal, Nutanix, vSphere, and Oracle Cloud Infrastructure. The Assisted Installer also supports various CPU architectures, including x86\_64, s390x (IBM Z®), arm64, and ppc64le (IBM Power®).
 
@@ -269,31 +225,31 @@ You can install OpenShift Container Platform on premises in a connected environm
 
 The Assisted Installer provides installation functionality as a service. This software-as-a-service (SaaS) approach has the following features:
 
-## Web interface
+ Web interface
 
 - You can install your cluster by using the Hybrid Cloud Console instead of creating installation configuration files manually.
 
-## No bootstrap node
+ No bootstrap node
 
 - You do not need a bootstrap node because the bootstrapping process runs on a node within the cluster.
 
-## Streamlined installation workflow
+ Streamlined installation workflow
 
 - You do not need in-depth knowledge of OpenShift Container Platform to deploy a cluster. The Assisted Installer provides reasonable default configurations.
 - You do not need to run the OpenShift Container Platform installer locally.
 - You have access to the latest Assisted Installer for the latest tested z-stream releases.
 
-## Advanced networking options
+ Advanced networking options
 
 - The Assisted Installer supports IPv4 and dual stack networking with OVN only, NMStatebased static IP addressing, and an HTTP/S proxy.
 - OVN is the default Container Network Interface (CNI) for OpenShift Container Platform 4.12 and later.
 - SDN is supported up to OpenShift Container Platform 4.14. SDN supports IPv4 only.
 
-## Preinstallation validation
+ Preinstallation validation
 
 - Before installing, the Assisted Installer checks the following configurations:
 
-## REST API
+ REST API
 
 - You can automate the installation process by using the Assisted Installer REST API.
 
@@ -301,7 +257,7 @@ The Assisted Installer provides installation functionality as a service. This so
 
 The OpenShift Container Platform architecture allows you to select a standard Kubernetes role for each of the discovered hosts. These roles define the function of the host within the cluster.
 
-## 1.2.1. About assigning roles to hosts
+ 1.2.1. About assigning roles to hosts
 
 During the installation process, you can select a role for a host or configure the Assisted Installer to assign it for you.
 
@@ -311,15 +267,15 @@ If you do not select a role, the system selects one for you. You can change the 
 
 Each host can have any of the following roles:
 
-## Control plane (master)
+ Control plane (master)
 
 The control plane nodes run the services that are required to control the cluster, including the API server. The control plane schedules workloads, maintains cluster state, and ensures stability.
 
-## Compute (worker)
+ Compute (worker)
 
 The compute nodes are responsible for executing workloads for cluster users. Compute nodes advertise their capacity, so that the control plane scheduler can identify suitable compute nodes for running pods and containers.
 
-## Arbiter
+ Arbiter
 
 Arbiter nodes are a more cost-effective alternative to control plane nodes. They function similarly but run only the essential components required to maintain the etcd quorum and prevent a splitbrain condition. Because they do not host the full control plane or any workloads, arbiter nodes can use less powerful hardware.
 
@@ -335,9 +291,9 @@ The Assisted Installer provides arbiter nodes for Two-Node OpenShift with Arbite
 
 To install a Two-Node OpenShift with Arbiter cluster, assign the arbiter or auto-assign role to at least one of the nodes, and set the control plane node count for the cluster to 2.
 
-<!-- image -->
 
-## Auto-assign
+
+ Auto-assign
 
 The Assisted Installer sets each host to an auto-assign role by default. Auto-assign allows the
 
@@ -356,20 +312,20 @@ The logic for auto-assigning roles is as follows:
 
 To assign a role to a host using the web console or the API, or to troubleshoot pre-installation validation errors for hosts with an auto-assign role, see "Additional resources".
 
-## IMPORTANT
+ IMPORTANT
 
 Two-Node OpenShift with Arbiter (TNA) is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
 
 For more information about the support scope of Red Hat Technology Preview features, see https://access.redhat.com/support/offerings/techpreview/.
 
-## Additional resources
+ Additional resources
 
 - Configuring hosts (web console), step 4
 - Selecting a role (API)
 - About number of control plane nodes
 - Troubleshooting auto-assign validation errors
 
-## 1.2.2. About number of control plane nodes
+ 1.2.2. About number of control plane nodes
 
 Using a higher number of control plane (master) nodes boosts fault tolerance and availability, minimizing downtime during failures. The number of control plane nodes that the Assisted Installer supports varies according to OpenShift Container Platform version:
 
@@ -377,9 +333,9 @@ Using a higher number of control plane (master) nodes boosts fault tolerance and
 - From OpenShift Container Platform version 4.18 and later, the Assisted Installer also supports four or five control plane nodes on a bare metal or user-managed networking platform with an x86\_64 architecture. An implementation can support any number of compute nodes.
 - From OpenShift Container Platform version 4.19 and later, the Assisted Installer also supports two control plane nodes for a Two-Node OpenShift with Arbiter (TNA) cluster topology.A cluster with only two control plane nodes must have at least one host with an arbiter role. For details, see About assigning roles to hosts .
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 Two-Node OpenShift with Arbiter (TNA) is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
 
@@ -390,7 +346,7 @@ To specify the required number of control plane nodes for your cluster, see eith
 - Setting the cluster details (web console), step 12
 - Registering a new cluster (API), step 2
 
-## 1.2.3. Workload scheduling on control plane nodes
+ 1.2.3. Workload scheduling on control plane nodes
 
 For smaller clusters, scheduling workloads to run on control plane nodes improves efficiency and maximizes resource utilization. You can enable this option during installation setup or as a postinstallation step.
 
@@ -411,13 +367,13 @@ For instructions on configuring control plane nodes as schedulable during the in
 
 For instructions on configuring schedulable control plane nodes following an installation, see Configuring control plane nodes as schedulable  in the OpenShift Container Platform documentation.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 When you configure control plane nodes to be schedulable for workloads, an additional subscription is required for each control plane node that function as a compute (worker) node.
 
-## 1.2.4. Role-related configuration considerations
+ 1.2.4. Role-related configuration considerations
 
 The Assisted Installer monitors the number of hosts as one of the conditions for proceding through the cluster installation stages. The logic for determining when a cluster has a sufficient number of installed hosts to proceed is as follows:
 
@@ -428,7 +384,7 @@ The Assisted Installer monitors the number of hosts as one of the conditions for
 
 This logic ensures that the cluster reaches a stable and expected state before continuing with the installation process.
 
-## Additional resources
+ Additional resources
 
 - For detailed information on control plane and compute nodes, see OpenShift Container Platform architecture.
 
@@ -436,7 +392,7 @@ This logic ensures that the cluster reaches a stable and expected state before c
 
 Assisted Installer APIs are supported for a minimum of three months from the announcement of deprecation.
 
-## 1.3.1. API deprecation notice
+ 1.3.1. API deprecation notice
 
 The following table presents the deprecated and modified APIs in the Assisted Installer.
 
@@ -447,7 +403,7 @@ The following table presents the deprecated and modified APIs in the Assisted In
 | cluster                | The  high_availability_mode  field is deprecated starting from April 2025, and is planned to be removed in three months. Red Hat will provide                                                                                                                                                                                                                                                                                                                                                                   |
 | cluster-create- params | bug fixes and support for this feature during the current release lifecycle, but this feature will no longer receive enhancements and will be removed. The alternative is to use  control_plane_count  instead. This change enables support for clusters with 4 or 5 control plane nodes, in addition to the previously supported configurations with 1 or 3 control plane nodes. The Assisted Installer supports 4 or 5 control plane nodes starting from OpenShift Container Platform version 4.18 and later. |
 
-## CHAPTER 2. PREREQUISITES
+# CHAPTER 2. PREREQUISITES
 
 The Assisted Installer validates the following prerequisites to ensure successful installation.
 
@@ -466,7 +422,7 @@ The Assisted Installer is supported on the following CPU architectures:
 
 This section lists the installation drive types that you can and cannot use when installing Red Hat OpenShift Container Platform with the Assisted Installer.
 
-## Supported drive types
+ Supported drive types
 
 The table below shows the installation drive types supported for the different OpenShift Container Platform versions and CPU architectures.
 
@@ -485,7 +441,7 @@ The table below shows the installation drive types supported for the different O
 | ECKD (ESE)    | All             | s390x                         | IBM drive.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | FBA           | All             | s390x                         | IBM drive.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 
-## Unsupported drive types
+ Unsupported drive types
 
 The table below shows the installation drive types that are not supported.
 
@@ -505,15 +461,15 @@ The multicluster engine for Kubernetes requires additional resources.
 
 If you deploy the multicluster engine with storage, such as OpenShift Data Foundation or LVM Storage, you must also assign additional resources to each node.
 
-## 2.3.1. Multi-node cluster resource requirements
+ 2.3.1. Multi-node cluster resource requirements
 
 The resource requirements of a multi-node (high-availability) cluster depend on the installation options.
 
-## Description
+ Description
 
 A standard OpenShift Container Platform cluster configuration consists of three to five control plane nodes and two or more worker nodes. This configuration ensures full high availability for control plane services.
 
-## Multi-node cluster basic installation
+ Multi-node cluster basic installation
 
 - Control plane nodes:
 - 4 CPU cores
@@ -524,32 +480,32 @@ A standard OpenShift Container Platform cluster configuration consists of three 
 - 8 GB RAM
 - 100 GB storage
 
-<!-- image -->
 
-## Multi-node cluster + multicluster engine
+
+ Multi-node cluster + multicluster engine
 
 - Additional 4 CPU cores
 - Additional 16 GB RAM
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 If you deploy multicluster engine without OpenShift Data Foundation, no storage is configured. You configure the storage after the installation.
 
-## Multi-node cluster + multicluster engine + OpenShift Data Foundation
+ Multi-node cluster + multicluster engine + OpenShift Data Foundation
 
-## NOTE
+ NOTE
 
 The disks must be reasonably fast, with an etcd wal\_fsync\_duration\_seconds p99 duration that is less than 10 ms. For more information, see the Red Hat Knowledgebase solution How to Use 'fio' to Check Etcd Disk Performance in OCP.
 
 - Additional 75 GB storage
 
-## 2.3.2. Two-Node OpenShift with Arbiter (TNA) cluster resource requirements
+ 2.3.2. Two-Node OpenShift with Arbiter (TNA) cluster resource requirements
 
 The resource requirements of a Two-Node OpenShift with Arbiter (TNA) cluster depend on the installation options.
 
-## Description
+ Description
 
 A Two-Node OpenShift with Arbiter (TNA) cluster is a compact, cost-effective OpenShift Container Platform topology. It consists of two control plane nodes and a lightweight arbiter node. The arbiter node stores the full etcd data, maintaining an etcd quorum and preventing split brain. It does not run the additional control plane components kube-apiserver and kube-controller-manager , nor does it run workloads. For details, see Overview of etcd.
 
@@ -559,24 +515,24 @@ Following installation, you can add additional arbiter nodes to a Two-Node OpenS
 
 Support for a Two-Node OpenShift with Arbiter cluster begins with OpenShift Container Platform version 4.19 and later. This configuration is available only for bare-metal installations.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 Two-Node OpenShift with Arbiter (TNA) is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
 
 For more information about the support scope of Red Hat Technology Preview features, see https://access.redhat.com/support/offerings/techpreview/.
 
-## Two-Node OpenShift with Arbiter basic installation
+ Two-Node OpenShift with Arbiter basic installation
 
 - Control plane nodes:
 - 4 CPU cores
 - 16 GB RAM
 - 100 GB storage
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 The disks must be reasonably fast, with an etcd wal\_fsync\_duration\_seconds p99 duration that is less than 10 ms. For more information, see the Red Hat Knowledgebase solution How to Use 'fio' to Check Etcd Disk Performance in OCP.
 
@@ -585,47 +541,47 @@ The disks must be reasonably fast, with an etcd wal\_fsync\_duration\_seconds p9
 - 8 GB RAM
 - 50 GB storage
 
-## Two-Node OpenShift with Arbiter + multicluster engine
+ Two-Node OpenShift with Arbiter + multicluster engine
 
 - Additional 4 CPU cores
 - Additional 16 GB RAM
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 If you deploy multicluster engine without OpenShift Data Foundation, no storage is configured. You configure the storage after the installation.
 
-## Two-Node OpenShift with Arbiter + multicluster engine + OpenShift Data Foundation
+ Two-Node OpenShift with Arbiter + multicluster engine + OpenShift Data Foundation
 
 - Additional 75 GB storage
 
-## 2.3.3. Single-node OpenShift cluster resource requirements
+ 2.3.3. Single-node OpenShift cluster resource requirements
 
 The resource requirements for single-node OpenShift depend on the installation options.
 
-## Description
+ Description
 
 A single-node OpenShift cluster is an OpenShift Container Platform deployment that runs entirely on a single node. Single-node OpenShift includes the control plane and worker functionality on one physical or virtual machine.
 
-## Single-node OpenShift basic installation
+ Single-node OpenShift basic installation
 
 - 8 CPU cores
 - 16 GB RAM
 - 100 GB storage
 
-## Single-node OpenShift + multicluster engine
+ Single-node OpenShift + multicluster engine
 
 - Additional 8 CPU cores
 - Additional 32 GB RAM
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 If you deploy multicluster engine without OpenShift Data Foundation, LVM Storage is enabled.
 
-## Single-node OpenShift + multicluster engine + OpenShift Data Foundation
+ Single-node OpenShift + multicluster engine + OpenShift Data Foundation
 
 - Additional 95 GB storage
 
@@ -633,7 +589,7 @@ If you deploy multicluster engine without OpenShift Data Foundation, LVM Storage
 
 For hosts of type VMware , set clusterSet disk.EnableUUID to TRUE , even when the platform is not vSphere.
 
-## 2.4.1. General networking requirements
+ 2.4.1. General networking requirements
 
 The network must meet the following requirements:
 
@@ -642,9 +598,9 @@ The network must meet the following requirements:
 - For dynamic IP addressing, ensure that you have configured your network routes dynamically via DHCP.
 - For static IP addressing, ensure that you have configured the network routes manually via the static networking configurations.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 You cannot combine dynamic IP addresses with static route configurations. When the Assisted Installer receives a dynamic IP address (with a /128 prefix), it specifically looks for network routes that were also configured dynamically, such as those advertised via Router Advertisement (RA). If a network route is configured manually (with a /64 prefix, for example), the Assisted Installer ignores it.
 
@@ -654,13 +610,13 @@ You cannot combine dynamic IP addresses with static route configurations. When t
 - You have configured DNS to connect to the cluster API or ingress endpoints from outside the cluster.
 - Optional: You have created a DNS Pointer record (PTR) for each node in the cluster if using static IP addressing.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 You must create a DNS PTR record to boot with a preset hostname if the hostname will not come from another source ( /etc/hosts or DHCP). Otherwise, the Assisted Installer's automatic node renaming feature will rename the nodes to their network interface MAC address.
 
-## 2.4.2. External DNS
+ 2.4.2. External DNS
 
 Installing multi-node cluster with user-managed networking requires external DNS. External DNS is not required to install multi-node clusters with cluster-managed networking or Single-node OpenShift with
 
@@ -672,9 +628,9 @@ External DNS requires the creation of the following record types:
 - A/AAAA record with a wildcard for *.apps.&lt;cluster\_name&gt;.&lt;base\_domain&gt;.
 - A/AAAA record for each node in the cluster.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 - Do not create a wildcard, such as *.&lt;cluster\_name&gt;.&lt;base\_domain&gt;, or the installation will not proceed.
 - A/AAAA record settings at top-level domain registrars can take significant time to update. Ensure the newly created DNS Records are resolving before installation to prevent installation delays.
@@ -686,29 +642,29 @@ The OpenShift Container Platform cluster's network must also meet the following 
 - Connectivity for each node to the internet
 - Access to an NTP server for time synchronization between the cluster nodes
 
-## 2.4.2.1. Example DNS configuration
+ 2.4.2.1. Example DNS configuration
 
 The following DNS configuration provides A and PTR record configuration examples that meet the DNS requirements for deploying OpenShift Container Platform using the Assisted Installer. The examples are not meant to recommend one DNS solution over another.
 
 In the examples, the cluster name is ocp4 and the base domain is example.com .
 
-## Example DNS A record configuration
+ Example DNS A record configuration
 
 The following example is a BIND zone file that shows sample A records for name resolution in a cluster installed using the Assisted Installer.
 
-## Example DNS zone database
+ Example DNS zone database
 
 ```
 $TTL 1W @ IN SOA ns1.example.com. root ( 2019070700 ; serial 3H  ; refresh (3 hours) 30M  ; retry (30 minutes) 2W  ; expiry (2 weeks) 1W )  ; minimum (1 week) IN NS ns1.example.com. IN MX 10 smtp.example.com. ; ; ns1.example.com.  IN A 192.168.1.1
 ```
 
-<!-- image -->
 
-## Example DNS PTR record configuration
+
+ Example DNS PTR record configuration
 
 The following example is a BIND zone file that shows sample PTR records for reverse name resolution in a cluster installed using the Assisted Installer.
 
-## Example DNS zone database for reverse records
+ Example DNS zone database for reverse records
 
 $TTL 1W
 
@@ -726,27 +682,27 @@ $TTL 1W
 
 IN NS ns1.example.com.
 
-<!-- image -->
+
 
 ;
 
-<!-- image -->
+
 
 Provides reverse DNS resolution for the Kubernetes API. The PTR record refers to the record name of the API load balancer.
 
-<!-- image -->
+
 
 - 2 Provides reverse DNS resolution for the Kubernetes API. The PTR record refers to the record name of the API load balancer and is used for internal cluster communications.
 - 3 Provides reverse DNS resolution for the control plane machines.
 - 4 Provides reverse DNS resolution for the worker machines.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 A PTR record is not required for the OpenShift Container Platform application wildcard.
 
-## 2.4.3. Networking requirements for IBM Z
+ 2.4.3. Networking requirements for IBM Z
 
 In IBM Z® environments, advanced networking technologies like Open Systems Adapter (OSA), HiperSockets, and Remote Direct Memory Access (RDMA) over Converged Ethernet (RoCE) require specific configurations that deviate from the standard settings used in Assisted Installer deployments. These overrides are necessary to accommodate their unique requirements and ensure a successful and efficient deployment on IBM Z®.
 
@@ -763,7 +719,7 @@ The following table lists the network devices that are supported for the network
 | HiperSockets     | Supported      | Only through a Linux bridge | Supported      | Supported                              |
 | Linux bridge     | Not applicable | Supported                   | Not applicable | Not applicable                         |
 
-## 2.4.3.1. Configuring network overrides in IBM Z
+ 2.4.3.1. Configuring network overrides in IBM Z
 
 You can specify a static IP address on IBM Z® machines that uses Logical Partition (LPAR) and z/VM. This is specially useful when the network devices do not have a static MAC address assigned to them.
 
@@ -773,25 +729,25 @@ ai.ip\_cfg\_override=1
 
 This parameter allows the file to add the network settings to the CoreOS installer.
 
-## Example of the .parm file
+ Example of the .parm file
 
 rd.neednet=1 cio\_ignore=all,!condev console=ttysclp0
 
 coreos.live.rootfs\_url=&lt;coreos\_url&gt;
 
-<!-- image -->
+
 
 ip=&lt;ip&gt;::&lt;gateway&gt;:&lt;netmask&gt;:&lt;hostname&gt;::none nameserver=&lt;dns&gt; rd.znet=qeth,&lt;network\_adaptor\_range&gt;,layer2=1
 
 rd.&lt;disk\_type&gt;=&lt;adapter&gt;
 
-<!-- image -->
+
 
 rd.zfcp=&lt;adapter&gt;,&lt;wwpn&gt;,&lt;lun&gt; random.trust\_cpu=on zfcp.allow\_lun\_scan=0
 
 ai.ip\_cfg\_override=1
 
-<!-- image -->
+
 
 ignition.firstboot ignition.platform.id=metal random.trust\_cpu=on
 
@@ -800,21 +756,21 @@ ignition.firstboot ignition.platform.id=metal random.trust\_cpu=on
 - 3 Specify values for adapter , wwpn , and lun as in the following example: rd.zfcp=0.0.8002,0x500507630400d1e3,0x4000404600000000 .
 - 4 Specify this parameter when using an OSA network adapter or HiperSockets.
 
-<!-- image -->
 
-<!-- image -->
 
-<!-- image -->
 
-<!-- image -->
 
-<!-- image -->
 
-## NOTE
+
+
+
+
+
+ NOTE
 
 The override parameter overrides the host's network configuration settings.
 
-<!-- image -->
+
 
 ## 2.5. PREFLIGHT VALIDATIONS
 
@@ -830,7 +786,7 @@ The Assisted Installer ensures the cluster meets the prerequisites before instal
 
 If the Assisted Installer does not successfully validate the foregoing requirements, installation will not proceed.
 
-## CHAPTER 3. CUSTOMIZING YOUR ENVIRONMENT USING OPERATORS AND OPERATOR BUNDLES
+# CHAPTER 3. CUSTOMIZING YOUR ENVIRONMENT USING OPERATORS AND OPERATOR BUNDLES
 
 You can customize the OpenShift Container Platform deployment by selecting one or more Operators or Operator bundles during the installation.
 
@@ -838,20 +794,20 @@ You can customize the OpenShift Container Platform deployment by selecting one o
 
 Operators are used to package, deploy, and manage services and applications. Before starting the installation, familiarize yourself with the Assisted Installer Operators, including their prerequisites and limitations. If you require advanced options, install the Operators after you have installed the cluster.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 The additional requirements specified below apply to each Operator individually. If you select more than one Operator, or if the Assisted Installer automatically selects an Operator due to dependencies, the total required resources is the sum of the resource requirements for each Operator.
 
-## Additional resources
+ Additional resources
 
 - Customizing with Operator bundles.
 - Working with Operators in OpenShift Container Platform .
 - Introduction to hosted control planes
 - Configure and deploy OpenShift Container Platform clusters at the network edge
 
-## 3.1.1. OpenShift Virtualization Operator
+ 3.1.1. OpenShift Virtualization Operator
 
 You can deploy OpenShift Virtualization to perform the following tasks:
 
@@ -870,16 +826,16 @@ The OpenShift Virtualization Operator requires backend storage and might automat
 
 Prerequisites
 
-## Prerequisites
+ Prerequisites
 
 - Requires enabled CPU virtualization support in the firmware on all nodes.
 - Requires an additional 360 MiB of memory and 2 CPU cores for each compute (worker) node.
 - Requires an additional 150 MiB of memory and 4 CPU cores for each control plane node.
 - Requires Red Hat OpenShift Data Foundation (recommended for creating additional onpremise clusters), Logical Volume Manager Storage, or another persistent storage service.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 Deploying OpenShift Virtualization without Red Hat OpenShift Data Foundation results in the following scenarios:
 
@@ -892,18 +848,18 @@ You must review the prerequisites to ensure that your environment has sufficient
 - OpenShift Virtualization is not compatible with the following CPU architectures: S390X, PPC64LE.
 - OpenShift Virtualization is supported from OpenShift Container Platform 4:14 and later.
 
-## Procedure
+ Procedure
 
 - Installing Operators by using the web console
 - Installing Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API
 - OpenShift Virtualization product overview
 - Getting started with OpenShift Virtualization
 
-## 3.1.2. Migration Toolkit for Virtualization Operator
+ 3.1.2. Migration Toolkit for Virtualization Operator
 
 The Migration Toolkit for Virtualization Operator allows you to migrate virtual machines at scale to a local or remote Red Hat OpenShift Virtualization cluster. You can perform the migration from any of the following source providers:
 
@@ -917,19 +873,19 @@ When you select the Migration Toolkit for Virtualization Operator, the Assisted 
 
 You can install the Migration Toolkit for Virtualization Operator on OpenShift Container Platform using the Assisted Installer, either independently or as part of the OpenShift Virtualization Operator bundle.
 
-## Prerequisites
+ Prerequisites
 
 - Requires OpenShift Container Platform version 4.14 or later.
 - Requires an x86\_64 CPU architecture.
 - Requires an additional 1024 MiB of memory and 1 CPU core for each control plane node and worker node.
 - Requires the additional resources specified for the OpenShift Virtualization Operator, installed together with OpenShift Virtualization. For details, see the prerequisites in the OpenShift Virtualization Operator section.
 
-## Procedure
+ Procedure
 
 - Installing Operators by using the web console
 - Installing Operators by using the API
 
-## Post-installation steps
+ Post-installation steps
 
 After completing the installation, the Migration menu appears in the navigation pane of the Red Hat OpenShift web console.
 
@@ -940,11 +896,11 @@ For details, see either of the following chapters in the Migration Toolkit for V
 - Migrating virtual machines by using the Red Hat OpenShift web console
 - Migrating virtual machines from the command line
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API
 
-## 3.1.3. Multicluster engine for Kubernetes Operator
+ 3.1.3. Multicluster engine for Kubernetes Operator
 
 You can deploy the multicluster engine for Kubernetes to perform the following tasks in a large, multicluster environment:
 
@@ -957,36 +913,36 @@ Use hosted control planes to reduce management costs and optimize cluster deploy
 
 You can deploy the multicluster engine with OpenShift Data Foundation on all OpenShift Container Platform clusters.
 
-## Prerequisites
+ Prerequisites
 
 - Requires an additional 16384 MiB of memory and 4 CPU cores for each compute (worker) node.
 - Requires an additional 16384 MiB of memory and 4 CPU cores for each control plane node.
 - Requires OpenShift Data Foundation (recommended for creating additional on-premise clusters), LVM Storage, or another persistent storage service.
 
-<!-- image -->
 
-## Procedure
+
+ Procedure
 
 - Installing Operators by using the web console
 - Installing Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API
 - About the multicluster engine Operator
 - Red Hat OpenShift Cluster Manager
 
-## 3.1.4. Logical Volume Manager Storage Operator
+ 3.1.4. Logical Volume Manager Storage Operator
 
 You can use LVM Storage to dynamically provision block storage on a limited resources cluster.
 
-## Prerequisites
+ Prerequisites
 
 - Requires at least 1 non-boot drive per host.
 - Requires 100 MiB of additional RAM.
 - Requires 1 additional CPU core for each non-boot drive.
 
-## IMPORTANT
+ IMPORTANT
 
 Deploying multicluster engine without OpenShift Data Foundation results in the following scenarios:
 
@@ -995,45 +951,45 @@ Deploying multicluster engine without OpenShift Data Foundation results in the f
 
 You must review the prerequisites to ensure that your environment has enough additional resources for the multicluster engine.
 
-## Procedure
+ Procedure
 
 - Installing Operators by using the web console
 - Installing Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API
 - Configuring persistent storage
 - Persistent storage using Logical Volume Manager Storage
 
-## 3.1.5. Red Hat OpenShift Data Foundation Operator
+ 3.1.5. Red Hat OpenShift Data Foundation Operator
 
 You can use OpenShift Data Foundation for file, block, and object storage. This storage option is recommended for all OpenShift Container Platform clusters. OpenShift Data Foundation requires a separate subscription.
 
-## Prerequisites
+ Prerequisites
 
 - There are at least 3 compute (workers) nodes, each with 19 additional GiB of memory and 8 additional CPU cores.
 - There are at least 2 drives per compute node. For each drive, there is an additional 5 GB of RAM.
 - You comply to the additional requirements specified here: Planning your deployment.
 
-<!-- image -->
 
-## Procedure
+
+ Procedure
 
 - Installing Operators by using the web console
 - Installing Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API
 - OpenShift Data Foundation datasheet
 - OpenShift Data Foundation documentation
 
-## 3.1.6. OpenShift Artificial Intelligence (AI) Operator
+ 3.1.6. OpenShift Artificial Intelligence (AI) Operator
 
 Red Hat® OpenShift® Artificial Intelligence (AI) is a flexible, scalable artificial intelligence (AI) and machine learning (ML) platform that enables enterprises to create and deliver AI-enabled applications at scale across hybrid cloud environments. Red Hat® OpenShift® AI enables the following functionality:
 
-## NOTE
+ NOTE
 
 You cannot install the OpenShift Data Foundation Operator on Oracle third-party platforms such as Oracle® Cloud Infrastructure or Oracle® Compute Cloud@Customer.
 
@@ -1046,9 +1002,9 @@ The OpenShift AI Operator enables you to install Red Hat® OpenShift® AI on you
 
 You can install the OpenShift Artificial Intelligence (AI) Operator either separately or as part of the OpenShift AI Operator bundle.
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - The prerequisites for installing the OpenShift AI Operator separately are as follows:
 - You are installing OpenShift Container Platform version 4.17 or later.
@@ -1059,85 +1015,85 @@ You can install the OpenShift Artificial Intelligence (AI) Operator either separ
 - You meet the additional requirements specified here: Requirements for OpenShift AI.
 - See the additional prerequisites for the OpenShift AI Operator bundle, if you are installing the Operator as part of the bundle.
 
-<!-- image -->
 
-## Procedure
 
-## NOTE
+ Procedure
+
+ NOTE
 
 You cannot install the OpenShift AI Operator on Oracle third-party platforms such as Oracle® Cloud Infrastructure or Oracle® Compute Cloud@Customer.
 
-## IMPORTANT
+ IMPORTANT
 
 The integration of the OpenShift AI Operator into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
 - Installing Operators by using the web console
 - Installing Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API
 - Red Hat® OpenShift® AI
 
-## 3.1.7. OpenShift sandboxed containers Operator
+ 3.1.7. OpenShift sandboxed containers Operator
 
 The OpenShift sandboxed containers Operator provides an additional virtual machine (VM) isolation layer for pods, which manages the installation, configuration, and updating of sandboxed containers runtime ( Kata containers ) on Red Hat OpenShift clusters. You can install the sandboxed containers runtime in an Red Hat OpenShift cluster by using the Assisted Installer.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 The integration of the OpenShift sandboxed containers Operator into the Assisted Installer is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
 
 For more information about the support scope of Red Hat Technology Preview features, see https://access.redhat.com/support/offerings/techpreview/.
 
-## Prerequisites
+ Prerequisites
 
 The required functionality for the OpenShift Container Platform is supported by two main components:
 
 - OpenShift Container Platform: Use OpenShift Container Platform version 4.17 or later to install OpenShift sandboxed containers on an Red Hat OpenShift cluster using the Assisted Installer. To learn more about the requirements for OpenShift sandboxed containers, see "Additional Resources".
 - Kata runtime: This includes Red Hat Enterprise Linux CoreOS (RHCOS) and updates with every OpenShift Container Platform release. The Operator depends on the features that come with the RHCOS host and the environment it runs in.
 
-<!-- image -->
 
-## Procedure
+
+ Procedure
 
 - Installing Operators by using the web console
 - Installing Operators by using the API
 
-## Additional resources
+ Additional resources
 
-## NOTE
+ NOTE
 
 You must install Red Hat Enterprise Linux CoreOS (RHCOS) on the worker nodes. RHEL nodes are not supported.
 
 - OpenShift sandboxed containers
 
-## 3.1.8. Kubernetes NMState Operator
+ 3.1.8. Kubernetes NMState Operator
 
 NMState is a declarative NetworkManager API designed for configuring network settings using YAML or JSON-based instructions. The Kubernetes NMState Operator allows you to configure network interface types, DNS, and routing on the cluster nodes using NMState.
 
 You can install the Kubernetes NMState Operator on OpenShift Container Platform using the Assisted Installer, either separately or as part of the OpenShift Virtualization Operator bundle. Installing the Kubernetes NMState Operator with the Assisted Installer automatically creates a kubernetes-nmstate instance, which deploys the NMState State Controller as a daemon set across all of the cluster nodes. The daemons on the cluster nodes periodically report on the state of each node's network interfaces to the API server.
 
-## Prerequisites
+ Prerequisites
 
 - Supports OpenShift Container Platform 4.12 or later.
 - Requires an x86\_64 CPU architecture.
 - Cannot be installed on the Nutanix and Oracle Cloud Infrastructure platforms.
 
-## Procedure
+ Procedure
 
 - Installing Operators by using the web console .
 - Installing Operators by using the API .
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API.
 - Introduction to NMState.
 - Kubernetes NMState Operator.
 - NMState Declarative Network API .
 
-## 3.1.9. Fence Agents Remediation Operator
+ 3.1.9. Fence Agents Remediation Operator
 
 You can use Fence Agents Remediation Operator to automatically recover unhealthy nodes on environments with a traditional API end-point. When a node in the OpenShift Container Platform cluster becomes unhealthy or unresponsive, the Fence Agents Remediation Operator utilizes an external set of fencing agents to isolate it from the rest of the cluster. A fencing agent then resets the unhealthy node in an attempt to resolve transient hardware or software issues. Before or during the reboot process, the Fence Agents Remediation Operator safely moves workloads (pods) running on the unhealthy node to other healthy nodes in the cluster.
 
@@ -1145,27 +1101,27 @@ You can only install the Fence Agents Remediation Operator as part of the Virtua
 
 IMPORTANT
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - See the prerequisites for the Virtualization Operator bundle.
 
-## Procedure
+ Procedure
 
 - Installing Operator bundles by using the web console
 - Installing bundle Operators by using the API
 
-## Post-installation steps
+ Post-installation steps
 
 - Create the FenceAgentsRemediationTemplate custom resource to define the required fencing agents and remediation parameters. For details, see Configuring the Fence Agents Remediation Operator.
 - Configure the NodeHealthCheck custom resource by either replacing the default SelfNodeRemediation provider with FenceAgentsRemediation or by adding FenceAgentsRemediation as an additional remediation provider.
 
-## Additional resources
+ Additional resources
 
 - Using Fence Agents Remediation .
 
-## 3.1.10. Kube Descheduler Operator
+ 3.1.10. Kube Descheduler Operator
 
 The Kube Descheduler Operator is a Kubernetes operator that automates the deployment, configuration, and management of the Kubernetes Descheduler within a cluster. You can use the Kube Descheduler Operator to evict pods (workloads) based on specific strategies, so that the pods can be rescheduled onto more appropriate nodes.
 
@@ -1176,7 +1132,7 @@ You can benefit from descheduling running pods in situations such as the followi
 - Node failure requires pods to be moved.
 - New nodes are added to clusters.
 
-## IMPORTANT
+ IMPORTANT
 
 The integration of the Fence Agents Remediation Operator into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
@@ -1184,22 +1140,22 @@ The integration of the Fence Agents Remediation Operator into the Assisted Insta
 
 You can only install the Kube Descheduler Operator as part of the Virtualization Operator bundle.
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - See the prerequisites for the Virtualization Operator bundle.
 
-## Procedure
+ Procedure
 
 - Installing Operator bundles by using the web console
 - Installing bundle Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Deschedular
 
-## 3.1.11. Local Storage Operator
+ 3.1.11. Local Storage Operator
 
 The Local Storage Operator (LSO) enables the provisioning of persistent storage through local volumes. Local persistent volumes provide access to local storage devices, such as drives or partitions, by using the standard persistent volume claim interface.
 
@@ -1211,25 +1167,25 @@ You can perform the following actions using Local Storage Operator (LSO):
 
 Selecting the OpenShift Virtualization Operator, either independently or as part of the Virtualization bundle, automatically activates Local Storage Operator (LSO) in the background.
 
-## Prerequisites
+ Prerequisites
 
 - See the prerequisites for the Virtualization Operator bundle.
 
-## Procedure
+ Procedure
 
-## IMPORTANT
+ IMPORTANT
 
 The integration of the Kube Descheduler Operator into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
 - Installing Operator bundles by using the web console
 - Installing bundle Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API
 - Configuring persistent storage
 
-## 3.1.12. Node Health Check Operator
+ 3.1.12. Node Health Check Operator
 
 The Node Health Check Operator monitors node conditions based on a defined set of criteria to assess their health status. When detecting an issue, the Operator delegates remediation tasks to the appropriate remediation provider to remediate the unhealthy nodes. The Assisted Installer supports the following remediation providers:
 
@@ -1238,26 +1194,26 @@ The Node Health Check Operator monitors node conditions based on a defined set o
 
 You can only install the Node Health Check Operator as part the Virtualization Operator bundle.
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - See the prerequisites for the Virtualization Operator bundle.
 
-## Procedure
+ Procedure
 
 - Installing Operator bundles by using the web console
 - Installing bundle Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Remediating Nodes with Node Health Checks .
 
-## 3.1.13. Node Maintenance Operator
+ 3.1.13. Node Maintenance Operator
 
 The Node Maintenance Operator facilitates planned maintenance by placing nodes into maintenance mode.
 
-## IMPORTANT
+ IMPORTANT
 
 The integration of the Node Health Check Operator into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
@@ -1265,22 +1221,22 @@ The Node Maintenance Operator watches for new or deleted NodeMaintenance custom 
 
 You can only install the Node Maintenance Operator as part of the Virtualization Operator bundle.
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - See the prerequisites for the Virtualization Operator bundle.
 
-## Procedure
+ Procedure
 
 - Installing Operator bundles by using the web console
 - Installing bundle Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Placing nodes in maintenance mode with the Node Maintenance Operator .
 
-## 3.1.14. Self Node Remediation Operator
+ 3.1.14. Self Node Remediation Operator
 
 The Self Node Remediation Operator automatically reboots unhealthy nodes. This remediation strategy minimizes downtime for stateful applications and ReadWriteOnce (RWO) volumes, and restores compute capacity if transient failures occur.
 
@@ -1288,52 +1244,52 @@ You can use the Self Node Remediation Operator as a remediation provider for the
 
 IMPORTANT
 
-## IMPORTANT
+ IMPORTANT
 
 The integration of the Node Maintenance Operator into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
-<!-- image -->
 
-## Procedure
+
+ Procedure
 
 - Installing Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Using self-node remediation.
 
-## 3.1.15. AMD GPU Operator
+ 3.1.15. AMD GPU Operator
 
 The Advanced Micro Devices (AMD) Graphics Processing Unit (GPU) Operator simplifies the deployment and management of AMD Instinct™ GPUs within a Red Hat OpenShift Container Platform cluster. The hardware acceleration capabilities of the Operator automate several key tasks, making it easier to create artificial intelligence and machine learning (AI/ML) applications. Accelerating specific areas of GPU functions can minimize CPU processing and memory usage, improving overall application speed, memory consumption, and bandwidth restrictions.
 
 You can install the AMD GPU Operator separately or as part of the OpenShift AI Operator bundle. Selecting the AMD GPU Operator automatically activates the Kernel Module Management Operator.
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - Requires at least 1 supported AMD GPU.
 - See the additional prerequisites for the OpenShift AI Operator bundle if you are installing the Operator as part of the bundle.
 
-## Procedure
+ Procedure
 
-## IMPORTANT
+ IMPORTANT
 
 The integration of the AMD GPU Operator into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
-## IMPORTANT
+ IMPORTANT
 
 The integration of the Self Node Remediation Operator into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
 - Installing Operator bundles by using the web console
 - Installing bundle Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API
 - AMD GPU Operator
 
-## 3.1.16. Authorino Operator
+ 3.1.16. Authorino Operator
 
 The Authorino Operator provides an easy way to install Authorino, providing configurability options at the time of installation.
 
@@ -1341,27 +1297,27 @@ Authorino is a Kubernetes-native, external authorization service designed to sec
 
 You can only install the Authorino Operator as part of the OpenShift AI Operator bundle.
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - See the prerequisites for the OpenShift AI Operator bundle.
 
-## Procedure
+ Procedure
 
 - Installing Operator bundles by using the web console
 - Installing bundle Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API
 - authorino-operator repository (GitHub)
 
-## 3.1.17. Kernel Module Management Operator
+ 3.1.17. Kernel Module Management Operator
 
 The Kernel Module Management (KMM) Operator manages, builds, signs, and deploys out-of-tree kernel modules and device plugins on OpenShift Container Platform clusters.
 
-## IMPORTANT
+ IMPORTANT
 
 The integration of the Authorino Operator into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
@@ -1371,24 +1327,24 @@ KMM is designed to accommodate multiple kernel versions at once for any kernel m
 
 You can install the Kernel Module Management Operator either independently or as part of the OpenShift AI Operator bundle.
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - If you are installing the Operator as part of the OpenShift AI Operator bundle, see the bundle prerequisites.
 - If you are installing the Operator separately, there are no additional prerequisites.
 
-## Procedure
+ Procedure
 
 - Installing Operator bundles by using the web console
 - Installing bundle Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API
 - Kernel Module Management Operator
 
-## 3.1.18. Node Feature Discovery Operator
+ 3.1.18. Node Feature Discovery Operator
 
 The Node Feature Discovery (NFD) Operator automates the deployment and management of the Node Feature Discovery (NFD) add-on. The Node Feature Discovery add-on detects the configurations and hardware features of each node in an OpenShift Container Platform cluster. The add-on labels each node with hardware-specific information such as vendor, kernel configuration, or operating system version, making the cluster aware of the underlying hardware and software capabilities of the nodes.
 
@@ -1396,31 +1352,31 @@ With the Node Feature Discovery (NFD) Operator, administrators can easily gather
 
 You can install the Node Feature Discovery Operator separately or as part of the OpenShift AI
 
-## IMPORTANT
+ IMPORTANT
 
 The integration of the Kernel Module Management Operator into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
 You can install the Node Feature Discovery Operator separately or as part of the OpenShift AI Operator bundle.
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - If you are installing the Operator as part of the OpenShift AI Operator bundle, see the bundle prerequisites.
 - If you are installing the Operator separately, there are no additional prerequisites.
 
-## Procedure
+ Procedure
 
 - Installing Operator bundles by using the web console
 - Installing bundle Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API
 - Node Feature Discovery Operator -OpenShift Container Platform documentation
 - Node Feature Discovery Operator - Kubernetes documentation
 
-## 3.1.19. NVIDIA GPU Operator
+ 3.1.19. NVIDIA GPU Operator
 
 The NVIDIA GPU Operator uses the operator framework within Kubernetes to automate the management of all NVIDIA software components needed to provision Graphical Processing Units (GPUs).
 
@@ -1434,7 +1390,7 @@ Some of these software components are as follows:
 
 In OpenShift Container Platform, the Operator provides a consistent, automated, and cloud-native way
 
-## IMPORTANT
+ IMPORTANT
 
 The integration of the Node Feature Discovery Operator into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
@@ -1442,25 +1398,25 @@ In OpenShift Container Platform, the Operator provides a consistent, automated, 
 
 You can install the NVIDIA GPU Operator either separately or as part of the OpenShift AI Operator bundle. Selecting the NVIDIA GPU Operator automatically activates the Node Feature Discovery Operator.
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - Requires at least 1 supported NVIDIA GPU.
 - See the additional prerequisites for the OpenShift AI Operator bundle if you are installing the Operator as part of the bundle.
 
-## Procedure
+ Procedure
 
 - Installing Operator bundles by using the web console
 - Installing bundle Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API
 - NVIDIA GPU Operator on Red Hat OpenShift Container Platform
 - NVIDIA GPU Operator
 
-## 3.1.20. OpenShift Pipelines Operator
+ 3.1.20. OpenShift Pipelines Operator
 
 Red Hat OpenShift Pipelines is a cloud-native, continuous integration and continuous delivery (CI/CD) solution based on Kubernetes resources. It uses Tekton building blocks to automate deployments across multiple platforms by abstracting away the underlying implementation details. Tekton introduces various standard custom resource definitions (CRDs) for defining CI/CD pipelines that are portable across Kubernetes distributions.
 
@@ -1470,7 +1426,7 @@ The Red Hat OpenShift Pipelines Operator handles the installation and management
 
 Continuous Delivery/Deployment (CD) - Automating the deployment of applications to various
 
-## IMPORTANT
+ IMPORTANT
 
 The integration of the NVIDIA GPU Operator into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
@@ -1481,24 +1437,24 @@ The integration of the NVIDIA GPU Operator into the Assisted Installer is a Deve
 
 You can only install the OpenShift Pipelines Operator as part of the OpenShift AI Operator bundle.
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - See the prerequisites for the OpenShift AI Operator bundle.
 
-## Procedure
+ Procedure
 
 - Installing Operator bundles by using the web console
 - Installing bundle Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API
 - Red Hat OpenShift Pipelines
 - Red Hat OpenShift Pipelines documentation
 
-## 3.1.21. OpenShift Serverless Operator
+ 3.1.21. OpenShift Serverless Operator
 
 The Red Hat OpenShift Serverless Operator enables you to install and use the following components on your OpenShift Container Platform cluster:
 
@@ -1506,7 +1462,7 @@ The Red Hat OpenShift Serverless Operator enables you to install and use the fol
 
 Knative Eventing - Provides the building blocks for an event-driven architecture on Kubernetes.
 
-## IMPORTANT
+ IMPORTANT
 
 The integration of the OpenShift Pipelines Operator into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
@@ -1517,23 +1473,23 @@ The OpenShift Serverless Operator manages Knative custom resource definitions (C
 
 You can only install the OpenShift Serverless Operator as part of the OpenShift AI Operator bundle.
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - See the prerequisites for the OpenShift AI Operator bundle.
 
-## Procedure
+ Procedure
 
 - Installing Operator bundles by using the web console
 - Installing bundle Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API
 - Installing the OpenShift Serverless Operator
 
-## 3.1.22. OpenShift Service Mesh Operator
+ 3.1.22. OpenShift Service Mesh Operator
 
 Red Hat OpenShift Service Mesh addresses a variety of problems in a microservice architecture by creating a centralized point of control in an application. It adds a transparent layer on existing distributed applications without requiring any changes to the application code.
 
@@ -1541,7 +1497,7 @@ Microservice architectures split the work of enterprise applications into modula
 
 Service Mesh provides an easy way to create a network of deployed services that provides discovery,
 
-## IMPORTANT
+ IMPORTANT
 
 The integration of the OpenShift Serverless Operator into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
@@ -1551,24 +1507,24 @@ Red Hat OpenShift Service Mesh requires the use of the Red Hat OpenShift Service
 
 You can only install the OpenShift Service Mesh Operator as part of the OpenShift AI Operator bundle.
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - See the prerequisites for the OpenShift AI Operator bundle.
 - See Preparing to install service mesh  in the OpenShift Container Platform documentation.
 
-## Procedure
+ Procedure
 
 - Installing Operator bundles by using the web console
 - Installing bundle Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API
 - Installing the OpenShift Serverless Operator
 
-## 3.1.23. Cluster Observability Operator
+ 3.1.23. Cluster Observability Operator
 
 The Cluster Observability Operator (COO) is an optional component of the OpenShift Container Platform designed for creating and managing highly customizable monitoring stacks. It enables cluster administrators to automate configuration and management of monitoring needs extensively, offering a more tailored and detailed view of each namespace compared to the default OpenShift Container Platform monitoring system.
 
@@ -1576,7 +1532,7 @@ The Cluster Observability Operator deploys the following monitoring components:
 
 - Prometheus - A highly available Prometheus instance capable of sending metrics to an external endpoint by using remote write.
 
-## IMPORTANT
+ IMPORTANT
 
 The integration of the OpenShift Service Mesh Operator into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
@@ -1587,23 +1543,23 @@ The integration of the OpenShift Service Mesh Operator into the Assisted Install
 
 You can install the Cluster Observability Operator Operator separately through the Assisted Installer API or as part of the Virtualization bundle in the Assisted Installer web console. For more information about the use of this Operator in OpenShift Container Platform, see "Additional resources".
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - See the prerequisites for the Virtualization Operator bundle.
 
-## Procedure
+ Procedure
 
 - Installing Operator bundles by using the web console
 - Installing bundle Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API
 - Cluster Observability Operator overview (RHOCP)
 
-## 3.1.24. MetalLB Operator
+ 3.1.24. MetalLB Operator
 
 You can install the MetalLB Operator to enable the use of LoadBalancer services in environments that do not have a built-in cloud load balancer, such as bare-metal clusters.
 
@@ -1611,29 +1567,29 @@ When you create a LoadBalancer service, MetalLB assigns an external IP address f
 
 You can install the MetalLB Operator separately through the Assisted Installer API or as part of the
 
-## IMPORTANT
+ IMPORTANT
 
 The integration of the Cluster Observability Operator (COO) into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
 You can install the MetalLB Operator separately through the Assisted Installer API or as part of the Virtualization bundle in the Assisted Installer web console. For more information about the use of this Operator in OpenShift Container Platform, see "Additional resources".
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - See the prerequisites for the Virtualization Operator bundle.
 
-## Procedure
+ Procedure
 
 - Installing Operator bundles by using the web console
 - Installing bundle Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API
 - MetalLB Operator (RHOCP)
 
-## 3.1.25. NUMA Resources Operator
+ 3.1.25. NUMA Resources Operator
 
 Non-Uniform Memory Access (NUMA) is a compute platform architecture that allows different CPUs to access different regions of memory at different speeds. NUMA resource topology refers to the locations of CPUs, memory, and PCI devices relative to each other in the compute node. Colocated resources are said to be in the same NUMA zone. For high-performance applications, the cluster needs to process pod workloads in a single NUMA zone.
 
@@ -1643,31 +1599,31 @@ You can install the NUMA Resources Operator separately through the Assisted Inst
 
 IMPORTANT
 
-## IMPORTANT
+ IMPORTANT
 
 The integration of the MetalLB Operator into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - See the prerequisites for the Virtualization Operator bundle.
 
-## Procedure
+ Procedure
 
 - Installing Operator bundles by using the web console
 - Installing bundle Operators by using the API
 
-## Post-installation steps
+ Post-installation steps
 
 Create the NUMAResourcesOperator custom resource and deploy the NUMA-aware secondary pod scheduler. For details, see Scheduling NUMA-aware workloads in "Additional resources".
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API
 - Scheduling NUMA-aware workloads (RHOCP)
 
-## 3.1.26. OpenShift API for Data Protection (OADP) Operator
+ 3.1.26. OpenShift API for Data Protection (OADP) Operator
 
 The OpenShift API for Data Protection (OADP) product safeguards customer applications on OpenShift Container Platform. It offers comprehensive disaster recovery protection, covering OpenShift Container Platform applications, application-related cluster resources, persistent volumes, and internal images. OADP is also capable of backing up both containerized applications and virtual machines (VMs). OADP does not serve as a disaster recovery solution for etcd or OpenShift Operators.
 
@@ -1675,22 +1631,22 @@ You can install the OADP Operator separately through the Assisted Installer API 
 
 IMPORTANT
 
-## IMPORTANT
+ IMPORTANT
 
 The integration of the NUMA Resources Operator into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - See the prerequisites for the Virtualization Operator bundle.
 
-## Procedure
+ Procedure
 
 - Installing Operator bundles by using the web console
 - Installing bundle Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API
 - OADP Application backup and restore (RHOCP)
@@ -1705,15 +1661,15 @@ Meanwhile, individual Operators remain independent and free of unnecessary depen
 
 When an administrator specifies an Operator bundle, the Assisted Installer automatically provisions the associated Operators included in the bundle. These Operators are predefined and cannot be deselected, ensuring consistency. Administrators can modify the selection after the installation has completed.
 
-## Additional resources
+ Additional resources
 
 - Customizing with Operators.
 
-## 3.2.1. Virtualization Operator bundle
+ 3.2.1. Virtualization Operator bundle
 
 Virtualization lets you create multiple simulated environments or resources from a single, physical
 
-## IMPORTANT
+ IMPORTANT
 
 The integration of the OpenShift API for Data Protection Operator into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
@@ -1734,15 +1690,15 @@ The Virtualization Operator bundle prompts the Assisted Installer to install the
 - NUMA Resources Operator - Provides NUMA-aware scheduling to improve workload performance on NUMA systems.
 - OpenShift API for Data Protection (OADP) Operator - Enables the backup and restoral of OpenShift Container Platform cluster resources and persistent volumes.
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - You are installing OpenShift Container Platform version 4.14 or later.
 - There is enabled CPU virtualization support in BIOS (Intel-VT/AMD-V) on all nodes.
 - Each control plane (master) node has an an additional 1024 MiB of memory and 3 CPU cores.
 
-## IMPORTANT
+ IMPORTANT
 
 The Virtualization Operator bundle is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
@@ -1750,16 +1706,16 @@ The Virtualization Operator bundle is a Developer Preview feature only. Develope
 - You have included the additional resources required to support the selected storage Operator.
 - You are installing a cluster of three or more nodes. The Virtualization Operator bundle is not available on single-node OpenShift.
 
-## Procedure
+ Procedure
 
 - Installing Operator bundles by using the web console
 - Installing bundle Operators by using the API
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API
 
-## 3.2.2. OpenShift AI Operator bundle
+ 3.2.2. OpenShift AI Operator bundle
 
 The OpenShift AI Operator bundle enables the training, serving, monitoring, and management of Artificial Intelligence (AI) and Machine Learning (ML) models and applications. It simplifies the deployment of AI and ML components on your OpenShift cluster.
 
@@ -1777,20 +1733,20 @@ The OpenShift AI Operator bundle bundle prompts the Assisted Installer to instal
 - OpenShift Serverless Operator - Deploys workflow applications based on the CNCF (Cloud Native Computing Foundation) Serverless Workflow specification.
 - OpenShift Service Mesh Operator - Provides behavioral insight and operational control over a service mesh.
 
-## Prerequisites
+ Prerequisites
 
 - The installation of the NVIDIA GPU, AMD GPU, and Kernel Module Management Operators depends on the Graphics Processing Unit (GPU) detected on your hosts following host discovery.
 
-## Procedure
+ Procedure
 
 - Installing Operator bundles by using the web console .
 - Installing bundle Operators by using the API .
 
-## Additional resources
+ Additional resources
 
 - Modifying Operators by using the API.
 
-## CHAPTER 4. INSTALLING WITH THE ASSISTED INSTALLER WEB CONSOLE
+# CHAPTER 4. INSTALLING WITH THE ASSISTED INSTALLER WEB CONSOLE
 
 After you ensure the cluster nodes and network requirements are met, you can begin installing the cluster.
 
@@ -1813,7 +1769,7 @@ Before installing OpenShift Container Platform with the Assisted Installer, you 
 
 To create a cluster with the Assisted Installer web user interface, use the following procedure.
 
-## Procedure
+ Procedure
 
 1.  Log in to the Red Hat Hybrid Cloud Console .
 2.  On the Red Hat OpenShift tile, click OpenShift .
@@ -1825,37 +1781,37 @@ To create a cluster with the Assisted Installer web user interface, use the foll
 
 NOTE
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 The base domain must be a valid DNS name. You must not have a wildcard domain set up for the base domain.
 
 8.  From the OpenShift version dropdown list, select the version that you want to install and click Select . By default, the dropdown lists the latest OpenShift version. If you need an older version that is not displayed, click Show all available versions at the bottom of the list, and use the search box to find it.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 - For a multi-architecture compute cluster installation, select OpenShift Container Platform 4.12 or later, and use the -multi option. For instructions on installing a multi-architecture compute cluster, see Installing multiarchitecture compute clusters.
 - For IBM Power® and IBM Z® platforms, only OpenShift Container Platform 4.13 and later is supported.
 - If you are booting from an iSCSI drive, select OpenShift Container Platform version 4.15 or later.
 9.  Optional: Assisted Installer defaults to using x86\_64 CPU architecture. If you are installing OpenShift Container Platform on a different architecture, select the architecture to use. Valid values are arm64, ppc64le, and s390x. Remember that some features are not available with arm64, ppc64le, and s390x CPU architectures.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 For a multi-architecture compute cluster installation, you can use x86\_64 or 64bit ARM CPU architecture for the control plane nodes. Automatic conversion from x86\_64 to 64-bit ARM is only supported on Amazon Web Services (AWS). For instructions on installing a multi-architecture compute cluster, see Installing multi-architecture compute clusters.
 
 10.  Optional: The Assisted Installer already has the pull secret associated to your account. If you want to use a different pull secret, select Edit pull secret .
 11.  Optional: If you are installing OpenShift Container Platform on a third-party platform, select the platform from the Integrate with external partner platforms list. Valid values are Nutanix , vSphere or Oracle Cloud Infrastructure . Assisted Installer defaults to having no platform integration.
 
-<!-- image -->
+
 
 12.  From the
 
-## NOTE
+ NOTE
 
 - Assisted Installer supports Oracle Cloud Infrastructure (OCI) integration from OpenShift Container Platform 4.14 and later.
 - For details on each of the external partner integrations, see Additional Resources .
@@ -1864,26 +1820,26 @@ Number of control plane nodes field, optionally change the default value of thre
 
 12.  From the Number of control plane nodes field, optionally change the default value of three control plane nodes for your installation. The possible options are 1 (single-node OpenShift), 2 , 3 , 4 , or 5 .
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 - Currently, single-node OpenShift is not supported on IBM Z® and IBM Power® platforms.
 - The Assisted Installer supports 4 or 5 control plane nodes from OpenShift Container Platform 4.18 and later, on a bare metal or user-managed networking platform with an x86\_64 CPU architecture. For details, see About specifying the number of control plane nodes .
 - The Assisted Installer supports 2 control plane nodes from OpenShift Container Platform 4.19 and later, for a Two-Node OpenShift with Arbiter cluster topology. If the number of control plane nodes for a cluster is 2 , then it must have at least one additional arbiter host. For details, see About specifying the number of control plane nodes.
 13.  Optional: Select Include custom manifests if you have at least one custom manifest to include in the installation. A custom manifest has additional configurations not currently supported in the Assisted Installer. Selecting the checkbox adds the Custom manifests step to the wizard, where you upload the manifests.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 - If you are installing OpenShift Container Platform on the Oracle Cloud Infrastructure (OCI) third-party platform, it is mandatory to add the custom manifests provided by Oracle.
 - If you have already added custom manifests, clearing the Include custom manifests checkbox automatically deletes them all. You must confirm the deletion.
 14.  Optional: The Assisted Installer defaults to DHCP networking. If you are using a static IP configuration, bridges or bonds for the cluster nodes instead of DHCP reservations, select Static IP, bridges, and bonds . Selecting the checkbox adds the Static network configurations step to the wizard. For details, see Configuring static networks.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 A static IP configuration is not supported in the following scenarios:
 
@@ -1898,13 +1854,13 @@ Control plane nodes to encrypt the control plane node
 
 - For multi-node clusters, select Control plane nodes to encrypt the control plane node installation disks. Select Workers to encrypt worker node installation disks. Select Arbiter to encrypt the arbiter node installation disks.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 You cannot change the base domain, the single-node OpenShift checkbox, the CPU architecture, the host's network configuration, or the diskencryption after installation begins.
 
-## Additional resources
+ Additional resources
 
 - Optional: Installing on Nutanix
 - Optional: Installing on vSphere
@@ -1919,23 +1875,23 @@ The Assisted Installer supports the following network configurations:
 - Static network configuration using static interfaces with IP address and MAC address mapping.
 - Host network interface configuration using the NMState library, a declarative network manager API for hosts. You can also use NMState to deploy hosts with bonds, VLANs, and other advanced networking features.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 For installations on IBM Z® with z/VM, ensure that the z/VM nodes and vSwitches are properly configured for static networks and NMState. Also, the z/VM nodes must have a fixed MAC address assigned as the pool MAC addresses might cause issues with NMState. For more information about NMState, see NMState Declarative Network API .
 
-## 4.3.1. Configuring static networks using form view
+ 4.3.1. Configuring static networks using form view
 
 You can configure networks by using the form view or the YAML view. Select Form view for basic configurations.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 To add new hosts that will use the new or edited configurations, you'll need to regenerate the Discovery ISO in the 'Host discovery' step and boot your new hosts from it.
 
-## Prerequisites
+ Prerequisites
 
 You have selected the
 
@@ -1945,16 +1901,16 @@ Hosts' network
 
 - You have selected the Static IP, bridges and bonds option under Hosts' network configuration on the Cluster details page. Selecting this option adds the Static network configurations step to the wizard.
 
-## Procedure
+ Procedure
 
 1.  Go to the Static network configurations page.
 2.  From the Configure via options, select Form view .
 3.  Enter the network-wide configurations:
 - a.  Select the Networking stack type . Valid options are IPv4 and Dual stack (with IPv4 as primary).
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 IPv6 is not currently supported in the following configurations:
 
@@ -1971,9 +1927,9 @@ IPv6 is not currently supported in the following configurations:
 - i.  Select the Use bond checkbox.
 - ii.  From the Bond type dropdown list, select the bond type. The default bond type is Active-Backup (1) .
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 For a description of the bond types, see Bonding modes.
 
@@ -1983,17 +1939,17 @@ For a description of the bond types, see Bonding modes.
 - v.  Enter the IP address for the bond.
 5.  Click Next .
 
-## 4.3.2. Configuring static networks using YAML view
+ 4.3.2. Configuring static networks using YAML view
 
 If you use multiple interfaces or other advanced networking features, use the YAML view to enter the network state for each host that uses NMState syntax. For more information about NMState, see NMState Declarative Network API .
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - You have selected the Static IP, bridges and bonds option under Hosts' network configuration on the Cluster details page. Selecting this option adds the Static network configurations step to the wizard.
 
-## Procedure
+ Procedure
 
 1.  Go to the Static network configurations page.
 2.  From the Configure via options, select YAML view .
@@ -2012,7 +1968,7 @@ When installing Operators and Operator bundles through the web console, the foll
 - Some Operators are only available as part of a bundle and cannot be selected individually.
 - Some Operators can be selected either individually or as part of a bundle. If you select them as part of a bundle, you can only remove them by deselecting the bundle.
 
-## NOTE
+ NOTE
 
 You can only create host-specific configurations using form view.
 
@@ -2020,32 +1976,32 @@ You can only create host-specific configurations using form view.
 
 This step is optional.
 
-## 4.4.1. Installing standalone Operators
+ 4.4.1. Installing standalone Operators
 
 You can select more than one standalone Operator and add Operator bundles as needed. Operators that appear greyed out are only available for installation as part of a bundle.
 
 For instructions on installing Operator bundles, see Installing Operator bundles.
 
-## Prerequisites
+ Prerequisites
 
 - You have reviewed Customizing your installation using Operators for an overview of each Operator that you intend to install, together with its prerequisites and dependencies.
 
-## Procedure
+ Procedure
 
 1.  On the Operators page, expand the Single Operators arrow to display the full list of Operators.
 2.  Select one or more Operators from the following options:
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 The integration of the AMD GPU, Kernel Module Management, Node Feature Discovery, NVIDIA GPU, and OpenShift AI Operators into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
 - AMD GPU
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 Selecting the AMD GPU Operator automatically activates the Kernel Module Management Operator.
 
@@ -2055,36 +2011,36 @@ Selecting the AMD GPU Operator automatically activates the Kernel Module Managem
 
 IMPORTANT
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 Selecting the Migration Toolkit for Virtualization Operator automatically activates the OpenShift Virtualization Operator. For a Single-node OpenShift installation, the Assisted Installer also activates the LVM Storage Operator.
 
 - Multicluster engine
 - NMState
 
-<!-- image -->
 
-<!-- image -->
 
-## IMPORTANT
+
+
+ IMPORTANT
 
 You can deploy the multicluster engine with OpenShift Data Foundation on all OpenShift Container Platform clusters. Deploying the multicluster engine without OpenShift Data Foundation results in the following storage configurations:
 
 - Multi-node cluster: No storage is configured. You must configure storage after the installation.
 - Single-node OpenShift: LVM Storage is installed.
 
-## NOTE
+ NOTE
 
 Currently, you cannot install the Kubernetes NMState Operator on the Nutanix or Oracle Cloud Infrastructure (OCI) third-party platforms.
 
 - Node Feature Discovery
 - NVIDIA GPU
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 Selecting the NVIDIA GPU Operator automatically activates the Node Feature Discovery Operator.
 
@@ -2094,9 +2050,9 @@ Selecting the NVIDIA GPU Operator automatically activates the Node Feature Disco
 
 IMPORTANT
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 The integration of the OpenShift sandboxed containers Operator into the Assisted Installer is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
 
@@ -2104,9 +2060,9 @@ For more information about the support scope of Red Hat Technology Preview featu
 
 - OpenShift Virtualization
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 The OpenShift Virtualization Operator requires backend storage and might automatically activate a storage Operator in the background, according to the following criteria:
 
@@ -2116,17 +2072,17 @@ The OpenShift Virtualization Operator requires backend storage and might automat
 3.  To install the Self Node Remediation Operator, see Installing Operators by using the API . It is not currently possible to install this Operator using the web console.
 4.  Click Next .
 
-## 4.4.2. Installing Operator bundles
+ 4.4.2. Installing Operator bundles
 
 You can select more than one Operator bundle together with additional Operators as needed.
 
 For instructions on installing individual Operators, see Installing Operators.
 
-## Prerequisites
+ Prerequisites
 
 - You have reviewed Customizing your installation using Operator bundles for an overview of each Operator bundle that you intend to install, together with its prerequisites and associated Operators.
 
-## Procedure
+ Procedure
 
 1.  On the Operators page, select an Operator bundle:
 2. Virtualization - Contains the following Operators:
@@ -2155,9 +2111,9 @@ For instructions on installing individual Operators, see Installing Operators.
 - OpenShift Serverless
 - Kernel Module Management
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 Each of the Operator bundles is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
@@ -2167,9 +2123,9 @@ Each of the Operator bundles is a Developer Preview feature only. Developer Prev
 
 You must add one or more hosts to the cluster. Adding a host to the cluster involves generating a discovery ISO. The discovery ISO runs Red Hat Enterprise Linux CoreOS (RHCOS) in-memory with an agent.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 - If you are installing the IBM Z® architecture, use the following table to identify the image file type:
 - ISO images are not supported for installations on IBM Z (s390x) with z/VM or logical partitioning (LPAR) nodes; use the "Booting hosts with iPXE" procedure. ISO images and iPXE are supported for installations on RHEL KVM.
@@ -2181,14 +2137,14 @@ You must add one or more hosts to the cluster. Adding a host to the cluster invo
 
 Perform the following procedure for each host on the cluster.
 
-## Procedure
+ Procedure
 
 1.  Click the Add hosts button and select the provisioning type.
 - a.  Select Minimal image file: Provision with virtual media to download a smaller image that will fetch the data needed to boot. The nodes must have virtual media capability. This is the recommended method for x86\_64 and arm64 architectures.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 This option is mandatory in the following scenarios:
 
@@ -2202,33 +2158,33 @@ to boot the hosts using iPXE. This is the
 
 - c.  Select iPXE: Provision from your network server to boot the hosts using iPXE. This is the recommended method on IBM Z® with z/VM nodes and LPAR (both static and DPM). ISO boot is the recommended method on the RHEL KVM installation.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 If you are installing OpenShift Container Platform on RHEL KVM, in some circumstances, the VMs on the KVM host are not rebooted on first boot and need to be restarted manually.
 
 2.  Optional: Activate the Run workloads on control plane nodes switch to schedule workloads to run on control plane nodes, in addition to the default worker nodes.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 This option is available for clusters of five or more nodes. For clusters of under five nodes, the system runs workloads on the control plane nodes only, by default. For more details, see Configuring schedulable control plane nodes in Additional Resources .
 
 3.  Optional: If the cluster hosts require the use of a proxy, select Configure cluster-wide proxy settings . Enter the username, password, required domains or IP addresses, and port for the HTTP and HTTPS URLs of the proxy server. If the cluster hosts are behind a firewall, allow the nodes to access the required domains or IP addresses through the firewall. See Configuring your firewall for OpenShift Container Platform for more information.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 The proxy username and password must be URL-encoded.
 
 4.  Optional: Add an SSH public key so that you can connect to the cluster nodes as the core user. Having a login to the cluster nodes can provide you with debugging information during the installation.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 Do not skip this procedure in production environments, where disaster recovery and debugging is required.
 
@@ -2242,7 +2198,7 @@ Do not skip this procedure in production environments, where disaster recovery a
 9.  Download the discovery ISO or iPXE script.
 10.  Boot the host(s) with the discovery image or iPXE script.
 
-## Additional resources
+ Additional resources
 
 - Configuring the discovery image for additional details.
 - Booting hosts with the discovery image  for additional details.
@@ -2256,7 +2212,7 @@ Do not skip this procedure in production environments, where disaster recovery a
 
 After booting the hosts with the discovery ISO, the hosts will appear in a table on the Host Discovery page. You can optionally configure the hostname and role for each host. You can also delete a host if necessary.
 
-## Procedure
+ Procedure
 
 1.  Go to the Host Discovery tab.
 2.  In multi-host clusters, you can select a role for each host after host discovery:
@@ -2279,9 +2235,9 @@ For more details about the different host roles, see About assigning roles to ho
 - a.  To rename a single host, from the Options ( ⋮ ) menu for the host, select Change hostname . If necessary, enter a new name for the host and click Change . You must ensure that each host has a valid and unique hostname.
 - b.  To rename multiple selected hosts, from the Actions list, select Change hostname . In the Change Hostname dialog, type the new name and include {{n}} to make each hostname unique. Then click Change .
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 You can see the new names appearing in the Preview pane as you type. The name will be identical for all selected hosts, with the exception of a singledigit increment per host.
 
@@ -2289,9 +2245,9 @@ You can see the new names appearing in the Preview pane as you type. The name wi
 - a.  To remove a single host, from the Options ( ⋮ ) menu for the host, select Remove host . Click Remove host to confirm the deletion.
 - b.  To remove multiple selected hosts at the same time, from the Actions list, select Remove . Click Remove hosts to confirm the deletion.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 In a regular deployment, a cluster can have three or more hosts, and at least three of these must be control plane nodes. If you delete a host that is also a control plane node, or if there are only two hosts, you will get a message saying that the system is not ready. To restore a host, you must reboot it from the discovery ISO.
 
@@ -2306,34 +2262,34 @@ Each of the hosts retrieved during host discovery can have multiple storage disk
 
 You can optionally modify the default configurations for each disk.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 - Starting from OpenShift Container Platform 4.14, you can configure nodes with Intel® Virtual RAID on CPU (VROC) to manage NVMe RAIDs. For details, see Configuring an Intel® Virtual RAID on CPU (VROC) data volume .
 - Starting from OpenShift Container Platform 4.15, you can install a cluster on a single or multipath iSCSI boot device using the Assisted Installer.
 
-## 4.7.1. Changing the installation disk
+ 4.7.1. Changing the installation disk
 
 The Assisted Installer randomly assigns an installation disk by default. If there are multiple storage disks for a host, you can select a different disk to be the installation disk. This automatically unassigns the previous disk.
 
-<!-- image -->
 
-## Procedure
+
+ Procedure
 
 1.  Navigate to the Storage page of the wizard.
 2.  Expand a host to display the associated storage disks.
 3.  Select Installation disk from the Role list.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 Multipath devices are automatically discovered and listed in the host's inventory. To assign a multipath Fibre Channel disk as the installation disk, choose a disk with Drive type set to Multipath , rather than to FC which indicates a single path.
 
 4.  When all storage disks return to Ready status, proceed to the next step.
 
-## 4.7.2. Disabling disk formatting
+ 4.7.2. Disabling disk formatting
 
 The Assisted Installer marks all bootable disks for formatting during the installation process by default, regardless of whether or not they have been defined as the installation disk. Formatting causes data loss.
 
@@ -2341,9 +2297,9 @@ You can choose to disable the formatting of a specific disk. Perform this with c
 
 You cannot disable formatting for the installation disk.
 
-## Procedure
+ Procedure
 
-## NOTE
+ NOTE
 
 Red Hat Enterprise Linux CoreOS (RHCOS) supports multipathing over Fibre Channel on the installation disk, allowing stronger resilience to hardware failure to achieve higher host availability. Multipathing is enabled by default in the agent ISO image, with an /etc/multipath.conf configuration. For details, see  Modifying the DM Multipath configuration file.
 
@@ -2352,7 +2308,7 @@ Red Hat Enterprise Linux CoreOS (RHCOS) supports multipathing over Fibre Channel
 3.  Clear Format for a disk.
 4.  When all storage disks return to Ready status, proceed to the next step.
 
-## Additional resources
+ Additional resources
 
 - Configuring hosts
 
@@ -2360,28 +2316,28 @@ Red Hat Enterprise Linux CoreOS (RHCOS) supports multipathing over Fibre Channel
 
 Before installing OpenShift Container Platform, you must configure the cluster network.
 
-## Procedure
+ Procedure
 
 1.  In the Networking step, select one of the following network management types if it is not already selected for you:
 2. Cluster-Managed Networking: Selecting cluster-managed networking means that the Assisted Installer will configure a standard network topology. This configuration includes an integrated load balancer and virtual routing for managing the API and Ingress VIP addresses. For details, see Network management types.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 - Currently, cluster-managed networking is not supported on IBM Z® and IBM Power®.
 - Cluster-managed networking is not supported on single-node OpenShift.
 - User-Managed Networking : Selecting user-managed networking deploys OpenShift Container Platform with a non-standard network topology. Select user-managed networking if you want to deploy with an external load balancer and DNS, or if you intend to deploy the cluster nodes across many distinct subnets. For details, see Network management types.
 
-<!-- image -->
 
-<!-- image -->
 
-## NOTE
+
+
+ NOTE
 
 Oracle Cloud Infrastructure (OCI) is available for OpenShift Container Platform 4.14 with a user-managed networking configuration only.
 
-## IMPORTANT
+ IMPORTANT
 
 The Assisted Installer supports a third network management type called ClusterManaged Networking with a User-Managed Load Balancer . This network management type provides automated cluster networking with an external load balancer. Currently you can configure this network management type through the API only. For details, see Installing cluster-managed networking with a usermanaged load balancer.
 
@@ -2391,9 +2347,9 @@ The Assisted Installer supports a third network management type called ClusterMa
 4. Dual-stack : You can select dual-stack when your hosts are using IPv4 together with IPv6.
 - b.  Define the Machine network . You can use the default network or select a subnet.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 For iSCSI boot volumes, the hosts connect over two machine networks: one designated for the OpenShift Container Platform installation and the other for iSCSI traffic. Ensure you select the OpenShift Container Platform network from the dropdown list. The iSCSI host IP address should not be on the machine network. Choosing the iSCSI network will result in an Insufficient status for the host in the Networking step.
 
@@ -2405,7 +2361,7 @@ For iSCSI boot volumes, the hosts connect over two machine networks: one designa
 6. Service network CIDR : Define an IP address block to assign service IP addresses.
 4.  Optional: Select Host SSH Public Key for troubleshooting after installation to connect to hosts using a public SSH key for troubleshooting after installation.
 
-## Additional resources
+ Additional resources
 
 - Network configuration
 
@@ -2415,13 +2371,13 @@ You can upload custom manifests and patches for system manifests in the Assisted
 
 For information about adding and modifying custom manifests by using the Assisted Installer API, see Adding custom manifests with the API.
 
-## 4.9.1. Preparing custom manifests and manifest patches
+ 4.9.1. Preparing custom manifests and manifest patches
 
 This section provides an overview of custom manifests and system manifest patches, including formatting considerations and the required naming conventions for uploading the files.
 
 Follow these guidelines to ensure that the files you upload comply with the system requirements.
 
-## 4.9.1.1. Custom manifests
+ 4.9.1.1. Custom manifests
 
 A custom manifest is a JSON or YAML file that contains advanced configurations not currently supported in the Assisted Installer user interface. You can create a custom manifest or use one provided by a third party.
 
@@ -2431,36 +2387,36 @@ You can upload only one file at a time. However, each uploaded YAML file can con
 
 For a file containing a single custom manifest, accepted file extensions include .yaml , .yml , or .json . For a file containing multiple custom manifests, accepted file types include .yaml or .yml .
 
-## Single custom manifest example
+ Single custom manifest example
 
 apiVersion: machineconfiguration.openshift.io/v1 kind: MachineConfig metadata: labels: machineconfiguration.openshift.io/role: master name: 99-openshift-machineconfig-master-kargs spec: kernelArguments: - loglevel=7
 
-## Multiple custom manifest example
+ Multiple custom manifest example
 
 apiVersion: machineconfiguration.openshift.io/v1 kind: MachineConfig metadata: labels: machineconfiguration.openshift.io/role: master name: 99-openshift-machineconfig-master-kargs spec: kernelArguments: - loglevel=7 ---apiVersion: machineconfiguration.openshift.io/v2 kind: MachineConfig metadata: labels: machineconfiguration.openshift.io/role: worker name: 98-openshift-machineconfig-worker-kargs spec: kernelArguments: - loglevel=5
 
 NOTE
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 When you install OpenShift Container Platform on the Oracle Cloud Infrastructure (OCI) external platform, you must add the custom manifests provided by Oracle. For additional external partner integrations such as vSphere or Nutanix, this step is optional.
 
-## Additional resources
+ Additional resources
 
 - Working with multi-document YAML files
 - Manifest configuration files
 
-## 4.9.1.2. Patches for system manifests
+ 4.9.1.2. Patches for system manifests
 
 A manifest patch file conforms to the syntax of a YAML patch. Its purpose is to modify a system manifest that is automatically created by the Assisted Installer during installation preparation. Manifest patches are used to adjust onfigurations, manage updates, or apply changes in a structured and automated way. This approach ensures consistency and helps avoid errors when altering complex YAML documents.
 
-## 4.9.1.2.1. General YAML syntax for system manifest patches
+ 4.9.1.2.1. General YAML syntax for system manifest patches
 
 The yaml-patch package is an implementation of JavaScript Object Notation (JSON) Patch , directly transposed to YAML. The general syntax of a system manifest YAML patch is the following:
 
-<!-- image -->
+
 
 - op: &lt;add | remove | replace | move | copy | test&gt; 1 from: &lt;source-path&gt; 2 path: &lt;target-path&gt; 3 value: &lt;any-yaml-structure&gt; 4
 - See the JavaScript Object Notation (JSON) Patch  for an explanation of each operation.
@@ -2468,15 +2424,15 @@ The yaml-patch package is an implementation of JavaScript Object Notation (JSON)
 - 3 Always mandatory.
 - 4 Only valid for add , replace and test operations.
 
-<!-- image -->
 
-<!-- image -->
 
-<!-- image -->
 
-<!-- image -->
 
-## 4.9.1.2.2. Naming conventions for system manifest patches
+
+
+
+
+ 4.9.1.2.2. Naming conventions for system manifest patches
 
 When creating a new patch for a system manifest, use the following naming convention: &lt;file to be patched&gt;.patch\_&lt;suffix&gt; . The name itself ensures that the correct manifest is overwritten, and the suffix allows for the application of many patches to the same manifest.
 
@@ -2539,22 +2495,22 @@ Filename: 50-masters-chrony-configuration.yaml.patch\_1\_apply-chrony-dhcp
 
 3.  You then upload the patch file in the Assisted Installer web console. For details, see the following section.
 
-## 4.9.2. Uploading custom manifests and manifest patches
+ 4.9.2. Uploading custom manifests and manifest patches
 
 When uploading a custom manifest or patch, enter the filename and select a destination folder. The filename must be unique across both folders; you cannot use the same file name in both folders.
 
-## Prerequisites
+ Prerequisites
 
 - You have saved a custom manifest file to a local directory using an appropriate file name and extension.
 
-## Procedure
+ Procedure
 
 1.  On the Cluster details page of the wizard, select the Include custom manifests checkbox.
 2.  On the Custom manifest page, in the folder field, select the Assisted Installer folder where you want to save the manifest or patch.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 You can upload a file to either the openShift or manifest folder. For a manifest patch, the system will look in both folders for the target file that it needs to patch.
 
@@ -2565,25 +2521,25 @@ You can upload a file to either the openShift or manifest folder. For a manifest
 5.  To upload another file, click Add another manifest and repeat the process. This saves any previously uploaded files.
 6.  Click Next to save all files and proceed to the Review and create page. Custom manifests displays a list of the uploaded custom manifests and patches.
 
-## 4.9.3. Modifying custom manifests and manifest patches
+ 4.9.3. Modifying custom manifests and manifest patches
 
 You can rename uploaded custom manifest or patch files, and save custom manifest files to a different folder. Additionally, you can copy the contents of an existing file, or download it to the folder specified in your Chrome download settings.
 
 It is not possible to edit the content of an uploaded manifest or patch file. Instead, you can overwrite the existing file.
 
-## Prerequisites
+ Prerequisites
 
 - You have uploaded at least one custom manifest or patch file.
 
-## Procedure
+ Procedure
 
 1.  To change the location of a custom manifest file, select a different folder from the Folder list.
 2.  To change the file name, type the new name for the manifest or patch in the File name field. Patch files should respect the patch naming conventions discussed earlier in this section.
 3.  To overwrite a manifest or patch file, save a new file with the same file name in either the openshift or manifest folder.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 The system will automatically detect and replace the original file, regardless of which folder it is in.
 
@@ -2591,50 +2547,50 @@ The system will automatically detect and replace the original file, regardless o
 5.  To copy a manifest or patch, click the Copy to clipboard icon.
 6.  To apply the changes, click either Add another manifest or Next .
 
-## 4.9.4. Removing custom manifests and manifest patches
+ 4.9.4. Removing custom manifests and manifest patches
 
 You can remove uploaded custom manifests or patches before installation in one of two ways:
 
 - Removing a single custom manifest or patch.
 - Removing all manifests and patches at the same time.
 
-<!-- image -->
 
-## WARNING
+
+ WARNING
 
 Once you have removed a manifest or patch file you cannot undo the action. The workaround is to upload the file again.
 
 
 
-## 4.9.4.1. Removing all custom manifests and patches
+ 4.9.4.1. Removing all custom manifests and patches
 
 You can remove all custom manifests and patches at the same time. This also hides the Custom manifest page.
 
-## Prerequisites
+ Prerequisites
 
 - You have uploaded at least one custom manifest or patch file.
 
-## Procedure
+ Procedure
 
 1.  Browse to the Cluster details page of the wizard.
 2.  Clear the Include custom manifests checkbox.
 3.  In the Remove custom manifests dialog box, click Remove .
 
-## 4.9.4.2. Removing a single custom manifest or patch
+ 4.9.4.2. Removing a single custom manifest or patch
 
 You can delete one file at a time. This option does not allow deletion of the last remaining manifest or patch.
 
-## Prerequisites
+ Prerequisites
 
 - You have uploaded at least two custom manifest or patch files.
 
-## Procedure
+ Procedure
 
 1.  Browse to the Custom manifests page.
 2.  Hover over the manifest name to display the Delete (minus) icon.
 3.  Click the icon and then click Delete in the dialog box.
 
-## Additional resources
+ Additional resources
 
 - Manifest configuration files
 - Multi-document YAML files
@@ -2643,7 +2599,7 @@ You can delete one file at a time. This option does not allow deletion of the la
 
 The Assisted Installer ensures the cluster meets the prerequisites before installation, because it eliminates complex postinstallation troubleshooting, thereby saving significant amounts of time and effort. Before installing the cluster, ensure the cluster and each host pass preinstallation validation.
 
-## Additional resources
+ Additional resources
 
 - Preinstallation validation
 
@@ -2651,7 +2607,7 @@ The Assisted Installer ensures the cluster meets the prerequisites before instal
 
 After you have completed the configuration and all the nodes are Ready , you can begin installation. The installation process takes a considerable amount of time, and you can monitor the installation from the Assisted Installer web console. Nodes will reboot during the installation, and they will initialize after installation.
 
-## Procedure
+ Procedure
 
 1.  Click Begin installation .
 2.  Click the link in the Status column of the Host Inventory list to see the installation status of a particular host.
@@ -2660,11 +2616,11 @@ After you have completed the configuration and all the nodes are Ready , you can
 
 After the cluster is installed and initialized, the Assisted Installer indicates that the installation is finished. The Assisted Installer provides the console URL, the kubeadmin username and password, and the kubeconfig file. Additionally, the Assisted Installer provides cluster details including the OpenShift Container Platform version, base domain, CPU architecture, API and Ingress IP addresses, and the cluster and service network IP addresses.
 
-## Prerequisites
+ Prerequisites
 
 - You have installed the oc CLI tool.
 
-## Procedure
+ Procedure
 
 1.  Make a copy of the kubeadmin username and password.
 2.  Download the kubeconfig file and copy it to the auth directory under your working directory:
@@ -2673,9 +2629,9 @@ $ mkdir -p &lt;working\_directory&gt;/auth
 
 $ cp kubeconfig &lt;working\_directory&gt;/auth
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 The kubeconfig file is available for download for 20 days after completing the installation.
 
@@ -2694,12 +2650,12 @@ Replace &lt;password&gt; with the password of the kubeadmin user.
 7.  Add a bookmark of the OpenShift Container Platform console.
 8.  Complete any postinstallation platform integration steps.
 
-## Additional resources
+ Additional resources
 
 - Nutanix postinstallation configuration
 - vSphere postinstallation configuration
 
-## CHAPTER 5. INSTALLING WITH THE ASSISTED INSTALLER API
+# CHAPTER 5. INSTALLING WITH THE ASSISTED INSTALLER API
 
 After you ensure the cluster nodes and network requirements are met, you can begin installing the cluster by using the Assisted Installer API. To use the API, you must perform the following procedures:
 
@@ -2714,20 +2670,20 @@ Once you perform these steps, you can modify the cluster definition, create disc
 
 Download the offline token from the Assisted Installer web console. You will use the offline token to set the API token.
 
-## Prerequisites
+ Prerequisites
 
 - Install jq .
 - Log in to the OpenShift Cluster Manager as a user with cluster creation privileges.
 
-## Procedure
+ Procedure
 
 1.  In the menu, click Downloads .
 2.  In the Tokens section under OpenShift Cluster Manager API Token , click View API Token .
 3.  Click Load Token .
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 Disable pop-up blockers.
 
@@ -2736,7 +2692,7 @@ Disable pop-up blockers.
 
 $ export OFFLINE\_TOKEN=&lt;copied\_token&gt;
 
-## TIP
+ TIP
 
 To make the offline token permanent, add it to your profile.
 
@@ -2748,13 +2704,13 @@ $ echo ${OFFLINE\_TOKEN}
 
 API calls require authentication with the API token. Assuming you use API\_TOKEN as a variable name, add -H "Authorization: Bearer ${API\_TOKEN}" to API calls to authenticate with the REST API.
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - You have generated the OFFLINE\_TOKEN variable.
 
-## Procedure
+ Procedure
 
 1.  On the command line terminal, set the API\_TOKEN variable using the OFFLINE\_TOKEN to validate the user.
 2.  Confirm the API\_TOKEN variable definition:
@@ -2772,7 +2728,7 @@ $ echo ${API_TOKEN}
 $ vim ~/.local/bin/refresh-token export API_TOKEN=$( \ curl \ --silent \ --header "Accept: application/json" \ --header "Content-Type: application/x-www-form-urlencoded" \ --data-urlencode "grant_type=refresh_token" \ --data-urlencode "client_id=cloud-services" \ --data-urlencode "refresh_token=${OFFLINE_TOKEN}" \ "https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token" \ | jq --raw-output ".access_token" \ )
 ```
 
-## NOTE
+ NOTE
 
 The API token expires after 15 minutes.
 
@@ -2790,7 +2746,7 @@ $ source refresh-token
 
 $ curl -s https://api.openshift.com/api/assisted-install/v2/component-versions -H "Authorization: Bearer ${API\_TOKEN}" | jq
 
-## Example output
+ Example output
 
 ```
 { "release_tag": "v2.11.3", "versions": { "assisted-installer": "registry.redhat.io/rhai-tech-preview/assisted-installer-rhel8:v1.0.0211", "assisted-installer-controller": "registry.redhat.io/rhai-tech-preview/assisted-installerreporter-rhel8:v1.0.0-266", "assisted-installer-service": "quay.io/app-sre/assisted-service:78d113a", "discovery-agent": "registry.redhat.io/rhai-tech-preview/assisted-installer-agentrhel8:v1.0.0-195" } }
@@ -2800,15 +2756,15 @@ $ curl -s https://api.openshift.com/api/assisted-install/v2/component-versions -
 
 Many of the Assisted Installer API calls require the pull secret. Download the pull secret to a file so that you can reference it in API calls. The pull secret is a JSON object that will be included as a value within the request's JSON object. The pull secret JSON must be formatted to escape the quotes. For example:
 
-## Before
+ Before
 
 {"auths":{"cloud.openshift.com": ...
 
-## After
+ After
 
 {\"auths\":{\"cloud.openshift.com\": ...
 
-## Procedure
+ Procedure
 
 1.  In the menu, click OpenShift .
 2.  In the submenu, click Downloads .
@@ -2821,7 +2777,7 @@ $ export PULL\_SECRET=$(cat ~/Downloads/pull-secret.txt | jq -R .)
 5.  To slurp the pull secret file using jq , reference it in the pull\_secret variable, piping the value to tojson to ensure that it is properly formatted as escaped JSON. For example:
 6.  Confirm the PULL\_SECRET variable definition:
 
-<!-- image -->
+
 
 $ echo ${PULL\_SECRET}
 
@@ -2833,11 +2789,11 @@ If you do not have an existing SSH key pair on your local machine to use for the
 
 For more information, see Generating a key pair for cluster node SSH access .
 
-## Prerequisites
+ Prerequisites
 
 - Generate the OFFLINE\_TOKEN and API\_TOKEN variables.
 
-## Procedure
+ Procedure
 
 1.  From the root user in your terminal, get the SSH public key:
 
@@ -2864,13 +2820,13 @@ The following parameters are mandatory:
 
 See the cluster-create-params model in the  API viewer for details on the fields you can set when registering a new cluster. When setting the olm\_operators field, see Additional Resources for details on installing Operators.
 
-## Prerequisites
+ Prerequisites
 
 - You have generated a valid API\_TOKEN . Tokens expire every 15 minutes.
 - You have downloaded the pull secret.
 - Optional: You have assigned the pull secret to the $PULL\_SECRET variable.
 
-## Procedure
+ Procedure
 
 1.  Refresh the API token:
 
@@ -2895,20 +2851,20 @@ $ cat << EOF > cluster.json { "name": "testcluster", "openshift_version": "4.16"
 
 Pay attention to the following:
 
-<!-- image -->
+
 
 - To install the latest OpenShift version, use the x.y format, such as 4.16 for version 4.16.10. To install a specific OpenShift version, use the x.y.z format, such as 4.16.3 for version 4.16.3.
 - To install a multi-architecture compute cluster, add the -multi extension, such as 4.16-multi for the latest version or 4.16.3-multi for a specific version.
 - If you are booting from an iSCSI drive, enter OpenShift Container Platform version 4.15 or later.
 - 2 2 Optionally set the number of control plane nodes to 1 for a single-node OpenShift cluster, to 2 or more for a Two-Node OpenShift with Arbiter cluster, or to 3 , 4 , or 5 for a multi-node OpenShift Container Platform cluster. If this setting is omitted, the Assisted Installer sets 3 as the default.
 
-<!-- image -->
+
 
 NOTE
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 - The control\_plane\_count field replaces the high\_availability\_mode field, which is deprecated. For details, see API deprecation notice.
 - Currently, single-node OpenShift is not supported on IBM Z® and IBM Power® platforms.
@@ -2919,9 +2875,9 @@ NOTE
 
 $ export CLUSTER\_ID=&lt;cluster\_id&gt;
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 If you close your terminal session, you need to export the CLUSTER\_ID variable again in a new terminal session.
 
@@ -2931,13 +2887,13 @@ If you close your terminal session, you need to export the CLUSTER\_ID variable 
 
 Once you register a new cluster definition, create the infrastructure environment for the cluster.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 You cannot see the cluster configuration settings in the Assisted Installer user interface until you create the infrastructure environment.
 
-## Additional resources
+ Additional resources
 
 - Modifying a cluster
 
@@ -2946,13 +2902,13 @@ You cannot see the cluster configuration settings in the Assisted Installer user
 - Optional: Installing on vSphere
 - Optional: Installing on Oracle Cloud Infrastructure
 
-## 5.5.1. Installing Operators
+ 5.5.1. Installing Operators
 
 You can customize your deployment by adding Operators to the cluster during installation. You can install one or more Operators individually or add a group of Operators that form a bundle. If you require advanced options, add the Operators after you have installed the cluster.
 
 This step is optional.
 
-## 5.5.1.1. Installing standalone Operators
+ 5.5.1.1. Installing standalone Operators
 
 Before selecting Operators for installation, you can verify which Operators are available in the Assisted Installer. You can also check whether an Operator is supported for a specific OCP version, CPU architecture, or platform.
 
@@ -2962,9 +2918,9 @@ The Assisted Installer allows you to install the following standalone Operators.
 
 - OpenShift Virtualization Operator ( cnv )
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 - Currently, OpenShift Virtualization is not supported on IBM Z® and IBM Power®.
 - The OpenShift Virtualization Operator requires backend storage and might automatically activate a storage Operator in the background, according to the following criteria:
@@ -2973,17 +2929,17 @@ The Assisted Installer allows you to install the following standalone Operators.
 - Local Storage Operator (LSO) - For all other deployments.
 - Migration Toolkit for Virtualization Operator ( mtv )
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 Specifying the Migration Toolkit for Virtualization (MTV) Operator automatically activates the OpenShift Virtualization Operator. For a Single-node OpenShift installation, the Assisted Installer also activates the LVM Storage Operator.
 
 - Multicluster engine Operator ( mce )
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 Deploying the multicluster engine without OpenShift Data Foundation results in the following storage configurations:
 
@@ -2994,9 +2950,9 @@ Deploying the multicluster engine without OpenShift Data Foundation results in t
 - OpenShift AI Operator ( openshift-ai )
 - OpenShift sandboxed containers Operator ( osc )
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 The integration of the OpenShift sandboxed containers Operator into the Assisted Installer is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
 
@@ -3004,17 +2960,17 @@ For more information about the support scope of Red Hat Technology Preview featu
 
 - Kubernetes NMState Operator ( nmstate )
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 Currently, you cannot install the Kubernetes NMState Operator on the Nutanix or Oracle Cloud Infrastructure (OCI) third-party platforms.
 
 - AMD GPU Operator ( amd-gpu )
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 Installing the AMD GPU Operator automatically activates the Kernel Module Management Operator.
 
@@ -3024,19 +2980,19 @@ Installing the AMD GPU Operator automatically activates the Kernel Module Manage
 
 - NVIDIA GPU Operator ( nvidia-gpu )
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 Installing the NVIDIA GPU Operator automatically activates the Node Feature Discovery Operator.
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - You have reviewed Customizing your installation using Operators for an overview of each Operator that you intend to install, together with its prerequisites and dependencies.
 
-## Procedure
+ Procedure
 
 1.  Optional: Check which Operators are available in the Assisted Installer, by running the following command:
 
@@ -3046,9 +3002,9 @@ $ curl -s "https://api.openshift.com/api/assisted-install/v2/supported-operators
 
 $ curl -s "https://api.openshift.com/api/assisted-install/v2/support-levels/features? openshift\_version=4.13&amp;cpu\_architecture=x86\_64&amp;platform\_type=baremetal" -H "Authorization: Bearer ${API\_TOKEN}" | jq .features.SNO 1 2
 
-<!-- image -->
 
-<!-- image -->
+
+
 
 Replace the attributes as follows:
 
@@ -3062,19 +3018,19 @@ Specify the Operator in upper case, for example,
 
 for
 
-<!-- image -->
 
-<!-- image -->
 
-## IMPORTANT
+
+
+ IMPORTANT
 
 The integration of the OpenShift AI, AMD GPU, Kernel Module Management, Node Feature Discovery, Self Node Remediation, and NVIDIA GPU Operators into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
 Specify the Operator in upper case, for example, .NODE-FEATURE-DISCOVERY for Node Feature Discovery, .OPENSHIFT-AI for OpenShift AI, .OSC for OpenShift
 
-## Example output
+ Example output
 
-<!-- image -->
+
 
 "supported"
 
@@ -3090,11 +3046,11 @@ $ curl -s "https://api.openshift.com/api/assisted-install/v2/support-levels/feat
 $ curl -s -X POST https://api.openshift.com/api/assisted-install/v2/clusters \ -H "Authorization: Bearer ${API_TOKEN}" \ -H "Content-Type: application/json" \ -d "$(jq --null-input \ --slurpfile pull_secret ~/Downloads/pull-secret.txt ' { "name": "testcluster", "openshift_version": "4.15", "cpu_architecture" : "x86_64", "base_dns_domain": "example.com", "olm_operators": [ { "name": "mce" } 1 , { "name": "odf" } , { "name": "amd-gpu" } ] "pull_secret": $pull_secret[0] | tojson } ')" | jq '.id'
 ```
 
-<!-- image -->
+
 
 List the Operators that you want to install. Specify cnv for OpenShift Virtualization, mtv for Migration Toolkit for Virtualization, mce for multicluster engine, odf for Red Hat OpenShift Data Foundation, lvm for Logical Volume Manager Storage, openshift-ai for OpenShift AI, osc for OpenShift sandboxed containers, nmstate for Kubernetes NMState, amd-gpu for AMD GPU, kmm for Kernel Module Management, node-feature-discovery for Node Feature Discovery, nvidia-gpu for NVIDIA GPU and self-node-remediation for Self Node Remediation. Installing an Operator automatically activates any dependent Operators.
 
-## 5.5.1.2. Installing bundle Operators
+ 5.5.1.2. Installing bundle Operators
 
 Although you cannot install an Operator bundle directly through the API, you can verify which Operators are included in a bundle and specify each Operator individually.
 
@@ -3127,13 +3083,13 @@ The Assisted Installer currently supports the following Operator bundles:
 
 IMPORTANT
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - You have reviewed Customizing your installation using Operator bundles for an overview of the Operator bundles, together with their prerequisites and associated Operators.
 
-## Procedure
+ Procedure
 
 1.  Optional: Check which Operator bundles are available in the Assisted Installer by running the following command:
 
@@ -3146,7 +3102,7 @@ $ curl -s "https://api.openshift.com/api/assisted-install/v2/operators/bundles/v
 - 1
 - Specify virtualization for the Virtualization Operator bundle or openshift-ai for the OpenShift AI Operator bundle. The example specifies the Virtualization Operator bundle.
 
-## Example output
+ Example output
 
 {
 
@@ -3178,11 +3134,11 @@ $ curl -s "https://api.openshift.com/api/assisted-install/v2/operators/bundles/v
 
 "oadp"
 
-## IMPORTANT
+ IMPORTANT
 
 The introduction of the Virtualization and OpenShift AI Operator bundles into the Assisted Installer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
-<!-- image -->
+
 
 3.  Install the Operators associated with the bundle by running the following command:
 2. 2 Note the following:
@@ -3190,27 +3146,27 @@ The introduction of the Virtualization and OpenShift AI Operator bundles into th
 4. In the OpenShift AI Operator bundle:
 5. Specifying nvidia-gpu automatically installs node-feature-discovery .
 
-<!-- image -->
+
 
 ```
 1 Specify the Operators in the Operator bundle you are installing. The example lists the Operators for the Virtualization bundle. $ curl -s -X POST https://api.openshift.com/api/assisted-install/v2/clusters \ -H "Authorization: Bearer ${API_TOKEN}" \ -H "Content-Type: application/json" \ -d "$(jq --null-input \ --slurpfile pull_secret ~/Downloads/pull-secret.txt ' { "name": "testcluster", "openshift_version": "4.15", "cpu_architecture" : "x86_64", "base_dns_domain": "example.com", "olm_operators": [ 1 { "name": "node-healthcheck" } { "name": "fence-agents-remediation" } { "name": "kube-descheduler" } { "name": "mtv" } { "name": "nmstate" } { "name": "node-maintenance" } { "name": "cnv" } 2 { "name": "nmstate" } { "name": "cluster-observability" } { "name": "metallb" } { "name": "numaresources" } { "name": "oadp" } ] "pull_secret": $pull_secret[0] | tojson } ')" | jq '.id'
 ```
 
-<!-- image -->
+
 
 - Specifying amd-gpu automatically installs kmm .
 
-## 5.5.2. Scheduling workloads to run on control plane nodes
+ 5.5.2. Scheduling workloads to run on control plane nodes
 
 Use the schedulable\_masters attribute to enable workloads to run on control plane nodes.
 
-## Prerequisites
+ Prerequisites
 
 - You have generated a valid API\_TOKEN . Tokens expire every 15 minutes.
 - You have created a $PULL\_SECRET variable.
 - You are installing OpenShift Container Platform 4.14 or later.
 
-## Procedure
+ Procedure
 
 1.  Follow the instructions for installing Assisted Installer using the Assisted Installer API.
 2.  When you reach the step for registering a new cluster, set the schedulable\_masters attribute as follows:
@@ -3219,9 +3175,9 @@ Use the schedulable\_masters attribute to enable workloads to run on control pla
 1 Enables the scheduling of workloads on the control plane nodes. $ curl https://api.openshift.com/api/assisted-install/v2/clusters/${CLUSTER_ID} \ -X PATCH \ -H "Authorization: Bearer ${API_TOKEN}" \ -H "Content-Type: application/json" \ -d ' { "schedulable_masters": true 1 } ' | jq
 ```
 
-<!-- image -->
 
-## 5.5.3. Configuring the network management type
+
+ 5.5.3. Configuring the network management type
 
 The Assisted Installer lets you install the following network management types:
 
@@ -3239,7 +3195,7 @@ $ curl -s -X POST https://api.openshift.com/api/assisted-install/v2/clusters \ -
 "openshift_version": "4.18", "cpu_architecture" : "x86_64", "base_dns_domain": "example.com", "user_managed_networking": "false", "load_balancer": { "type": "cluster-managed" } "pull_secret": $pull_secret[0] | tojson } ')" | jq '.id'
 ```
 
-## Where:
+ Where:
 
 - user\_managed\_networking is either true or false .
 - load\_balancer can have the type user-managed or cluster-managed .
@@ -3248,17 +3204,17 @@ You can review the user\_managed\_networking and load\_balancer valid values in 
 
 This step is optional. If you do not define a network management type, the Assisted Installer applies cluster-managed networking by default to all highly available clusters. For single-node OpenShift, the Assisted Installer applies user-managed networking by default.
 
-## 5.5.3.1. Installing cluster-managed networking
+ 5.5.3.1. Installing cluster-managed networking
 
 Selecting cluster-managed networking means that the Assisted Installer will configure a standard network topology. This configuration includes an integrated load balancer and virtual routing for managing the API and Ingress VIP addresses. For details, see Network management types.
 
-## Prerequisites
+ Prerequisites
 
 - You are installing an OpenShift Container Platform cluster of three or more control plane nodes.
 
-<!-- image -->
 
-## Procedure
+
+ Procedure
 
 - To define cluster-managed networking, add the following attributes and values to your cluster definition:
 
@@ -3268,15 +3224,15 @@ Selecting cluster-managed networking means that the Assisted Installer will conf
 
 Where the load\_balancer attribute is optional. If omitted for this configuration, the type is automatically set to user-managed for single-node OpenShift or to cluster-managed for all other implementations.
 
-## Additional resources
+ Additional resources
 
-## NOTE
+ NOTE
 
 Currently, cluster-managed networking is not supported on IBM Z® and IBM Power®.
 
 - Configuring networking by using the web console
 
-## 5.5.3.2. Installing user-managed networking
+ 5.5.3.2. Installing user-managed networking
 
 Selecting user-managed networking deploys OpenShift Container Platform with a non-standard network topology. Select user-managed networking if you want to deploy a cluster with an external load balancer and DNS, or if you intend to deploy the cluster nodes across many distinct subnets.
 
@@ -3284,32 +3240,32 @@ For details, see Network management types.
 
 The Assisted Installer lets you deploy more than one external load balancer for user-managed networking.
 
-<!-- image -->
 
-## Procedure
+
+ Procedure
 
 - To define user-managed networking, add the following attributes to your cluster definition:
 
 "user\_managed\_networking": true,
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 The load\_balancer attribute is not required when user-managed networking is set to true , because you will be provisioning your own load balancer.
 
-## Network Validations
+ Network Validations
 
 When you enable user-managed networking, the following network validations change:
 
 - The L3 connectivity check (ICMP) replaces the L2 check (ARP).
 - The maximum transmission unit (MTU) validation verifies the MTU value for all interfaces and not only for the machine network.
 
-## Additional resources
+ Additional resources
 
 - Configuring networking by using the web console .
 
-## 5.5.3.3. Installing cluster-managed networking with a user-managed load balancer
+ 5.5.3.3. Installing cluster-managed networking with a user-managed load balancer
 
 Cluster-managed networking with a user-managed load balancer is a hybrid network management type designed for scenarios that require automated cluster networking with external control over load balancing. This approach enables users to provide one or more external load balancers (for example, an API load balancer and an Ingress load balancer), while retaining the bare-metal features installed in cluster-managed networking.
 
@@ -3317,19 +3273,19 @@ For details, see Network management types.
 
 IMPORTANT
 
-## NOTE
+ NOTE
 
 Oracle Cloud Infrastructure (OCI) is available for OpenShift Container Platform 4.14 with a user-managed networking configuration only.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 Cluster-managed networking with a user-managed load balancer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
 Use the Assisted Installer API to deploy cluster-managed networking with a user-managed load balancer on a bare-metal or vSphere platform.
 
-## Prerequisites
+ Prerequisites
 
 - You are installing OpenShift Container Platform version 4.16 or higher.
 - You are installing on a bare-metal or vSphere platform.
@@ -3337,7 +3293,7 @@ Use the Assisted Installer API to deploy cluster-managed networking with a user-
 - You are installing an OpenShift Container Platform cluster of three or more control plane nodes.
 - For a vSphere platform installation, you meet the additional requirements specified in vSphere installation requirements.
 
-## Procedure
+ Procedure
 
 1.  Configure the load balancer to be accessible from all hosts and have access to the following services:
 2. OpenShift Machine Config Operator (MCO) - On control plane nodes.
@@ -3381,7 +3337,7 @@ For details, see Changing the network management type.
 "ingress_vips": [ { "cluster_id": "<cluster-id>", "ip": "<load-balancer-ip>" } ], "api_vips": [ { "cluster_id": "<cluster-id>", "ip": "<load-balancer-ip>" } ]
 ```
 
-## Example
+ Example
 
 ```
 "machine_networks": [ { "cidr": "<hosts-cidr-1>", "cluster_id": "<cluster-id>" }, { "cidr": "<hosts-cidr-2>", "cluster_id": "<cluster-id>" }, { "cidr": "<load-balancer-cidr>", "cluster_id": "<cluster-id>" }
@@ -3391,7 +3347,7 @@ For details, see Changing the network management type.
 
 For more details, see Machine network.
 
-## Network Validations
+ Network Validations
 
 When you enable this network management type, the following network validations change:
 
@@ -3404,13 +3360,13 @@ To modify a cluster definition with the API, use the /v2/clusters/{cluster\_id} 
 
 You can add or remove Operators from a cluster resource that has already been registered.
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - You have created a new cluster resource.
 
-## Procedure
+ Procedure
 
 1.  Refresh the API token:
 
@@ -3420,22 +3376,22 @@ $ source refresh-token
 
 $ curl https://api.openshift.com/api/assisted-install/v2/clusters/${CLUSTER\_ID} \ -X PATCH \ -H "Authorization: Bearer ${API\_TOKEN}" \ -H "Content-Type: application/json" \ -d ' { "ssh\_public\_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDZrD4LMkAEeoU2vShhF8VM+cCZtVRgB7tqtsMx ms2q3TOJZAgfuqReKYWm+OLOZTD+DO3Hn1pah/mU3u7uJfTUg4wEX0Le8zBu9xJVym0B VmSFkzHfIJVTn6SfZ81NqcalisGWkpmkKXVCdnVAX6RsbHfpGKk9YPQarmRCn5KzkelJK4hrS WpBPjdzkFXaIpf64JBZtew9XVYA3QeXkIcFuq7NBuUH9BonroPEmIXNOa41PUP1IWq3mERN gzHZiuU8Ks/pFuU5HCMvv4qbTOIhiig7vidImHPpqYT/TCkuVi5w0ZZgkkBeLnxWxH0ldrfzgFBY AxnpTU8Ih/4VhG538Ix1hxPaM6cXds2ic71mBbtbSrk+zjtNPaeYk1O7UpcCw4jjHspU/rVV/DY51 D5gSiiuaFPBMucnYPgUxy4FMBFfGrmGLIzTKiLzcz0DiSz1jBeTQOX++1nz+KDLBD8CPdi5k4d q7lLkapRk85qdEvgaG5RlHMSPSS3wDrQ51fD8= user@hostname" }
 
-## NOTE
+ NOTE
 
 To create partitions on nodes, see Configuring storage on nodes in the OpenShift Container Platform documentation.
 
-## 5.6.1. Modifying Operators by using the API
+ 5.6.1. Modifying Operators by using the API
 
 You can add or remove Operators from a cluster resource that has already been registered as part of a previous installation. This is only possible before you start the OpenShift Container Platform installation.
 
 You modify the required Operator definition by using the PATCH method for the assistedservice/v2/clusters/{cluster\_id} endpoint and by setting the olm\_operators parameter.
 
-## Prerequisites
+ Prerequisites
 
 - You have refreshed the API token.
 - You have exported the CLUSTER\_ID as an environment variable.
 
-## Procedure
+ Procedure
 
 - Run the following command to modify the Operators:
 
@@ -3458,16 +3414,16 @@ Example output { <various cluster properties>, "monitored_operators": [ {
 "cluster_id": "b5259f97-be09-430e-b5eb-d78420ee509a", "name": "console", "operator_type": "builtin", "status_updated_at": "0001-01-01T00:00:00.000Z", "timeout_seconds": 3600 }, { "cluster_id": "b5259f97-be09-430e-b5eb-d78420ee509a", "name": "cvo", "operator_type": "builtin", "status_updated_at": "0001-01-01T00:00:00.000Z", "timeout_seconds": 3600 }, { "cluster_id": "b5259f97-be09-430e-b5eb-d78420ee509a", "name": "mce", "namespace": "multicluster-engine", "operator_type": "olm", "status_updated_at": "0001-01-01T00:00:00.000Z", "subscription_name": "multicluster-engine", "timeout_seconds": 3600 }, { "cluster_id": "b5259f97-be09-430e-b5eb-d78420ee509a", "name": "cnv", "namespace": "openshift-cnv", "operator_type": "olm", "status_updated_at": "0001-01-01T00:00:00.000Z", "subscription_name": "hco-operatorhub", "timeout_seconds": 3600 }, { "cluster_id": "b5259f97-be09-430e-b5eb-d78420ee509a", "name": "lvm", "namespace": "openshift-local-storage", "operator_type": "olm", "status_updated_at": "0001-01-01T00:00:00.000Z", "subscription_name": "local-storage-operator", "timeout_seconds": 4200 } ], <more cluster properties>
 ```
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 The output is the description of the new cluster state. The monitored\_operators property in the output contains Operators of two types:
 
 - "operator\_type": "builtin" : Operators of this type are an integral part of OpenShift Container Platform.
 - "operator\_type": "olm" : Operators of this type are added manually by a user or automatically, as a dependency. In this example, the LVM Storage Operator is added automatically as a dependency of OpenShift Virtualization.
 
-## Additional resources
+ Additional resources
 
 - See Customizing your installation using Operators and Operator Bundles for an overview of each Operator that you intend to install, together with its prerequisites and dependencies.
 
@@ -3481,13 +3437,13 @@ Once you register a new cluster definition with the Assisted Installer API, crea
 
 See the infra-env-create-params model in the  API viewer for details on the fields you can set when registering a new infrastructure environment. You can modify an infrastructure environment after you create it. As a best practice, consider including the cluster\_id when creating a new infrastructure environment. The cluster\_id will associate the infrastructure environment with a cluster definition. When creating the new infrastructure environment, the Assisted Installer will also generate a discovery ISO.
 
-## Prerequisites
+ Prerequisites
 
 - You have generated a valid API\_TOKEN . Tokens expire every 15 minutes.
 - You have downloaded the pull secret.
 - Optional: You have registered a new cluster definition and exported the cluster\_id .
 
-## Procedure
+ Procedure
 
 1.  Refresh the API token:
 
@@ -3500,15 +3456,15 @@ $ source refresh-token
 $ curl https://api.openshift.com/api/assisted-install/v2/infra-envs \ -H "Authorization: Bearer ${API_TOKEN}" \ -H "Content-Type: application/json" \ -d "$(jq --null-input \ --slurpfile pull_secret ~/Downloads/pull-secret.txt \ --arg cluster_id ${CLUSTER_ID} ' { "name": "testcluster-infra-env", "image_type":"full-iso",
 ```
 
-<!-- image -->
+
 
 ```
 1 NOTE Valid values are x86_64 , arm64 , ppc64le , s390x , and multi . "cluster_id": $cluster_id, "cpu_architecture" : "<architecture_name>", 1 "pull_secret": $pull_secret[0] | tojson } ')" | jq '.id'
 ```
 
-<!-- image -->
 
-<!-- image -->
+
+
 
 - b.  Optional: You can register a new infrastructure environment by writing the configuration to a JSON file and then referencing it in the request:
 3.  Assign the returned id to the INFRA\_ENV\_ID variable and export it:
@@ -3519,7 +3475,7 @@ $ cat << EOF > infra-envs.json { "name": "testcluster", "pull_secret": $PULL_SEC
 
 $ export INFRA\_ENV\_ID=&lt;id&gt;
 
-## NOTE
+ NOTE
 
 Once you create an infrastructure environment and associate it to a cluster definition via the cluster\_id , you can see the cluster settings in the Assisted Installer web user interface. If you close your terminal session, you need to re-export the id in a new terminal session.
 
@@ -3527,15 +3483,15 @@ Once you create an infrastructure environment and associate it to a cluster defi
 
 You can modify an infrastructure environment using the /v2/infra-envs/{infra\_env\_id} endpoint. Modifying an infrastructure environment is a common operation for adding settings such as networking, SSH keys, or ignition configuration overrides.
 
-<!-- image -->
+
 
 See the infra-env-update-params model in the  API viewer for details on the fields you can set when modifying an infrastructure environment. When modifying the new infrastructure environment, the Assisted Installer will also re-generate the discovery ISO.
 
-## Prerequisites
+ Prerequisites
 
 - You have created a new infrastructure environment.
 
-## Procedure
+ Procedure
 
 1.  Refresh the API token:
 
@@ -3547,7 +3503,7 @@ $ source refresh-token
 $ curl https://api.openshift.com/api/assisted-install/v2/infra-envs/${INFRA_ENV_ID} \ -X PATCH \ -H "Authorization: Bearer ${API_TOKEN}" \ -H "Content-Type: application/json" \ -d "$(jq --null-input \ --slurpfile pull_secret ~/Downloads/pull-secret.txt ' { "image_type":"minimal-iso", "pull_secret": $pull_secret[0] | tojson } ')" | jq
 ```
 
-## 5.8.1. Adding kernel arguments
+ 5.8.1. Adding kernel arguments
 
 Providing kernel arguments to the Red Hat Enterprise Linux CoreOS (RHCOS) kernel via the Assisted Installer means passing specific parameters or options to the kernel at boot time, particularly when you cannot customize the kernel parameters of the discovery ISO. Kernel parameters can control various aspects of the kernel's behavior and the operating system's configuration, affecting hardware interaction, system performance, and functionality. Kernel arguments are used to customize or inform the node's RHCOS kernel about the hardware configuration, debugging preferences, system services, and other low-level settings.
 
@@ -3555,7 +3511,7 @@ The RHCOS installer kargs modify command supports the append , delete , and repl
 
 You can modify an infrastructure environment using the /v2/infra-envs/{infra\_env\_id} endpoint. When modifying the new infrastructure environment, the Assisted Installer will also re-generate the discovery ISO.
 
-## Procedure
+ Procedure
 
 1.  Refresh the API token:
 
@@ -3565,7 +3521,7 @@ $ source refresh-token
 
 $ curl https://api.openshift.com/api/assisted-install/v2/infra-envs/${INFRA\_ENV\_ID} \ -X PATCH \
 
-<!-- image -->
+
 
 ```
 -H "Authorization: Bearer ${API_TOKEN}" \ -H "Content-Type: application/json" \ -d "$(jq --null-input \ --slurpfile pull_secret ~/Downloads/pull-secret.txt ' { "kernel_arguments": [{ "operation": "append", "value": "<karg>=<value>" }], 1 "image_type":"minimal-iso", "pull_secret": $pull_secret[0] | tojson } ')" | jq
@@ -3577,16 +3533,16 @@ Replace &lt;karg&gt; with the the kernel argument and &lt;value&gt; with the ker
 
 You can apply a static network configuration by using the Assisted Installer API. This step is optional.
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 1.  You have created an infrastructure environment using the API or have created a cluster using the web console.
 2.  You have your infrastructure environment ID exported in your shell as $INFRA\_ENV\_ID .
 3.  You have credentials to use when accessing the API and have exported a token as $API\_TOKEN in your shell.
 4.  You have YAML files with a static network configuration available as server-a.yaml and serverb.yaml .
 
-## Procedure
+ Procedure
 
 1.  Create a temporary file /tmp/request-body.txt with the API request:
 
@@ -3594,14 +3550,14 @@ You can apply a static network configuration by using the Assisted Installer API
 jq -n --arg NMSTATE_YAML1 "$(cat server-a.yaml)" --arg NMSTATE_YAML2 "$(cat serverb.yaml)" \ '{ "static_network_config": [ { "network_yaml": $NMSTATE_YAML1, "mac_interface_map": [{"mac_address": "02:00:00:2c:23:a5", "logical_nic_name": "eth0"}, {"mac_address": "02:00:00:68:73:dc", "logical_nic_name": "eth1"}] }, {
 ```
 
-## IMPORTANT
+ IMPORTANT
 
 A static IP configuration is not supported in the following scenarios:
 
 - OpenShift Container Platform installations on Oracle Cloud Infrastructure.
 - OpenShift Container Platform installations on iSCSI boot volumes.
 
-<!-- image -->
+
 
 ```
 "network_yaml": $NMSTATE_YAML2, "mac_interface_map": [{"mac_address": "02:00:00:9f:85:eb", "logical_nic_name": "eth1"}, {"mac_address": "02:00:00:c8:be:9b", "logical_nic_name": "eth0"}] } ] }' >> /tmp/request-body.txt
@@ -3617,7 +3573,7 @@ $ source refresh-token
 $ curl -H "Content-Type: application/json" \ -X PATCH -d @/tmp/request-body.txt \ -H "Authorization: Bearer ${API_TOKEN}" \ https://api.openshift.com/api/assisted-install/v2/infra-envs/$INFRA_ENV_ID
 ```
 
-## Additional resources
+ Additional resources
 
 - Applying a static network configuration with the web console
 - Static network configuration
@@ -3634,28 +3590,28 @@ This option is mandatory in the following scenarios:
 - If you are installing OpenShift Container Platform on Oracle Cloud Infrastructure.
 - If you are installing OpenShift Container Platform on iSCSI boot volumes.
 
-## NOTE
+ NOTE
 
 Currently, ISO images are supported on IBM Z® ( s390x ) with KVM, iPXE with z/VM, and LPAR (both static and DPM). For details, see Booting hosts using iPXE .
 
 You can boot hosts with the discovery image using three methods. For details, see Booting hosts with the discovery image.
 
-## Prerequisites
+ Prerequisites
 
 - You have created a cluster.
 - You have created an infrastructure environment.
 - You have completed the configuration.
 - If the cluster hosts require the use of a proxy, select Configure cluster-wide proxy settings . Enter the username, password, required domains or IP addresses, and port for the HTTP and HTTPS URLs of the proxy server. If the cluster hosts are behind a firewall, allow the nodes to access the required domains or IP addresses through the firewall. See Configuring your firewall for OpenShift Container Platform for more information.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 The proxy username and password must be URL-encoded.
 
 - You have selected an image type or will use the default minimal-iso .
 
-## Procedure
+ Procedure
 
 1.  Configure the discovery image if needed. For details, see Configuring the discovery image.
 2.  Refresh the API token:
@@ -3666,7 +3622,7 @@ $ source refresh-token
 
 $ curl -H "Authorization: Bearer ${API\_TOKEN}" \ https://api.openshift.com/api/assisted-install/v2/infraenvs/${INFRA\_ENV\_ID}/downloads/image-url
 
-## Example output
+ Example output
 
 { "expires\_at": "2024-02-07T20:20:23.000Z", "url": "https://api.openshift.com/api/assistedimages/bytoken/&lt;TOKEN&gt;/&lt;OCP\_VERSION&gt;/&lt;CPU\_ARCHITECTURE&gt;/&lt;FULL\_OR\_MINIM AL\_IMAGE&gt;.iso" }
 
@@ -3679,7 +3635,7 @@ Replace &lt;url&gt; with the download URL from the previous step.
 5.  Boot the host(s) with the discovery image.
 6.  Assign a role to host(s).
 
-## Additional resources
+ Additional resources
 
 - Configuring the discovery image
 - Booting hosts with the discovery image
@@ -3687,7 +3643,7 @@ Replace &lt;url&gt; with the download URL from the previous step.
 - Adding hosts on vSphere
 - Booting hosts using iPXE
 
-## 5.10.1. Selecting a role
+ 5.10.1. Selecting a role
 
 You can select a role for the host by using the /v2/infra-envs/{infra\_env\_id}/hosts/{host\_id} endpoint. A host can have one of the following roles:
 
@@ -3698,11 +3654,11 @@ You can select a role for the host by using the /v2/infra-envs/{infra\_env\_id}/
 
 Use this procedure to assign a role to the host. If the host\_role setting is omitted, the host defaults to auto-assign .
 
-## Prerequisites
+ Prerequisites
 
 - You have added hosts to the cluster.
 
-## Procedure
+ Procedure
 
 1.  Refresh the API token:
 
@@ -3712,9 +3668,9 @@ $ source refresh-token
 
 $ curl -s -X GET "https://api.openshift.com/api/assisted-install/v2/clusters/$CLUSTER\_ID" \ --header "Content-Type: application/json" \ -H "Authorization: Bearer $API\_TOKEN" \ | jq '.host\_networks[].host\_ids'
 
-## Example output
+ Example output
 
-<!-- image -->
+
 
 3.  Add the host\_role setting:
 
@@ -3742,15 +3698,15 @@ A host might be one of the following roles:
 
 Use the following procedure to set the host's role. If the host\_role setting is omitted, the host defaults to auto-assign .
 
-## Prerequisites
+ Prerequisites
 
 - You have added hosts to the cluster.
 
-## Procedure
+ Procedure
 
 1.  Refresh the API token:
 
-<!-- image -->
+
 
 $ source refresh-token
 
@@ -3762,23 +3718,23 @@ $ curl -s -X GET "https://api.openshift.com/api/assisted-install/v2/clusters/$CL
 
 3.  Modify the host settings by using the example below:
 
-<!-- image -->
 
-## 5.11.1. Modifying storage disk configuration
+
+ 5.11.1. Modifying storage disk configuration
 
 Each host retrieved during host discovery can have multiple storage disks. You can optionally change the default configurations for each disk.
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - Configure the cluster and discover the hosts. For details, see Additional resources .
 
-## 5.11.1.1. Viewing the storage disks
+ 5.11.1.1. Viewing the storage disks
 
 You can view the hosts in your cluster, and the disks on each host. You can then perform actions on a specific disk.
 
-## Procedure
+ Procedure
 
 1.  Refresh the API token:
 
@@ -3786,7 +3742,7 @@ $ source refresh-token
 
 2.  Get the host IDs for the cluster:
 
-## IMPORTANT
+ IMPORTANT
 
 - Starting from OpenShift Container Platform 4.14, you can configure nodes with Intel® Virtual RAID on CPU (VROC) to manage NVMe RAIDs. For details, see Configuring an Intel® Virtual RAID on CPU (VROC) data volume .
 - Starting from OpenShift Container Platform 4.15, you can install a cluster on a single or multipath iSCSI boot device using the Assisted Installer.
@@ -3795,33 +3751,33 @@ $ source refresh-token
 $ curl -s "https://api.openshift.com/api/assisted-install/v2/clusters/$CLUSTER_ID" \ -H "Authorization: Bearer $API_TOKEN" \ | jq '.host_networks[].host_ids'
 ```
 
-## Example output
+ Example output
 
 "1022623e-7689-8b2d-7fbd-e6f4d5bb28e5"
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 This is the ID of a single host. Multiple host IDs are separated by commas.
 
-## 3.  Get the disks for a specific host:
+ 3.  Get the disks for a specific host:
 
-<!-- image -->
+
 
 ```
 Replace <host_id> with the ID of the relevant host. $ curl https://api.openshift.com/api/assisted-install/v2/infraenvs/${INFRA_ENV_ID}/hosts/<host_id> \ 1 -H "Authorization: Bearer ${API_TOKEN}" \ | jq '.inventory | fromjson | .disks'
 ```
 
-## Example output
+ Example output
 
 ```
 [ { "by_id": "/dev/disk/by-id/wwn-0x6c81f660f98afb002d3adc1a1460a506", "by_path": "/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:0:0", "drive_type": "HDD", "has_uuid": true, "hctl": "1:2:0:0", "id": "/dev/disk/by-id/wwn-0x6c81f660f98afb002d3adc1a1460a506", "installation_eligibility": { "eligible": true, "not_eligible_reasons": null }, "model": "PERC_H710P", "name": "sda", "path": "/dev/sda", "serial": "0006a560141adc3a2d00fb8af960f681", "size_bytes": 6595056500736, "vendor": "DELL", "wwn": "0x6c81f660f98afb002d3adc1a1460a506" } ]
 ```
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 This is the output for one disk. It has the disk\_id and installation\_eligibility properties for the disk.
 
@@ -3829,30 +3785,30 @@ This is the output for one disk. It has the disk\_id and installation\_eligibili
 
 The Assisted Installer randomly assigns an installation disk by default. If there are multiple storage disks
 
-<!-- image -->
+
 
 The Assisted Installer randomly assigns an installation disk by default. If there are multiple storage disks for a host, you can select a different disk to be the installation disk. This automatically unassigns the previous disk.
 
 You can select any disk whose installation\_eligibility property is eligible: true to be the installation disk.
 
-<!-- image -->
 
-## Procedure
+
+ Procedure
 
 1.  Get the host and storage disk IDs. For details, see Viewing the storage disks .
 2.  Optional: Identify the current installation disk:
 
 $ curl https://api.openshift.com/api/assisted-install/v2/infraenvs/${INFRA\_ENV\_ID}/hosts/&lt;host\_id&gt; \ 1 -H "Authorization: Bearer ${API\_TOKEN}" \ | jq '.installation\_disk\_id'
 
-<!-- image -->
+
 
 Replace &lt;host\_id&gt; with the ID of the relevant host.
 
 3.  Assign a new installation disk:
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 Multipath devices are automatically discovered and listed in the host's inventory. To assign a multipath Fibre Channel disk as the installation disk, choose a disk with "drive\_type" set to "Multipath" , rather than to "FC" which indicates a single path.
 
@@ -3860,18 +3816,18 @@ Multipath devices are automatically discovered and listed in the host's inventor
 $ curl https://api.openshift.com/api/assisted-install/v2/infraenvs/${INFRA_ENV_ID}/hosts/<host_id> \ 1 -X PATCH \ -H "Content-Type: application/json" \ -H "Authorization: Bearer ${API_TOKEN}" \ { "disks_selected_config": [ { "id": "<disk_id>", 2 "role": "install" } ] }
 ```
 
-## NOTE
+ NOTE
 
 Red Hat Enterprise Linux CoreOS (RHCOS) supports multipathing over Fibre Channel on the installation disk, allowing stronger resilience to hardware failure to achieve higher host availability. Multipathing is enabled by default in the agent ISO image, with an /etc/multipath.conf configuration. For details, see  Modifying the DM Multipath configuration file.
 
 - 1 Replace &lt;host\_id&gt; with the ID of the host.
 - 2 Replace &lt;disk\_id&gt; with the ID of the new installation disk.
 
-<!-- image -->
 
-<!-- image -->
 
-## 5.11.1.3. Disabling disk formatting
+
+
+ 5.11.1.3. Disabling disk formatting
 
 The Assisted Installer marks all bootable disks for formatting during the installation process by default, regardless of whether or not they have been defined as the installation disk. Formatting causes data loss.
 
@@ -3879,14 +3835,14 @@ You can choose to disable the formatting of a specific disk. Disable formatting 
 
 You cannot disable formatting for the installation disk.
 
-## Procedure
+ Procedure
 
 1.  Get the host and storage disk IDs. For details, see Viewing the storage disks .
 2.  Run the following command:
 3. 1 3 NOTE Replace &lt;host\_id&gt; with the ID of the host. separate the IDs with a comma. To re-enable formatting, change the value to false . $ curl https://api.openshift.com/api/assisted-install/v2/infraenvs/${INFRA\_ENV\_ID}/hosts/&lt;host\_id&gt; \ 1 -X PATCH \ -H "Content-Type: application/json" \ -H "Authorization: Bearer ${API\_TOKEN}" \ { "disks\_skip\_formatting": [ { "disk\_id": "&lt;disk\_id&gt;", 2 "skip\_formatting": true 3 } ] }
 4. 2 Replace &lt;disk\_id&gt; with the ID of the disk. If there is more than one disk,
 
-<!-- image -->
+
 
 ## 5.12. ADDING CUSTOM MANIFESTS
 
@@ -3898,7 +3854,7 @@ You can only upload one base64-encoded JSON manifest at a time. However, each up
 
 For a file containing a single custom manifest, accepted file extensions include .yaml , .yml , or .json .
 
-## Single custom manifest example
+ Single custom manifest example
 
 ```
 { "apiVersion": "machineconfiguration.openshift.io/v1", "kind": "MachineConfig", "metadata": { "labels": { "machineconfiguration.openshift.io/role": "primary" }, "name": "10_primary_storage_config" }, "spec": { "config": { "ignition": { "version": "3.2.0" }, "storage": { "disks": [ { "device": "</dev/xxyN>", "partitions": [ { "label": "recovery", "startMiB": 32768, "sizeMiB": 16384 } ] } ], "filesystems": [ { "device": "/dev/disk/by-partlabel/recovery", "label": "recovery", "format": "xfs" } ] } } } }
@@ -3906,7 +3862,7 @@ For a file containing a single custom manifest, accepted file extensions include
 
 For a file containing multiple custom manifests, accepted file types include .yaml or .yml .
 
-## Multiple custom manifest example
+ Multiple custom manifest example
 
 ```
 apiVersion: machineconfiguration.openshift.io/v1 kind: MachineConfig metadata: labels:
@@ -3916,14 +3872,14 @@ machineconfiguration.openshift.io/role: master name: 99-openshift-machineconfig-
 
 kernelArguments: - loglevel=7 ---apiVersion: machineconfiguration.openshift.io/v2 kind: MachineConfig metadata: labels: machineconfiguration.openshift.io/role: worker name: 98-openshift-machineconfig-worker-kargs spec: kernelArguments: - loglevel=5
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - You have generated a valid API\_TOKEN . Tokens expire every 15 minutes.
 - You have registered a new cluster definition and exported the cluster\_id to the $CLUSTER\_ID BASH variable.
 
-## Procedure
+ Procedure
 
 1.  Create a custom manifest file.
 2.  Save the custom manifest file using the appropriate extension for the file format.
@@ -3943,20 +3899,20 @@ manifest.json
 
 Replace with the name of your manifest file. The second instance of
 
-## NOTE
+ NOTE
 
 - When you install OpenShift Container Platform on the Oracle Cloud Infrastructure (OCI) external platform, you must add the custom manifests provided by Oracle. For additional external partner integrations such as vSphere or Nutanix, this step is optional.
 - For more information about custom manifests, see Additional Resources .
 
 Replace manifest.json with the name of your manifest file. The second instance of manifest.json is the path to the file. Ensure the path is correct.
 
-## Example output
+ Example output
 
-<!-- image -->
 
-<!-- image -->
 
-## NOTE
+
+
+ NOTE
 
 The base64 -w 0 command base64-encodes the manifest as a string and omits carriage returns. Encoding with carriage returns will generate an exception.
 
@@ -3966,7 +3922,7 @@ $ curl -X GET "https://api.openshift.com/api/assistedinstall/v2/clusters/$CLUSTE
 
 Replace manifest.json with the name of your manifest file.
 
-## Additional resources
+ Additional resources
 
 - Manifest configuration files
 - Multi-document YAML files
@@ -3975,7 +3931,7 @@ Replace manifest.json with the name of your manifest file.
 
 The Assisted Installer ensures the cluster meets the prerequisites before installation, because it eliminates complex postinstallation troubleshooting, thereby saving significant amounts of time and effort. Before installing the cluster, ensure the cluster and each host pass preinstallation validation.
 
-## Additional resources
+ Additional resources
 
 - Preinstallation validations
 
@@ -3983,17 +3939,17 @@ The Assisted Installer ensures the cluster meets the prerequisites before instal
 
 Once the cluster hosts past validation, you can install the cluster.
 
-## Prerequisites
+ Prerequisites
 
 - You have created a cluster and infrastructure environment.
 - You have added hosts to the infrastructure environment.
 - The hosts have passed validation.
 
-## Procedure
+ Procedure
 
 1.  Refresh the API token:
 
-## $ source refresh-token
+ $ source refresh-token
 
 2.  Install the cluster:
 
@@ -4003,18 +3959,18 @@ https://api.openshift.com/api/assisted-install/v2/clusters/$CLUSTER\_ID/actions/
 
 3.  Complete any postinstallation platform integration steps.
 
-## Additional resources
+ Additional resources
 
 - Nutanix postinstallation configuration
 - vSphere postinstallation configuration
 
-## CHAPTER 6. ENABLING DISK ENCRYPTION
+# CHAPTER 6. ENABLING DISK ENCRYPTION
 
 You can enable encryption of installation disks using either the TPM v2 or Tang encryption modes.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 In some situations, when you enable TPM disk encryption in the firmware for a bare-metal host and then boot it from an ISO that you generate with the Assisted Installer, the cluster deployment can get stuck. This can happen if there are left-over TPM encryption keys from a previous installation on the host. For more information, see BZ#2011634. If you experience this problem, contact Red Hat support.
 
@@ -4022,13 +3978,13 @@ In some situations, when you enable TPM disk encryption in the firmware for a ba
 
 You can enable TPM v2 encryption from the Assisted Installer web console or API.
 
-## Prerequisites
+ Prerequisites
 
 - Check to see if TPM v2 encryption is enabled in the BIOS on each host. Most Dell systems require this. Check the manual for your computer. The Assisted Installer will also validate that TPM is enabled in the firmware. See the disk-encruption model in the  Assisted Installer API for additional details.
 
-<!-- image -->
 
-## Procedure
+
+ Procedure
 
 1.  Optional: Using the web console, in the Cluster details step, enable the encryption of installation disks for any of the following nodes: control plane nodes, workers, or arbiter.
 2.  Optional: Using the API, include the following settings in the "Modifying hosts" procedure to enable TPM v2 encryption:
@@ -4042,14 +3998,14 @@ You can enable TPM v2 encryption from the Assisted Installer web console or API.
 10. "masters,workers"
 11. "arbiters,workers"
 
-## IMPORTANT
+ IMPORTANT
 
 Verify that a TPM v2 encryption chip is installed on each node and enabled in the firmware.
 
 - "masters,arbiters,workers"
 - b.  Set the disk\_encryption.mode setting to tpmv2 .
 
-## Example
+ Example
 
 ```
 $ curl https://api.openshift.com/api/assisted-install/v2/clusters/${CLUSTER_ID} \ -X PATCH \ -H "Authorization: Bearer ${API_TOKEN}" \ -H "Content-Type: application/json" \ -d ' { "disk_encryption": { "enable_on": "none", "mode": "tpmv2" } } ' | jq
@@ -4059,11 +4015,11 @@ $ curl https://api.openshift.com/api/assisted-install/v2/clusters/${CLUSTER_ID} 
 
 You can enable Tang encryption from the Assisted Installer web console or API.
 
-## Prerequisites
+ Prerequisites
 
 - You have access to a Red Hat Enterprise Linux (RHEL) 8 machine that can be used to generate a thumbprint of the Tang exchange key.
 
-## Procedure
+ Procedure
 
 1.  Set up a Tang server or access an existing one. See Network-bound disk encryption for instructions. You can set multiple Tang servers, but the Assisted Installer must be able to connect to all of them during installation.
 2.  On the Tang server, retrieve the thumbprint for the Tang server using tang-show-keys :
@@ -4072,7 +4028,7 @@ $ tang-show-keys &lt;port&gt;
 
 Optional: Replace &lt;port&gt; with the port number. The default port number is 80 .
 
-## Example thumbprint
+ Example thumbprint
 
 1gYTN\_LpU9ZMB35yn5IbADY5OQ0
 
@@ -4087,7 +4043,7 @@ $ sudo jose jwk thp -i /var/db/tang/&lt;public\_key&gt;.jwk
 
 Replace &lt;public\_key&gt; with the public exchange key for the Tang server.
 
-## Example thumbprint
+ Example thumbprint
 
 1gYTN\_LpU9ZMB35yn5IbADY5OQ0
 
@@ -4106,7 +4062,7 @@ Replace &lt;public\_key&gt; with the public exchange key for the Tang server.
 - b.  Set the disk\_encryption.mode setting to tang .
 - c.  Set disk\_encyrption.tang\_servers to provide the URL and thumbprint details about one or more Tang servers. Within the tang\_servers value, comment out the quotes within the object(s).
 
-## Example
+ Example
 
 ```
 $ curl https://api.openshift.com/api/assisted-install/v2/clusters/${CLUSTER_ID} \ -X PATCH \ -H "Authorization: Bearer ${API_TOKEN}" \ -H "Content-Type: application/json" \ -d ' { "disk_encryption": { "enable_on": "all", "mode": "tang", "tang_servers": " [{\"url\":\"http://tang.example.com:7500\",\"thumbprint\":\"PLjNyRdGw03zlRoGjQYMahSZG
@@ -4118,13 +4074,13 @@ u9\"}, {\"url\":\"http://tang2.example.com:7500\",\"thumbprint\":\"XYjNyRdGw03zl
 
 - Modifying hosts
 
-## CHAPTER 7. CONFIGURING THE DISCOVERY IMAGE
+# CHAPTER 7. CONFIGURING THE DISCOVERY IMAGE
 
 The Assisted Installer uses an initial image to run an agent that performs hardware and network validations before attempting to install OpenShift Container Platform. You can use Ignition to customize the discovery image.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 Modifications to the discovery image will not persist in the system.
 
@@ -4134,9 +4090,9 @@ Ignition is a low-level system configuration utility, which is part of the tempo
 
 Ignition uses a JSON configuration specification file to represent the set of changes that occur on the first boot.
 
-<!-- image -->
 
-## Procedure
+
+ Procedure
 
 1.  Create an Ignition file and specify the configuration specification version:
 2.  Add configuration data to the Ignition file. For example, add a password to the core user.
@@ -4155,11 +4111,11 @@ $ openssl passwd -6
 { "ignition": { "version": "3.1.0" }, "passwd": { "users": [ { "name": "core", "passwordHash": "$6$spam$M5LGSMGyVD.9XOboxcwrsnwNdF4irpJdAWy.1Ry55syyUiUssIzIAHaOrUHr2z g6ruD8YNBPW9kW0H8EnKXyc1" }
 ```
 
-## IMPORTANT
+ IMPORTANT
 
 Ignition versions newer than 3.2 are not supported, and will raise an error.
 
-<!-- image -->
+
 
 3.  Save the Ignition file and export it to the IGNITION\_FILE variable:
 
@@ -4169,13 +4125,13 @@ $ export IGNITION\_FILE=~/ignition.conf
 
 Once you create an Ignition configuration file, you can modify the discovery image by patching the infrastructure environment using the Assisted Installer API.
 
-## Prerequisites
+ Prerequisites
 
 - If you used the web console to create the cluster, you have set up the API authentication.
 - You have an infrastructure environment and you have exported the infrastructure environment id to the INFRA\_ENV\_ID variable.
 - You have a valid Ignition file and have exported the file name as $IGNITION\_FILE .
 
-## Procedure
+ Procedure
 
 1.  Create an ignition\_config\_override JSON object and redirect it to a file:
 
@@ -4195,7 +4151,7 @@ The ignition\_config\_override object references the Ignition file.
 
 4.  Download the updated discovery image.
 
-## CHAPTER 8. BOOTING HOSTS WITH THE DISCOVERY IMAGE
+# CHAPTER 8. BOOTING HOSTS WITH THE DISCOVERY IMAGE
 
 The Assisted Installer uses an initial image to run an agent that performs hardware and network validations before attempting to install OpenShift Container Platform. You can boot hosts with the discovery image using three methods:
 
@@ -4207,18 +4163,18 @@ The Assisted Installer uses an initial image to run an agent that performs hardw
 
 You can install the Assisted Installer agent using a USB drive that contains the discovery ISO image. Starting the host with the USB drive prepares the host for the software installation.
 
-## Procedure
+ Procedure
 
 1.  On the administration host, insert a USB drive into a USB port.
 2.  Copy the ISO image to the USB drive, for example:
 
-# dd if=&lt;path\_to\_iso&gt; of=&lt;path\_to\_usb&gt; status=progress where:
+\# dd if=&lt;path\_to\_iso&gt; of=&lt;path\_to\_usb&gt; status=progress where:
 
 &lt;path\_to\_iso&gt;
 
 is the relative path to the downloaded discovery ISO file, for example, discovery.iso .
 
-## &lt;path\_to\_usb&gt;
+ &lt;path\_to\_usb&gt;
 
 is the location of the connected USB drive, for example, /dev/sdb .
 
@@ -4228,7 +4184,7 @@ After the ISO is copied to the USB drive, you can use the USB drive to install t
 
 To register nodes with the Assisted Installer using a bootable USB drive, use the following procedure.
 
-## Procedure
+ Procedure
 
 1.  Insert the RHCOS discovery ISO USB drive into the target host.
 2.  Configure the boot drive order in the server firmware settings to boot from the attached discovery ISO, and then reboot the server.
@@ -4244,11 +4200,11 @@ Example output $ source refresh-token $ curl -s -X GET "https://api.openshift.co
 
 You can provision hosts in your network using ISOs that you install using the Redfish Baseboard Management Controller (BMC) API.
 
-## Prerequisites
+ Prerequisites
 
 - Download the installation Red Hat Enterprise Linux CoreOS (RHCOS) ISO.
 
-## Procedure
+ Procedure
 
 1.  Copy the ISO file to an HTTP server accessible in your network.
 2.  Boot the host from the hosted ISO file, for example:
@@ -4264,7 +4220,7 @@ $ curl -k -u &lt;bmc\_username&gt;:&lt;bmc\_password&gt; \
 
 Where:
 
-## &lt;bmc\_username&gt;:&lt;bmc\_password&gt;
+ &lt;bmc\_username&gt;:&lt;bmc\_password&gt;
 
 Is the username and password for the target host BMC.
 
@@ -4276,7 +4232,7 @@ https://example.com/rhcos-
 
 Is the URL for the hosted installation ISO, for example: https://example.com/rhcoslive-minimal.iso . The ISO must be accessible from the target host machine.
 
-## &lt;host\_bmc\_address&gt;
+ &lt;host\_bmc\_address&gt;
 
 Is the BMC IP address of the target host machine.
 
@@ -4308,7 +4264,7 @@ The Assisted Installer provides an iPXE script including all of the artifacts ne
 
 The full list of supported ciphers is in https://ipxe.org/crypto.
 
-## Prerequisites
+ Prerequisites
 
 - You have created an infrastructure environment by using the API or you have created a cluster by using the web console.
 - You have your infrastructure environment ID exported in your shell as $INFRA\_ENV\_ID .
@@ -4316,25 +4272,25 @@ The full list of supported ciphers is in https://ipxe.org/crypto.
 
 NOTE
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 If you configure iPXE by using the web console, the $INFRA\_ENV\_ID and $API\_TOKEN variables are preset.
 
 - You have an HTTP server to host the images.
 
-<!-- image -->
 
-## Procedure
+
+ Procedure
 
 1.  Download the iPXE script directly from the web console, or get the iPXE script from the Assisted Installer by running the following command:
 
 $ curl \ --silent \ --header "Authorization: Bearer $API\_TOKEN" \ https://api.openshift.com/api/assisted-install/v2/infraenvs/$INFRA\_ENV\_ID/downloads/files?file\_name=ipxe-script &gt; ipxe-script
 
-## Example
+ Example
 
-## #!ipxe
+\#!ipxe
 
 initrd --name initrd http://api.openshift.com/api/assisted-images/images/&lt;infra\_env\_id&gt;/pxeinitrd?arch=x86\_64&amp;image\_token=&lt;token\_string&gt;&amp;version=4.10 kernel http://api.openshift.com/api/assisted-images/boot-artifacts/kernel? arch=x86\_64&amp;version=4.10 initrd=initrd coreos.live.rootfs\_url=http://api.openshift.com/api/assisted-images/boot-artifacts/rootfs? arch=x86\_64&amp;version=4.10 random.trust\_cpu=on rd.luks.options=discard ignition.firstboot ignition.platform.id=metal console=tty1 console=ttyS1,115200n8 coreos.inst.persistentkargs="console=tty1 console=ttyS1,115200n8" boot
 
@@ -4349,7 +4305,7 @@ $ awk '/^kernel /{print $2}' ipxe-script | xargs curl -o kernel -L
 
 - c.  Download the root filesystem by running the following command:
 
-## NOTE
+ NOTE
 
 IBM Power® only supports PXE, which has the following requirements:
 
@@ -4360,7 +4316,7 @@ $ grep ^kernel ipxe\_script | xargs -n1 | grep ^coreos.live.rootfs\_url | cut -d
 
 3.  Change the URLs to the different artifacts in the ipxe-script to match your local HTTP server. For example:
 
-## #!ipxe
+\#!ipxe
 
 set webserver http://192.168.0.1
 
@@ -4370,9 +4326,9 @@ initrd --name initrd $webserver/initrd.img kernel $webserver/kernel initrd=initr
 
 random.trust\_cpu=on rd.luks.options=discard ignition.firstboot ignition.platform.id=metal console=tty1 console=ttyS1,115200n8 coreos.inst.persistent-kargs="console=tty1 console=ttyS1,115200n8
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 When you install with iPXE on RHEL KVM, the VMs on the VM host might not start on the first boot. You must start them manually.
 
@@ -4385,7 +4341,7 @@ When you install with iPXE on RHEL KVM, the VMs on the VM host might not start o
 if [ ${net_default_mac} == fa:1d:67:35:13:20 ]; then default=0 fallback=1 timeout=1 menuentry "CoreOS (BIOS)" { echo "Loading kernel" linux "/rhcos/kernel.img" ip=dhcp rd.neednet=1 ignition.platform.id=metal ignition.firstboot coreos.live.rootfs_url=http://9.114.98.8:8000/install/rootfs.img echo "Loading initrd" initrd "/rhcos/initrd.img" } fi
 ```
 
-## CHAPTER 9. PREINSTALLATION VALIDATIONS
+# CHAPTER 9. PREINSTALLATION VALIDATIONS
 
 ## 9.1. DEFINITION OF PREINSTALLATION VALIDATIONS
 
@@ -4407,26 +4363,26 @@ A non-blocking validation is a warning and will tell you of things that might ca
 
 The Assisted Installer performs two types of validation:
 
-## Host
+ Host
 
 Host validations ensure that the configuration of a given host is valid for installation.
 
-## Cluster
+ Cluster
 
 Cluster validations ensure that the configuration of the whole cluster is valid for installation.
 
 ## 9.4. HOST VALIDATIONS
 
-## 9.4.1. Getting host validations by using the REST API
+ 9.4.1. Getting host validations by using the REST API
 
-<!-- image -->
 
-## Prerequisites
+
+ Prerequisites
 
 - You have installed the jq utility.
 - You have created an Infrastructure Environment by using the API or have created a cluster by using the web console.
 
-## NOTE
+ NOTE
 
 If you use the web console, many of these validations will not show up by name. To get a list of validations consistent with the labels, use the following procedure.
 
@@ -4434,7 +4390,7 @@ If you use the web console, many of these validations will not show up by name. 
 - You have your Cluster ID exported in your shell as CLUSTER\_ID .
 - You have credentials to use when accessing the API and have exported a token as API\_TOKEN in your shell.
 
-## Procedures
+ Procedures
 
 1.  Refresh the API token:
 
@@ -4448,7 +4404,7 @@ $ curl \ --silent \ --header "Authorization: Bearer $API\_TOKEN" \ https://api.o
 
 $ curl \ --silent \ --header "Authorization: Bearer $API\_TOKEN" \ https://api.openshift.com/api/assisted-install/v2/clusters/$CLUSTER\_ID/hosts \ | jq -r .[].validations\_info \ | jq 'map(.[]) | map(select(.status=="failure" or .status=="pending")) | select(length&gt;0)'
 
-## 9.4.2. Host validations in detail
+ 9.4.2. Host validations in detail
 
 | Parameter           | Validation type   | Description                                                                 |
 |---------------------|-------------------|-----------------------------------------------------------------------------|
@@ -4503,24 +4459,24 @@ $ curl \ --silent \ --header "Authorization: Bearer $API\_TOKEN" \ https://api.o
 |-------------|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | mtu-valid   | non-blocking      | Checks the maximum transmission unit (MTU) of hosts and networking devices in the cluster environment to identify compatibility issues. For more information, see  Additional resources . |
 
-## Additional resources
+ Additional resources
 
 - Changing the MTU for the cluster network
 
 ## 9.5. CLUSTER VALIDATIONS
 
-## 9.5.1. Getting cluster validations by using the REST API
+ 9.5.1. Getting cluster validations by using the REST API
 
 If you use the web console, many of these validations will not show up by name. To obtain a list of validations consistent with the labels, use the following procedure.
 
-## Prerequisites
+ Prerequisites
 
 - You have installed the jq utility.
 - You have created an Infrastructure Environment by using the API or have created a cluster by using the web console.
 - You have your Cluster ID exported in your shell as CLUSTER\_ID .
 - You have credentials to use when accessing the API and have exported a token as API\_TOKEN in your shell.
 
-## Procedures
+ Procedures
 
 1.  Refresh the API token:
 
@@ -4538,7 +4494,7 @@ https://api.openshift.com/api/assisted-install/v2/clusters/$CLUSTER\_ID \ | jq -
 
 | jq '. | map(.[] | select(.status=="failure" or .status=="pending")) | select(length&gt;0)'
 
-## 9.5.2. Cluster validations in detail
+ 9.5.2. Cluster validations in detail
 
 | Parameter                               | Validation type   | Description                                                                                                                      |
 |-----------------------------------------|-------------------|----------------------------------------------------------------------------------------------------------------------------------|
@@ -4570,7 +4526,7 @@ https://api.openshift.com/api/assisted-install/v2/clusters/$CLUSTER\_ID \ | jq -
 | lvm-requirements-satisfied | blocking          | Validates that the cluster meets the requirements of the Logical Volume Manager Storage Operator. The cluster must be single node. The cluster must be running Openshift >= 4.11.0.                                                                                                                                                                                   |
 | network-type-valid         | blocking          | Checks the validity of the network type if it exists. The network type must be OpenshiftSDN (OpenShift Container Platform 4.14 or earlier) or OVNKubernetes. OpenshiftSDN does not support IPv6 or Single Node Openshift. OpenshiftSDN is not supported for OpenShift Container Platform 4.15 and later releases. OVNKubernetes does not support VIP DHCP allocation. |
 
-## CHAPTER 10. NETWORK CONFIGURATION
+# CHAPTER 10. NETWORK CONFIGURATION
 
 The following sections describe the basics of network configuration with the Assisted Installer.
 
@@ -4578,9 +4534,9 @@ The following sections describe the basics of network configuration with the Ass
 
 There are various network types and addresses used by OpenShift and listed in the following table.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 IPv6 is not currently supported in the following configurations:
 
@@ -4600,9 +4556,9 @@ IPv6 is not currently supported in the following configurations:
 |-------------|-------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ingressVIPs | *.apps. <clustername.clusterdomain> | The VIPs to use for ingress traffic. If you are deploying with dual-stack networking, the first address must be the IPv4 address and the second address must be the IPv6 address. You must also set the  ingressVIP  setting. |
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 OpenShift Container Platform 4.12 introduces the new apiVIPs and ingressVIPs settings to accept many IP addresses for dual-stack networking. When using dual-stack networking, the first IP address must be the IPv4 address and the second IP address must be the IPv6 address. The new settings will replace apiVIP and IngressVIP , but you must set both the new and old settings when modifying the configuration by using the API.
 
@@ -4611,27 +4567,27 @@ Currently, the Assisted Service can deploy OpenShift Container Platform clusters
 - IPv4
 - Dual-stack (IPv4 + IPv6 with IPv4 as primary)
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 OVN is the default Container Network Interface (CNI) in OpenShift Container Platform 4.12 and later releases. SDN is supported up to OpenShift Container Platform 4.14, but not for OpenShift Container Platform 4.15 and later releases.
 
-## 10.1.1. Limitations
+ 10.1.1. Limitations
 
 Cluster networking has the following limitations.
 
-## SDN
+ SDN
 
 - The SDN controller is not supported with single-node OpenShift.
 - The SDN controller does not support dual-stack networking.
 - The SDN controller is not supported for OpenShift Container Platform 4.15 and later releases. For more information, see Deprecation of the OpenShift SDN network plugin  in the OpenShift Container Platform release notes.
 
-## OVN-Kubernetes
+ OVN-Kubernetes
 
 For more information, see About the OVN-Kubernetes network plugin .
 
-## 10.1.2. Cluster network
+ 10.1.2. Cluster network
 
 The cluster network is a network from which every pod deployed in the cluster gets its IP address. Given
 
@@ -4651,7 +4607,7 @@ Creating a 3-node cluster by using this snippet might create the following netwo
 
 Explaining OVN-Kubernetes internals is out of scope for this document, but the pattern previously described provides a way to route Pod-to-Pod traffic between different nodes without keeping a big list of mapping between Pods and their corresponding nodes.
 
-## 10.1.3. Machine network
+ 10.1.3. Machine network
 
 Machine networks are IP networks that connect all the cluster nodes within OpenShift Container Platform.
 
@@ -4669,13 +4625,13 @@ The Assisted Installer supports multiple machine networks for the "cluster-manag
 
 Currently, you can install cluster-managed networking with a user-managed load balancer using the Assisted Installer API only.
 
-## Additional resources
+ Additional resources
 
 - Configuring networking (web console)
 - Registering a new cluster (API)
 - Installing cluster-managed networking with a user-managed load balancer by using the API
 
-## 10.1.4. Single-node OpenShift compared to multi-node cluster
+ 10.1.4. Single-node OpenShift compared to multi-node cluster
 
 Depending on whether you are deploying single-node OpenShift or a multi-node cluster, different values are mandatory. The following table explains this in more detail.
 
@@ -4691,7 +4647,7 @@ Depending on whether you are deploying single-node OpenShift or a multi-node clu
 
 (*) Auto assignment of the machine network CIDR happens if there is only a single host network. Otherwise you need to specify it explicitly.
 
-## 10.1.5. Air-gapped environments
+ 10.1.5. Air-gapped environments
 
 The workflow for deploying a cluster without Internet access has some prerequisites, which are out of scope of this document. You can consult the Zero Touch Provisioning the hard way Git repository  for some insights.
 
@@ -4705,17 +4661,17 @@ Please note this is not an OpenShift Container Platform feature and it has been 
 
 Please note this is not an OpenShift Container Platform feature and it has been implemented in the Assisted Service to make the configuration easier. For a more detailed explanation of the syntax for the VIP addresses, see "Additional resources".
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 VIP DHCP allocation is currently limited to the OpenShift Container Platform SDN network type. SDN is not supported from OpenShift Container Platform version 4.15 and later. Therefore, support for VIP DHCP allocation is also ending from OpenShift Container Platform 4.15 and later.
 
-## 10.2.1. Enabling VIP DHCP allocation
+ 10.2.1. Enabling VIP DHCP allocation
 
 You can enable automatic VIP allocation through DHCP.
 
-## Procedure
+ Procedure
 
 1.  Follow the instructions for registering a new cluster by using the API. For details, see Registering a new cluster.
 2.  Add the following payload settings to the cluster configuration:
@@ -4723,13 +4679,13 @@ You can enable automatic VIP allocation through DHCP.
 - b.  Set network\_type to OpenShiftSDN .
 - c.  Include your network configurations for cluster\_networks , service\_networks , and machine\_networks .
 
-## Example payload to enable autoallocation
+ Example payload to enable autoallocation
 
 ```
 $ cat << EOF > payload.json { "vip_dhcp_allocation": true, "network_type": "OpenShiftSDN", "user_managed_networking": false, "cluster_networks": [ { "cidr": "10.128.0.0/14", "host_prefix": 23 } ], "service_networks": [ { "cidr": "172.30.0.0/16" } ], "machine_networks": [ { "cidr": "192.168.127.0/24" } ]
 ```
 
-<!-- image -->
+
 
 3.  Submit the payload to the Assisted Service API to apply the configuration, by running the following command:
 
@@ -4737,11 +4693,11 @@ $ cat << EOF > payload.json { "vip_dhcp_allocation": true, "network_type": "Open
 $ curl -s -X POST "https://api.openshift.com/api/assisted-install/v2/clusters/<cluster-id>" \ -d @./payload.json \ -H "Content-Type: application/json" \ -H "Authorization: Bearer $API_TOKEN" \ | jq '.id'
 ```
 
-## 10.2.2. Disabling VIP DHCP allocation
+ 10.2.2. Disabling VIP DHCP allocation
 
 If you want to manually control your VIP assignments, you can disable VIP DHCP allocation.
 
-## Procedure
+ Procedure
 
 1.  Follow the instructions for registering a new cluster by using the API. For details, see Registering a new cluster.
 2.  Add the following payload settings to the cluster configuration:
@@ -4750,13 +4706,13 @@ If you want to manually control your VIP assignments, you can disable VIP DHCP a
 - c.  Set network\_type to OVNKubernetes , OpenShiftSDN , or another supported SDN type, if applicable.
 - d.  Include your network configurations for cluster\_networks and service\_networks .
 
-## Example payload to disable autoallocation
+ Example payload to disable autoallocation
 
 ```
 $ cat << EOF > payload.json { "api_vips": [ { "ip": "192.168.127.100" } ], "ingress_vips": [ { "ip": "192.168.127.101" } ], "vip_dhcp_allocation": false, "network_type": "OVNKubernetes", "user_managed_networking": false, "cluster_networks": [ { "cidr": "10.128.0.0/14",
 ```
 
-<!-- image -->
+
 
 3.  Submit the payload to the Assisted Service API to apply the configuration, by running the following command:
 
@@ -4764,7 +4720,7 @@ $ cat << EOF > payload.json { "api_vips": [ { "ip": "192.168.127.100" } ], "ingr
 $ curl -s -X POST "https://api.openshift.com/api/assisted-install/v2/clusters/<cluster-id>" \ -d @./payload.json \ -H "Content-Type: application/json" \ -H "Authorization: Bearer $API_TOKEN" \ | jq '.id'
 ```
 
-## Additional resources
+ Additional resources
 
 - Installer-provisioned infrastructure for a bare-metal installation
 
@@ -4772,7 +4728,7 @@ $ curl -s -X POST "https://api.openshift.com/api/assisted-install/v2/clusters/<c
 
 The Assisted Installer supports the following network management types:
 
-## Cluster-managed networking
+ Cluster-managed networking
 
 Cluster-managed networking is the default option for deploying OpenShift Container Platform clusters. It minimizes user intervention by automatically provisioning and managing key network components.
 
@@ -4786,7 +4742,7 @@ The main characteristics of cluster-managed networking are the following:
 
 You can configure cluster-managed networking both the web console or API. If you do not define a network management type, the Assisted Installer applies cluster-managed networking automatically for highly available clusters.
 
-## User-managed networking
+ User-managed networking
 
 User-managed networking allows customers with custom or non-standard network topologies to
 
@@ -4798,7 +4754,7 @@ User-managed networking allows customers with custom or non-standard network top
 
 You can configure user-managed networking in both the Assisted Installer web console or API.
 
-## Cluster managed networking with a user-managed load balancer
+ Cluster managed networking with a user-managed load balancer
 
 Cluster-managed networking with a user-managed load balancer is a hybrid network management type designed for scenarios that require automated cluster networking with external control over load balancing.
 
@@ -4812,13 +4768,13 @@ This approach combines elements from both cluster-managed and user-managed netwo
 
 The Assisted Installer supports cluster-managed networking with a user-managed load balancer on a bare-metal or vSphere platform. Currently you can configure this network management type through the API only.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 Cluster-managed networking with a user-managed load balancer is a Developer Preview feature only. Developer Preview features are not supported by Red Hat in any way and are not functionally complete or production-ready. Do not use Developer Preview features for production or business-critical workloads. Developer Preview features provide early access to upcoming product features in advance of their possible inclusion in a Red Hat product offering, enabling customers to test functionality and provide feedback during the development process. These features might not have any documentation, are subject to change or removal at any time, and testing is limited. Red Hat might provide ways to submit feedback on Developer Preview features without an associated SLA.
 
-## Additional resources
+ Additional resources
 
 - Changing the network management type by using the web console (step 1)
 - Changing the network management type by using the API
@@ -4827,43 +4783,43 @@ Cluster-managed networking with a user-managed load balancer is a Developer Prev
 
 You may use static network configurations when generating or updating the discovery ISO.
 
-## Prerequisites
+ Prerequisites
 
 - You are familiar with NMState.
 
-## 10.4.1. NMState configuration
+ 10.4.1. NMState configuration
 
 The NMState file in YAML format specifies the desired network configuration for the host. It has the logical names of the interfaces that will be replaced with the actual name of the interface at discovery time.
 
-## Example of NMState configuration
+ Example of NMState configuration
 
 ```
 dns-resolver: config: server: - 192.168.126.1 interfaces: - ipv4: address: - ip: 192.168.126.30 prefix-length: 24 dhcp: false enabled: true name: eth0 state: up type: ethernet - ipv4: address: - ip: 192.168.141.30 prefix-length: 24 dhcp: false enabled: true name: eth1 state: up type: ethernet routes: config: - destination: 0.0.0.0/0 next-hop-address: 192.168.126.1 next-hop-interface: eth0 table-id: 254
 ```
 
-## 10.4.2. MAC interface mapping
+ 10.4.2. MAC interface mapping
 
 MAC interface map is an attribute that maps logical interfaces defined in the NMState configuration with the actual interfaces present on the host.
 
 The mapping should always use physical interfaces present on the host. For example, when the NMState configuration defines a bond or VLAN, the mapping should only contain an entry for parent interfaces.
 
-## Example of MAC interface mapping
+ Example of MAC interface mapping
 
 ```
 mac_interface_map: [ { mac_address: 02:00:00:2c:23:a5, logical_nic_name: eth0 }, { mac_address: 02:00:00:68:73:dc, logical_nic_name: eth1 } ]
 ```
 
-## 10.4.3. Additional NMState configuration examples
+ 10.4.3. Additional NMState configuration examples
 
 The following examples are only meant to show a partial configuration. They are not meant for use as-is, and you should always adjust to the environment where they will be used. If used incorrectly, they can leave your machines with no network connectivity.
 
-## Tagged VLAN example
+ Tagged VLAN example
 
 ```
 interfaces: - ipv4: address: - ip: 192.168.143.15 prefix-length: 24 dhcp: false enabled: true ipv6: enabled: false name: eth0.404 state: up type: vlan vlan: base-iface: eth0 id: 404 reorder-headers: true
 ```
 
-## Network bond example
+ Network bond example
 
 ```
 interfaces: - ipv4: address: - ip: 192.168.138.15 prefix-length: 24 dhcp: false enabled: true ipv6: enabled: false link-aggregation: mode: active-backup options: miimon: "140" port:
@@ -4877,17 +4833,17 @@ interfaces: - ipv4: address: - ip: 192.168.138.15 prefix-length: 24 dhcp: false 
 
 Dual-stack IPv4/IPv6 configuration allows deployment of a cluster with pods residing in both IPv4 and IPv6 subnets.
 
-## 10.5.1. Prerequisites
+ 10.5.1. Prerequisites
 
 - You are familiar with OVN-K8s documentation
 
-## 10.5.2. Example payload for single-node OpenShift
+ 10.5.2. Example payload for single-node OpenShift
 
 ```
 { "network_type": "OVNKubernetes", "user_managed_networking": false, "cluster_networks": [ { "cidr": "10.128.0.0/14", "host_prefix": 23 }, { "cidr": "fd01::/48", "host_prefix": 64 } ], "service_networks": [ {"cidr": "172.30.0.0/16"}, {"cidr": "fd02::/112"} ], "machine_networks": [ {"cidr": "192.168.127.0/24"},{"cidr": "1001:db8::/120"} ] }
 ```
 
-## 10.5.3. Example payload for an OpenShift Container Platform cluster consisting of many nodes
+ 10.5.3. Example payload for an OpenShift Container Platform cluster consisting of many nodes
 
 ```
 { "vip_dhcp_allocation": false, "network_type": "OVNKubernetes", "user_managed_networking": false, "api_vips": [ { "ip": "192.168.127.100" }, { "ip": "2001:0db8:85a3:0000:0000:8a2e:0370:7334" } ],
@@ -4897,7 +4853,7 @@ Dual-stack IPv4/IPv6 configuration allows deployment of a cluster with pods resi
 "ingress_vips": [ { "ip": "192.168.127.101" }, { "ip": "2001:0db8:85a3:0000:0000:8a2e:0370:7335" } ], "cluster_networks": [ { "cidr": "10.128.0.0/14", "host_prefix": 23 }, { "cidr": "fd01::/48", "host_prefix": 64 } ], "service_networks": [ {"cidr": "172.30.0.0/16"}, {"cidr": "fd02::/112"} ], "machine_networks": [ {"cidr": "192.168.127.0/24"},{"cidr": "1001:db8::/120"} ] }
 ```
 
-## 10.5.4. Limitations
+ 10.5.4. Limitations
 
 The api\_vips IP address and ingress\_vips IP address settings must be of the primary IP address family when using dual-stack networking, which must be IPv4 addresses. Currently, Red Hat does not support dual-stack VIPs or dual-stack networking with IPv6 as the primary IP address family. Red Hat supports dual-stack networking with IPv4 as the primary IP address family and IPv6 as the secondary IP address family. Therefore, you must place the IPv4 entries before the IPv6 entries when entering the IP address values.
 
@@ -4910,11 +4866,11 @@ The api\_vips IP address and ingress\_vips IP address settings must be of the pr
 - Installing a user-provisioned bare metal cluster with network customizations .
 - Cluster Network Operator configuration object
 
-## CHAPTER 11. EXPANDING THE CLUSTER
+# CHAPTER 11. EXPANDING THE CLUSTER
 
 You can expand a cluster installed with the Assisted Installer by adding hosts using the user interface or the API.
 
-## Additional resources
+ Additional resources
 
 - API connectivity failure when adding nodes to a cluster
 - Configuring multi-architecture compute machines on an OpenShift cluster
@@ -4923,14 +4879,14 @@ You can expand a cluster installed with the Assisted Installer by adding hosts u
 
 You must check that your cluster can support multiple architectures before you add a node with a different architecture.
 
-## Procedure
+ Procedure
 
 1.  Log in to the cluster using the CLI.
 2.  Check that your cluster uses the architecture payload by running the following command:
 
 $ oc adm release info -o json | jq .metadata.metadata
 
-## Verification
+ Verification
 
 - If you see the following output, your cluster supports multiple architectures:
 
@@ -4952,11 +4908,11 @@ The main steps of the installation are as follows:
 2.  Create an x86\_64 or arm64 infrastructure environment, download the ISO discovery image for the environment, and add the control plane. An arm64 infrastructure environment is available for Amazon Web Services (AWS) and Google Cloud (GC) only.
 3.  Create an arm64 , ppc64le , or s390x infrastructure environment, download the ISO discovery images for arm64 , ppc64le , or s390x , and add the worker nodes.
 
-## Supported platforms
+ Supported platforms
 
 For the supported platforms for each OpenShift Container Platform version, see About clusters with multi-architecture compute machines. Use the appropriate platforms for the version you are installing.
 
-## Main steps
+ Main steps
 
 1.  Start the procedure for installing OpenShift Container Platform using the API. For details, see Installing with the Assisted Installer API in the Additional Resources section.
 2.  When you reach the "Registering a new cluster" step of the installation, register the cluster as a multi-architecture compute cluster:
@@ -4968,7 +4924,7 @@ For the supported platforms for each OpenShift Container Platform version, see A
 $ curl -s -X POST https://api.openshift.com/api/assisted-install/v2/clusters \ -H "Authorization: Bearer ${API_TOKEN}" \ -H "Content-Type: application/json" \ -d "$(jq --null-input \ --slurpfile pull_secret ~/Downloads/pull-secret.txt ' { "name": "testcluster", "openshift_version": "<version-number>-multi", 1 "cpu_architecture" : "multi" 2 "control_plane_count": "<number>" 3 "base_dns_domain": "example.com", "pull_secret": $pull_secret[0] | tojson } ')" | jq '.id'
 ```
 
-<!-- image -->
+
 
 ```
 NOTE
@@ -4980,9 +4936,9 @@ $ curl https://api.openshift.com/api/assisted-install/v2/infra-envs \ -H "Author
 
 4.  When you reach the "Adding hosts" step of the installation, set host\_role to master :
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 For more information, see Assigning Roles to Hosts in Additional Resources .
 
@@ -5000,9 +4956,9 @@ $ curl https://api.openshift.com/api/assisted-install/v2/infraenvs/${INFRA_ENV_I
 $ curl -s -X POST https://api.openshift.com/api/assisted-install/v2/clusters \ -H "Authorization: Bearer ${API_TOKEN}" \ -H "Content-Type: application/json" \ -d "$(jq --null-input \ --slurpfile pull_secret ~/Downloads/pull-secret.txt ' { "name": "testcluster", "openshift_version": "4.12", "cpu_architecture" : "arm64" "control_plane_count": "3" "base_dns_domain": "example.com", "pull_secret": $pull_secret[0] | tojson } ')" | jq '.id'
 ```
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 For more details, see Assigning Roles to Hosts in Additional Resources .
 
@@ -5010,13 +4966,13 @@ For more details, see Assigning Roles to Hosts in Additional Resources .
 $ curl https://api.openshift.com/api/assisted-install/v2/infraenvs/${INFRA_ENV_ID}/hosts/<host_id> \ -X PATCH \ -H "Authorization: Bearer ${API_TOKEN}" \
 ```
 
-<!-- image -->
+
 
 10.  Download the discovery image for the arm64, ppc64le or s390x architecture.
 11.  Boot the architecture hosts using the generated discovery image.
 12.  Start the installation and wait for the cluster to be fully installed.
 
-## Verification
+ Verification
 
 - View the arm64, ppc64le, or s390x worker nodes in the cluster by running the following command:
 
@@ -5026,9 +4982,9 @@ $ oc get nodes -o wide
 
 You can add hosts to clusters that were created using the Assisted Installer.
 
-<!-- image -->
 
-## Procedure
+
+ Procedure
 
 1.  Log in to OpenShift Cluster Manager and click the cluster that you want to expand.
 2.  Click Add hosts and download the discovery ISO for the new host, adding an SSH public key and configuring cluster-wide proxy settings as needed.
@@ -5040,14 +4996,14 @@ You can add hosts to clusters that were created using the Assisted Installer.
 
 IMPORTANT
 
-## IMPORTANT
+ IMPORTANT
 
 - Adding hosts to Assisted Installer clusters is only supported for clusters running OpenShift Container Platform version 4.11 and later.
 - When adding a control plane node during Day 2 operations, ensure that the new node shares the same subnet as the Day 1 network. The subnet is specified in the machineNetwork field of the install-config.yaml file. This requirement applies to cluster-managed networks such as bare metal or vSphere, and not to usermanaged networks.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 New hosts will be encrypted using the same method as the original cluster.
 
@@ -5055,16 +5011,16 @@ New hosts will be encrypted using the same method as the original cluster.
 
 You can add hosts to clusters using the Assisted Installer REST API.
 
-## Prerequisites
+ Prerequisites
 
 - Install the Red Hat OpenShift Cluster Manager CLI ( ocm ).
 - Log in to Red Hat OpenShift Cluster Manager as a user with cluster creation privileges.
 - Install jq .
 - Ensure that all the required DNS records exist for the cluster that you want to expand.
 
-<!-- image -->
 
-## Procedure
+
+ Procedure
 
 1.  Authenticate against the Assisted Installer REST API and generate an API token for your session. The generated token is valid for 15 minutes only.
 2.  Set the $API\_URL variable by running the following command:
@@ -5087,11 +5043,11 @@ $ echo ${CLUSTER\_ID}
 
 - b.  Set the $CLUSTER\_REQUEST variable that is used to import the cluster:
 
-## IMPORTANT
+ IMPORTANT
 
 When adding a control plane node during Day 2 operations, ensure that the new node shares the same subnet as the Day 1 network. The subnet is specified in the machineNetwork field of the install-config.yaml file. This requirement applies to cluster-managed networks such as bare metal or vSphere, and not to user-managed networks.
 
-<!-- image -->
+
 
 - c.  Import the cluster and set the $CLUSTER\_ID variable. Run the following command:
 
@@ -5103,11 +5059,11 @@ $ CLUSTER\_ID=$(curl "$API\_URL/api/assisted-install/v2/clusters/import" -H appl
 - a.  Download the pull secret file from Red Hat OpenShift Cluster Manager at console.redhat.com.
 - b.  Set the $INFRA\_ENV\_REQUEST variable:
 
-<!-- image -->
 
-<!-- image -->
 
-<!-- image -->
+
+
+
 
 Replace &lt;iso\_image\_type&gt; with the ISO image type, either full-iso or minimal-iso .
 
@@ -5119,7 +5075,7 @@ $ INFRA\_ENV\_ID=$(curl "$API\_URL/api/assisted-install/v2/infra-envs" -H "Autho
 
 $ curl -s "$API\_URL/api/assisted-install/v2/infra-envs/$INFRA\_ENV\_ID" -H "Authorization: Bearer ${API\_TOKEN}" | jq -r '.download\_url'
 
-## Example output
+ Example output
 
 https://api.openshift.com/api/assisted-images/images/41b91e72-c33e-42ee-b80fb5c5bbf6431a?
 
@@ -5129,9 +5085,9 @@ arch=x86\_64&amp;image\_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2N
 
 $ curl -L -s '&lt;iso\_url&gt;' --output rhcos-live-minimal.iso
 
-<!-- image -->
 
-<!-- image -->
+
+
 
 Replace &lt;iso\_url&gt; with the URL for the ISO from the previous step.
 
@@ -5140,7 +5096,7 @@ Replace &lt;iso\_url&gt; with the URL for the ISO from the previous step.
 
 $ curl -s "$API\_URL/api/assisted-install/v2/clusters/$CLUSTER\_ID" -H "Authorization: Bearer ${API\_TOKEN}" | jq -r '.hosts[] | select(.status != "installed").id'
 
-## Example output
+ Example output
 
 2294ba03-c264-4f11-ac08-2f1bb2f8c296
 
@@ -5148,7 +5104,7 @@ $ curl -s "$API\_URL/api/assisted-install/v2/clusters/$CLUSTER\_ID" -H "Authoriz
 
 $ HOST\_ID=&lt;host\_id&gt;
 
-<!-- image -->
+
 
 Replace &lt;host\_id&gt; with the host ID from the previous step.
 
@@ -5156,9 +5112,9 @@ Replace &lt;host\_id&gt; with the host ID from the previous step.
 
 NOTE
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 Ensure that you copy the entire command including the complete jq expression.
 
@@ -5177,9 +5133,9 @@ Example output $ curl -s $API_URL/api/assisted-install/v2/clusters/$CLUSTER_ID -
 $ curl -X POST -s "$API_URL/api/assisted-install/v2/infraenvs/$INFRA_ENV_ID/hosts/$HOST_ID/actions/install"  -H "Authorization: Bearer ${API_TOKEN}"
 ```
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 You must approve the CSRs to complete the installation.
 
@@ -5199,13 +5155,13 @@ Example output updated_at, infra_env_id, cluster_id, created_at} ] }' { "Cluster
 
 14.  Log in to the cluster and approve the pending CSRs to complete the installation.
 
-## Verification
+ Verification
 
 - Check that the new host was successfully added to the cluster with a status of Ready :
 
 $ oc get nodes
 
-## Example output
+ Example output
 
 | NAME                           STATUS   ROLES           AGE   VERSION   |                                                                       |                                                                       |
 |-------------------------------------------------------------------------|-----------------------------------------------------------------------|-----------------------------------------------------------------------|
@@ -5218,23 +5174,23 @@ You can replace a control plane (master) node in a healthy OpenShift Container P
 
 If the cluster is unhealthy, you must peform additional operations before you can manage the control plane nodes. See Replacing a control plane node in an unhealthy cluster  for more information.
 
-## 11.5.1. Adding a new control plane node
+ 11.5.1. Adding a new control plane node
 
 Add the new control plane node, and verify that it is healthy. In the example below, the new node is node-5 .
 
-## Prerequisites
+ Prerequisites
 
 - You are using OpenShift Container Platform 4.11 or later.
 - You have installed a healthy cluster with at least three control plane nodes.
 - You have created a single control plane node to be added to the cluster for Day 2.
 
-## Procedure
+ Procedure
 
 1.  Retrieve pending Certificate Signing Requests (CSRs) for the new Day 2 control plane node:
 
 $ oc get csr | grep Pending
 
-## Example output
+ Example output
 
 csr-5sd59   8m19s   kubernetes.io/kube-apiserver-client-kubelet system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   &lt;none&gt; Pending csr-xzqts   10s     kubernetes.io/kubelet-serving                 system:node:node-5 &lt;none&gt;              Pending
 
@@ -5242,9 +5198,9 @@ csr-5sd59   8m19s   kubernetes.io/kube-apiserver-client-kubelet system:serviceac
 
 $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}} {{end}}' | xargs --no-run-if-empty oc adm certificate approve
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 You must approve the CSRs to complete the installation.
 
@@ -5252,7 +5208,7 @@ You must approve the CSRs to complete the installation.
 
 $ oc get nodes
 
-## Example output
+ Example output
 
 | NAME       STATUS   ROLES    AGE     VERSION   | NAME       STATUS   ROLES    AGE     VERSION       | NAME       STATUS   ROLES    AGE     VERSION   | NAME       STATUS   ROLES    AGE     VERSION   |
 |------------------------------------------------|----------------------------------------------------|------------------------------------------------|------------------------------------------------|
@@ -5263,9 +5219,9 @@ $ oc get nodes
 |                                                | node-4   Ready    worker   4h30m   v1.24.0+3882f8f |                                                |                                                |
 |                                                | node-5   Ready    master   105s    v1.24.0+3882f8f |                                                |                                                |
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 The etcd operator requires a Machine custom resource (CR) that references the new node when the cluster runs with a Machine API. The machine API is automatically activated when the cluster has three or more control plane nodes.
 
@@ -5278,9 +5234,9 @@ apiVersion: metal3.io/v1alpha1 kind: BareMetalHost metadata: name: node-5 namesp
 
 $ oc apply -f &lt;filename&gt;
 
-<!-- image -->
 
-<!-- image -->
+
+
 
 Replace &lt;filename&gt; with the name of the BareMetalHost CR.
 
@@ -5290,19 +5246,19 @@ Replace &lt;filename&gt; with the name of the BareMetalHost CR.
 apiVersion: machine.openshift.io/v1beta1 kind: Machine metadata: annotations: machine.openshift.io/instance-state: externally provisioned metal3.io/BareMetalHost: openshift-machine-api/node-5 finalizers: - machine.machine.openshift.io labels: machine.openshift.io/cluster-api-cluster: <cluster_name> 1 machine.openshift.io/cluster-api-machine-role: master machine.openshift.io/cluster-api-machine-type: master name: node-5 namespace: openshift-machine-api spec: metadata: {} providerSpec: value: apiVersion: baremetal.cluster.k8s.io/v1alpha1 customDeploy: method: install_coreos hostSelector: {} image: checksum: "" url: "" kind: BareMetalMachineProviderSpec metadata: creationTimestamp: null userData: name: master-user-data-managed
 ```
 
-<!-- image -->
+
 
 1 1 Replace &lt;cluster\_name&gt; with the name of the specific cluster, for example, testday2-1-6qv96 . To get the cluster name, run the following command: d.  Apply the Machine CR: Replace &lt;filename&gt; with the name of the Machine CR. $ oc get infrastructure cluster -o=jsonpath='{.status.infrastructureName}{"\n"}' $ oc apply -f &lt;filename&gt; 1
 
-<!-- image -->
 
-<!-- image -->
+
+
 
 - e.  Link BareMetalHost , Machine , and Node by running the link-machine-and-node.sh script:
 - i.  Copy the link-machine-and-node.sh script below to a local machine:
 
 ```
-#!/bin/bash # Credit goes to # https://bugzilla.redhat.com/show_bug.cgi?id=1801238. # This script will link Machine object # and Node object. This is needed # in order to have IP address of # the Node present in the status of the Machine. set -e machine="$1" node="$2" if [ -z "$machine" ] || [ -z "$node" ]; then echo "Usage: $0 MACHINE NODE" exit 1 fi node_name=$(echo "${node}" | cut -f2 -d':') oc proxy & proxy_pid=$! function kill_proxy { kill $proxy_pid } trap kill_proxy EXIT SIGINT HOST_PROXY_API_PATH="http://localhost:8001/apis/metal3.io/v1alpha1/namespace s/openshift-machine-api/baremetalhosts" function print_nics() { local ips local eob declare -a ips readarray -t ips < <(echo "${1}" \ | jq '.[] | select(. | .type == "InternalIP") | .address' \ | sed 's/"//g') eob=',' for (( i=0; i<${#ips[@]}; i++ )); do if [ $((i+1)) -eq ${#ips[@]} ]; then eob="" fi cat <<- EOF { "ip": "${ips[$i]}", "mac": "00:00:00:00:00:00", "model": "unknown", "speedGbps": 10, "vlanId": 0, "pxe": true, "name": "eth1" }${eob} EOF
+\#!/bin/bash # Credit goes to # https://bugzilla.redhat.com/show_bug.cgi?id=1801238. # This script will link Machine object # and Node object. This is needed # in order to have IP address of # the Node present in the status of the Machine. set -e machine="$1" node="$2" if [ -z "$machine" ] || [ -z "$node" ]; then echo "Usage: $0 MACHINE NODE" exit 1 fi node_name=$(echo "${node}" | cut -f2 -d':') oc proxy & proxy_pid=$! function kill_proxy { kill $proxy_pid } trap kill_proxy EXIT SIGINT HOST_PROXY_API_PATH="http://localhost:8001/apis/metal3.io/v1alpha1/namespace s/openshift-machine-api/baremetalhosts" function print_nics() { local ips local eob declare -a ips readarray -t ips < <(echo "${1}" \ | jq '.[] | select(. | .type == "InternalIP") | .address' \ | sed 's/"//g') eob=',' for (( i=0; i<${#ips[@]}; i++ )); do if [ $((i+1)) -eq ${#ips[@]} ]; then eob="" fi cat <<- EOF { "ip": "${ips[$i]}", "mac": "00:00:00:00:00:00", "model": "unknown", "speedGbps": 10, "vlanId": 0, "pxe": true, "name": "eth1" }${eob} EOF
 ```
 
 ```
@@ -5319,9 +5275,9 @@ ii.  Make the script executable: iii.  Run the script: $ chmod +x link-machine-a
 
 NOTE
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 The first node-5 instance represents the machine, and the second represents the node.
 
@@ -5332,17 +5288,17 @@ $ oc rsh -n openshift-etcd etcd-node-0
 
 - b.  List etcd members:
 
-# etcdctl member list -w table
+\# etcdctl member list -w table
 
-## Example output
+ Example output
 
-<!-- image -->
+
 
 6.  Monitor the etcd operator configuration process until completion:
 
 $ oc get clusteroperator etcd
 
-## Example output (upon completion)
+ Example output (upon completion)
 
 NAME   VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE etcd   4.11.5    True        False         False      5h54m
 
@@ -5353,9 +5309,9 @@ $ oc rsh -n openshift-etcd etcd-node-0
 
 - b.  Check endpoint health:
 
-# etcdctl endpoint health
+\# etcdctl endpoint health
 
-## Example output
+ Example output
 
 ```
 192.168.111.24 is healthy: committed proposal: took = 10.383651ms 192.168.111.26 is healthy: committed proposal: took = 11.297561ms 192.168.111.25 is healthy: committed proposal: took = 13.892416ms
@@ -5365,9 +5321,9 @@ $ oc rsh -n openshift-etcd etcd-node-0
 
 8.  Verify that all nodes are ready:
 
-## $ oc get nodes
+ $ oc get nodes
 
-## Example output
+ Example output
 
 | NAME      STATUS   ROLES    AGE     VERSION   | NAME      STATUS   ROLES    AGE     VERSION         | NAME      STATUS   ROLES    AGE     VERSION   |
 |-----------------------------------------------|-----------------------------------------------------|-----------------------------------------------|
@@ -5380,9 +5336,9 @@ $ oc rsh -n openshift-etcd etcd-node-0
 
 9.  Verify that the cluster Operators are all available:
 
-## $ oc get ClusterOperators
+ $ oc get ClusterOperators
 
-## Example output
+ Example output
 
 | NAME                                      VERSION AVAILABLE PROGRESSING DEGRADED SINCE   | NAME                                      VERSION AVAILABLE PROGRESSING DEGRADED SINCE                                                                                        | NAME                                      VERSION AVAILABLE PROGRESSING DEGRADED SINCE                                                                                        | NAME                                      VERSION AVAILABLE PROGRESSING DEGRADED SINCE                                                                                        | NAME                                      VERSION AVAILABLE PROGRESSING DEGRADED SINCE                                                                                        | NAME                                      VERSION AVAILABLE PROGRESSING DEGRADED SINCE   | NAME                                      VERSION AVAILABLE PROGRESSING DEGRADED SINCE   | NAME                                      VERSION AVAILABLE PROGRESSING DEGRADED SINCE   |
 |------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
@@ -5423,19 +5379,19 @@ $ oc rsh -n openshift-etcd etcd-node-0
 
 $ oc get ClusterVersion
 
-## Example output
+ Example output
 
 NAME      VERSION   AVAILABLE   PROGRESSING   SINCE   STATUS version   4.11.5    True        False         5h57m   Cluster version is 4.11.5
 
-## 11.5.2. Removing the existing control plane node
+ 11.5.2. Removing the existing control plane node
 
 Remove the control plane node that you are replacing. This is node-0 in the example below.
 
-## Prerequisites
+ Prerequisites
 
 - You have added a new healthy control plane node.
 
-## Procedure
+ Procedure
 
 1.  Delete the BareMetalHost CR of the pre-existing control plane node:
 
@@ -5445,7 +5401,7 @@ $ oc delete bmh -n openshift-machine-api node-0
 
 $ oc get machine -A
 
-## Example output
+ Example output
 
 NAMESPACE               NAME     PHASE     AGE openshift-machine-api   node-0   Failed    20h openshift-machine-api   node-1   Running   20h openshift-machine-api   node-2   Running   20h openshift-machine-api   node-3   Running   19h openshift-machine-api   node-4   Running   19h openshift-machine-api   node-5   Running   14h
 
@@ -5457,7 +5413,7 @@ $ oc delete machine -n openshift-machine-api node-0 machine.machine.openshift.io
 
 $ oc get nodes
 
-## Example output
+ Example output
 
 NAME      STATUS   ROLES    AGE   VERSION node-1    Ready    master   20h   v1.24.0+3882f8f node-2    Ready    master   19h   v1.24.0+3882f8f
 
@@ -5469,7 +5425,7 @@ node-3    Ready    worker   19h   v1.24.0+3882f8f node-4    Ready    worker   19
 
 $ oc logs -n openshift-etcd-operator etcd-operator-8668df65d-lvpjf
 
-## Example output
+ Example output
 
 E0927 07:53:10.597523       1 base\_controller.go:272] ClusterMemberRemovalController reconciliation failed: cannot remove member: 192.168.111.23 because it is reported as healthy but it doesn't have a machine nor a node resource
 
@@ -5480,9 +5436,9 @@ $ oc rsh -n openshift-etcd etcd-node-1
 
 - b.  Monitor the progress of etcd operator reconciliation by checking members and endpoint health:
 
-# etcdctl member list -w table; etcdctl endpoint health
+\# etcdctl member list -w table; etcdctl endpoint health
 
-## Example output
+ Example output
 
 ```
 +--------+---------+--------+--------------+--------------+---------+ |   ID   |  STATUS |  NAME  |  PEER ADDRS  | CLIENT ADDRS | LEARNER | +--------+---------+--------+--------------+--------------+---------+ |2c18942f| started | node-1 |192.168.111.26|192.168.111.26|  false  | |61e2a860| started | node-2 |192.168.111.25|192.168.111.25|  false  | |ead4f280| started | node-5 |192.168.111.28|192.168.111.28|  false  | +--------+---------+--------+--------------+--------------+---------+ 192.168.111.26 is healthy: committed proposal: took = 10.458132ms 192.168.111.25 is healthy: committed proposal: took = 11.047349ms 192.168.111.28 is healthy: committed proposal: took = 11.414402ms
@@ -5494,22 +5450,22 @@ You can replace an unhealthy control plane (master) node in an OpenShift Contain
 
 For details on replacing a control plane node in a healthy cluster, see Replacing a control plane node in a healthy cluster.
 
-## 11.6.1. Removing an unhealthy control plane node
+ 11.6.1. Removing an unhealthy control plane node
 
 Remove the unhealthy control plane node from the cluster. This is node-0 in the example below.
 
-## Prerequisites
+ Prerequisites
 
 - You have installed a cluster with at least three control plane nodes.
 - At least one of the control plane nodes is not ready.
 
-## Procedure
+ Procedure
 
 1.  Check the node status to confirm that a control plane node is not ready:
 
 $ oc get nodes
 
-## Example output
+ Example output
 
 ```
 NAME      STATUS      ROLES    AGE   VERSION node-0    NotReady    master   20h   v1.24.0+3882f8f node-1    Ready       master   20h   v1.24.0+3882f8f node-2    Ready       master   20h   v1.24.0+3882f8f node-3    Ready       worker   20h   v1.24.0+3882f8f node-4    Ready       worker   20h   v1.24.0+3882f8f
@@ -5519,7 +5475,7 @@ NAME      STATUS      ROLES    AGE   VERSION node-0    NotReady    master   20h 
 
 $ oc logs -n openshift-etcd-operator etcd-operator deployment/etcd-operator
 
-## Example output
+ Example output
 
 E0927 08:24:23.983733       1 base\_controller.go:272] DefragController reconciliation failed: cluster is unhealthy: 2 of 3 members are available, node-0 is unhealthy
 
@@ -5530,17 +5486,17 @@ $ oc rsh -n openshift-etcd node-1
 
 - b.  List the etcdctl members:
 
-# etcdctl member list -w table
+\# etcdctl member list -w table
 
-## Example output
+ Example output
 
-<!-- image -->
+
 
 4.  Confirm that etcdctl endpoint health reports an unhealthy member of the cluster:
 
-# etcdctl endpoint health
+\# etcdctl endpoint health
 
-## Example output
+ Example output
 
 {"level":"warn","ts":"2022-0927T08:25:35.953Z","logger":"client","caller":"v3/retry\_interceptor.go:62","msg":"retrying of unary invoker failed","target":"etcdendpoints://0xc000680380/192.168.111.25","attempt":0,"error":"rpc error: code = DeadlineExceeded desc = latest balancer error: last connection error: connection error: desc = \"transport: Error while dialing dial tcp 192.168.111.25: connect: no route to host\""} 192.168.111.28 is healthy: committed proposal: took = 12.465641ms 192.168.111.26 is healthy: committed proposal: took = 12.297059ms 192.168.111.25 is unhealthy: failed to commit proposal: context deadline exceeded Error: unhealthy cluster
 
@@ -5548,9 +5504,9 @@ $ oc rsh -n openshift-etcd node-1
 
 $ oc delete machine -n openshift-machine-api node-0
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 The Machine and Node CRs might not be deleted because they are protected by finalizers. If this occurs, you must delete the Machine CR manually by removing all finalizers.
 
@@ -5558,7 +5514,7 @@ The Machine and Node CRs might not be deleted because they are protected by fina
 
 $ oc logs -n openshift-etcd-operator etcd-operator deployment/ettcd-operator
 
-## Example output
+ Example output
 
 I0927 08:58:41.249222       1 machinedeletionhooks.go:135] skip removing the deletion hook from machine node-0 since its member is still present with any of: [{InternalIP } {InternalIP 192.168.111.25}]
 
@@ -5569,9 +5525,9 @@ $ oc rsh -n openshift-etcd node-1
 
 - b.  List the etcdctl members:
 
-# etcdctl member list -w table
+\# etcdctl member list -w table
 
-## Example output
+ Example output
 
 +--------+---------+--------+--------------+--------------+---------+
 
@@ -5585,9 +5541,9 @@ $ oc rsh -n openshift-etcd node-1
 
 - c.  Confirm that etcdctl endpoint health reports an unhealthy member of the cluster:
 
-# etcdctl endpoint health
+\# etcdctl endpoint health
 
-## Example output
+ Example output
 
 ```
 {"level":"warn","ts":"2022-0927T10:31:07.227Z","logger":"client","caller":"v3/retry_interceptor.go:62","msg":"retrying of unary invoker failed","target":"etcdendpoints://0xc0000d6e00/192.168.111.25","attempt":0,"error":"rpc error: code = DeadlineExceeded desc = latest balancer error: last connection error: connection error: desc = \"transport: Error while dialing dial tcp 192.168.111.25: connect: no route to host\""} 192.168.111.28 is healthy: committed proposal: took = 13.038278ms 192.168.111.26 is healthy: committed proposal: took = 12.950355ms 192.168.111.25 is unhealthy: failed to commit proposal: context deadline exceeded Error: unhealthy cluster
@@ -5595,37 +5551,37 @@ $ oc rsh -n openshift-etcd node-1
 
 - d.  Remove the unhealthy etcdctl member from the cluster:
 
-# etcdctl member remove 61e2a86084aafa62
+\# etcdctl member remove 61e2a86084aafa62
 
-## Example output
+ Example output
 
 Member 61e2a86084aafa62 removed from cluster 6881c977b97990d7
 
 - e.  Verify that the unhealthy etcdctl member was removed by running the following command:
 
-# etcdctl member list -w table
+\# etcdctl member list -w table
 
-## Example output
+ Example output
 
-<!-- image -->
 
-## 11.6.2. Adding a new control plane node
+
+ 11.6.2. Adding a new control plane node
 
 Add a new control plane node to replace the unhealthy node that you removed. In the example below, the new node is node-5 .
 
-## Prerequisites
+ Prerequisites
 
 You have installed a control plane node for Day 2. For more information, see Adding hosts with
 
 - You have installed a control plane node for Day 2. For more information, see Adding hosts with the web console or Adding hosts with the API.
 
-## Procedure
+ Procedure
 
 1.  Retrieve pending Certificate Signing Requests (CSRs) for the new Day 2 control plane node:
 
 $ oc get csr | grep Pending
 
-## Example output
+ Example output
 
 csr-5sd59   8m19s   kubernetes.io/kube-apiserver-client-kubelet system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   &lt;none&gt; Pending csr-xzqts   10s     kubernetes.io/kubelet-serving                 system:node:node-5 &lt;none&gt;              Pending
 
@@ -5633,9 +5589,9 @@ csr-5sd59   8m19s   kubernetes.io/kube-apiserver-client-kubelet system:serviceac
 
 $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}} {{end}}' | xargs --no-run-if-empty oc adm certificate approve
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 You must approve the CSRs to complete the installation.
 
@@ -5643,7 +5599,7 @@ You must approve the CSRs to complete the installation.
 
 $ oc get nodes
 
-## Example output
+ Example output
 
 | NAME      STATUS    ROLES     AGE     VERSION         |
 |-------------------------------------------------------|
@@ -5657,9 +5613,9 @@ The etcd operator requires a Machine CR referencing the new node when the cluste
 
 4.  Create the BareMetalHost and Machine CRs and link them to the new control plane's Node CR.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 Boot-it-yourself will not create BareMetalHost and Machine CRs, so you must create them. Failure to create the BareMetalHost and Machine CRs will generate errors in the etcd operator.
 
@@ -5672,11 +5628,11 @@ apiVersion: metal3.io/v1alpha1 kind: BareMetalHost metadata: name: node-5 namesp
 
 $ oc apply -f &lt;filename&gt;
 
-<!-- image -->
+
 
 Replace &lt;filename&gt; with the name of the BareMetalHost CR.
 
-<!-- image -->
+
 
 - c.  Create the Machine CR using the unique .metadata.name value:
 
@@ -5690,13 +5646,13 @@ creationTimestamp: null userData: name: master-user-data-managed
 
 - d.  Apply the Machine CR:
 
-<!-- image -->
 
-<!-- image -->
+
+
 
 $ oc apply -f &lt;filename&gt;
 
-<!-- image -->
+
 
 Replace &lt;filename&gt; with the name of the Machine CR.
 
@@ -5704,7 +5660,7 @@ Replace &lt;filename&gt; with the name of the Machine CR.
 - i.  Copy the link-machine-and-node.sh script below to a local machine:
 
 ```
-#!/bin/bash # Credit goes to # https://bugzilla.redhat.com/show_bug.cgi?id=1801238. # This script will link Machine object # and Node object. This is needed # in order to have IP address of # the Node present in the status of the Machine. set -e machine="$1" node="$2" if [ -z "$machine" ] || [ -z "$node" ]; then echo "Usage: $0 MACHINE NODE" exit 1 fi node_name=$(echo "${node}" | cut -f2 -d':') oc proxy & proxy_pid=$! function kill_proxy { kill $proxy_pid } trap kill_proxy EXIT SIGINT HOST_PROXY_API_PATH="http://localhost:8001/apis/metal3.io/v1alpha1/namespace s/openshift-machine-api/baremetalhosts" function print_nics() { local ips local eob declare -a ips readarray -t ips < <(echo "${1}" \ | jq '.[] | select(. | .type == "InternalIP") | .address' \ | sed 's/"//g') eob=','
+\#!/bin/bash # Credit goes to # https://bugzilla.redhat.com/show_bug.cgi?id=1801238. # This script will link Machine object # and Node object. This is needed # in order to have IP address of # the Node present in the status of the Machine. set -e machine="$1" node="$2" if [ -z "$machine" ] || [ -z "$node" ]; then echo "Usage: $0 MACHINE NODE" exit 1 fi node_name=$(echo "${node}" | cut -f2 -d':') oc proxy & proxy_pid=$! function kill_proxy { kill $proxy_pid } trap kill_proxy EXIT SIGINT HOST_PROXY_API_PATH="http://localhost:8001/apis/metal3.io/v1alpha1/namespace s/openshift-machine-api/baremetalhosts" function print_nics() { local ips local eob declare -a ips readarray -t ips < <(echo "${1}" \ | jq '.[] | select(. | .type == "InternalIP") | .address' \ | sed 's/"//g') eob=','
 ```
 
 ```
@@ -5727,9 +5683,9 @@ $ chmod +x link-machine-and-node.sh
 
 $ bash link-machine-and-node.sh node-5 node-5
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 The first node-5 instance represents the machine, and the second represents the node.
 
@@ -5740,17 +5696,17 @@ $ oc rsh -n openshift-etcd node-1
 
 - b.  List the etcdctl members:
 
-# etcdctl member list -w table
+\# etcdctl member list -w table
 
-## Example output
+ Example output
 
-<!-- image -->
+
 
 6.  Monitor the etcd operator configuration process until completion:
 
 $ oc get clusteroperator etcd
 
-## Example output (upon completion)
+ Example output (upon completion)
 
 NAME   VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE etcd   4.11.5    True        False         False      22h
 
@@ -5761,9 +5717,9 @@ $ oc rsh -n openshift-etcd node-1
 
 - b.  Check endpoint health:
 
-# etcdctl endpoint health
+\# etcdctl endpoint health
 
-## Example output
+ Example output
 
 192.168.111.26 is healthy: committed proposal: took = 9.105375ms 192.168.111.28 is healthy: committed proposal: took = 9.15205ms 192.168.111.29 is healthy: committed proposal: took = 10.277577ms
 
@@ -5771,7 +5727,7 @@ $ oc rsh -n openshift-etcd node-1
 
 $ oc get Nodes
 
-## Example output
+ Example output
 
 NAME     STATUS   ROLES    AGE   VERSION node-1   Ready    master   20h   v1.24.0+3882f8f node-2   Ready    master   20h   v1.24.0+3882f8f node-3   Ready    worker   20h   v1.24.0+3882f8f node-4   Ready    worker   20h   v1.24.0+3882f8f node-5   Ready    master   40m   v1.24.0+3882f8f
 
@@ -5779,7 +5735,7 @@ NAME     STATUS   ROLES    AGE   VERSION node-1   Ready    master   20h   v1.24.
 
 $ oc get ClusterOperators
 
-## Example output
+ Example output
 
 | NAME                               VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   |
 |-------------------------------------------------------------------------------------------|
@@ -5790,7 +5746,7 @@ monitoring                         4.11.5    True        False         False    
 
 $ oc get ClusterVersion
 
-## Example output
+ Example output
 
 NAME      VERSION   AVAILABLE   PROGRESSING   SINCE   STATUS version   4.11.5    True        False         22h     Cluster version is 4.11.5
 
@@ -5798,13 +5754,13 @@ NAME      VERSION   AVAILABLE   PROGRESSING   SINCE   STATUS version   4.11.5   
 
 - Authenticating with the REST API
 
-## CHAPTER 12. INSTALLING ON NUTANIX
+# CHAPTER 12. INSTALLING ON NUTANIX
 
 If you install OpenShift Container Platform on Nutanix, the Assisted Installer can integrate the OpenShift Container Platform cluster with the Nutanix platform, which exposes the Machine API to Nutanix and enables autoscaling and the dynamic provisioning of storage containers with the Nutanix Container Storage Interface (CSI).
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 To deploy an OpenShift Container Platform cluster and maintain its daily operation, you need access to a Nutanix account with the necessary environment requirements. For details, see Environment requirements.
 
@@ -5814,12 +5770,12 @@ To add hosts on Nutanix with the user interface (UI), generate the minimal disco
 
 After this is complete, you must create an image for the Nutanix platform and create the Nutanix virtual machines.
 
-## Prerequisites
+ Prerequisites
 
 - You have created a cluster profile in the Assisted Installer UI.
 - You have a Nutanix cluster environment set up, and made a note of the cluster name and subnet name.
 
-## Procedure
+ Procedure
 
 1.  In the Cluster details page, select Nutanix from the Integrate with external partner platforms dropdown list. The Include custom manifest checkbox is optional.
 2.  In the Host discovery page, click the Add hosts button.
@@ -5828,18 +5784,18 @@ After this is complete, you must create an image for the Nutanix platform and cr
 - b.  In the SSH public key field, click Browse to upload the id\_rsa.pub file containing the SSH public key or drag and drop the file into the field from the file manager. To see the file in the file manager, select Show hidden files in the menu.
 4.  Select the required provisioning type.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 Minimal image file: Provision with virtual media downloads a smaller image that will fetch the data needed to boot.
 
 5. In Networking , select Cluster-managed networking . Nutanix does not support User-managed networking .
 - a.  Optional: If the cluster hosts require the use of a proxy, select Configure cluster-wide proxy settings . Enter the username, password, required domains or IP addresses, and port for the HTTP and HTTPS URLs of the proxy server. If the cluster hosts are behind a firewall, allow the nodes to access the required domains or IP addresses through the firewall. See Configuring your firewall for OpenShift Container Platform  for more information.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 The proxy username and password must be URL-encoded.
 
@@ -5864,7 +5820,7 @@ To add hosts on Nutanix with the API, generate the discovery image ISO from the 
 
 Once this is complete, you must create an image for the Nutanix platform and create the Nutanix virtual machines.
 
-## Prerequisites
+ Prerequisites
 
 - You have set up the Assisted Installer API authentication.
 - You have created an Assisted Installer cluster profile.
@@ -5873,7 +5829,7 @@ Once this is complete, you must create an image for the Nutanix platform and cre
 - You have completed the Assisted Installer cluster configuration.
 - You have a Nutanix cluster environment set up, and made a note of the cluster name and subnet name.
 
-## Procedure
+ Procedure
 
 1.  Configure the discovery image if you want it to boot with an ignition file.
 2.  Create a Nutanix cluster configuration file to hold the environment variables:
@@ -5972,7 +5928,7 @@ $ cat &lt;&lt; EOF &gt; create-master-0.json {
 "spec": { "name": "<host_name>", "resources": { "power_state": "ON", "num_vcpus_per_socket": 1, "num_sockets": 16, "memory_size_mib": 32768, "disk_list": [ { "disk_size_mib": 122880, "device_properties": { "device_type": "DISK" } }, { "device_properties": { "device_type": "CDROM" }, "data_source_reference": { "kind": "image", "uuid": "$NTX_IMAGE_UUID" } } ], "nic_list": [ { "nic_type": "NORMAL_NIC", "is_connected": true, "ip_endpoint_list": [ { "ip_type": "DHCP" } ], "subnet_reference": { "kind": "subnet", "name": "$NTX_SUBNET_NAME", "uuid": "$NTX_SUBNET_UUID" } } ], "guest_tools": { "nutanix_guest_tools": { "state": "ENABLED", "iso_mount_state": "MOUNTED" } } }, "cluster_reference": { "kind": "cluster", "name": "$NTX_CLUSTER_NAME", "uuid": "$NTX_CLUSTER_UUID" } }, "api_version": "3.1.0", "metadata": { "kind": "vm"
 ```
 
-<!-- image -->
+
 
 Replace &lt;host\_name&gt; with the name of the host.
 
@@ -5992,9 +5948,9 @@ $ cat << EOF >> ~/nutanix-cluster-env.sh export NTX_MASTER_0_UUID=<uuid> EOF
 
 Replace &lt;uuid&gt; with the returned UUID of the VM.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 The environment variable must have a unique name for each VM.
 
@@ -6014,17 +5970,17 @@ $ curl https://api.openshift.com/api/assisted-install/v2/clusters/${CLUSTER_ID} 
 
 Complete and validate the OpenShift Container Platform integration with the Nutanix cloud provider.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 By default, the installation program downloads and installs the Red Hat Enterprise Linux CoreOS (RHCOS) image. If Prism Central does not have internet access, you can host the RHCOS image on any HTTP server and point the installation program to the image or you can use Prism Central to upload the image manually.
 
-## 12.3.1. Updating the Nutanix configuration settings
+ 12.3.1. Updating the Nutanix configuration settings
 
 After installing OpenShift Container Platform on the Nutanix platform by using the Assisted Installer, update the following Nutanix configuration settings manually.
 
-## Prerequisites
+ Prerequisites
 
 - You have your Nutanix Prism Element username.
 - You have your Nutanix Prism Element password.
@@ -6033,13 +5989,13 @@ After installing OpenShift Container Platform on the Nutanix platform by using t
 - You have connected the cluster to console.redhat.com.
 - You have access to the Red Hat OpenShift Container Platform command line interface.
 
-## Procedure
+ Procedure
 
 1.  In the OpenShift Container Platform command line interface, update the Nutanix cluster configuration settings:
 
-<!-- image -->
 
-## } EOF
+
+ } EOF
 
 - 1 Replace &lt;prismcentral\_address&gt; with the Nutanix Prism Central address.
 - 2 Replace &lt;prismcentral\_port&gt; with the Nutanix Prism Central port.
@@ -6047,15 +6003,15 @@ After installing OpenShift Container Platform on the Nutanix platform by using t
 - 4 Replace &lt;prismelement\_port&gt; with the Nutanix Prism Element port.
 - 5 Replace &lt;prismelement\_clustername&gt; with the Nutanix Prism Element cluster name.
 
-## Example output
+ Example output
 
 infrastructure.config.openshift.io/cluster patched
 
 For additional details, see Creating a compute machine set on Nutanix .
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 Optional: You can define prism category key and value pairs. These category key-value pairs must exist in Prism Central. You can define the key-value pairs in separate categories for compute nodes, control plane nodes, or all nodes.
 
@@ -6066,7 +6022,7 @@ $ cat &lt;&lt;EOF | oc create -f apiVersion: v1 kind: Secret metadata: name: nut
 - 1 Replace &lt;prismcentral\_username&gt; with the Nutanix Prism Central username.
 - 2 Replace &lt;prismcentral\_password&gt; with the Nutanix Prism Central password.
 
-## Example output
+ Example output
 
 secret/nutanix-credentials created
 
@@ -6093,23 +6049,23 @@ kind: ConfigMap apiVersion: v1 metadata: name: cloud-provider-config namespace: 
 
 $ oc apply -f cloud-provider-config.yaml
 
-## Example output
+ Example output
 
 Warning: resource configmaps/cloud-provider-config is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by oc apply. oc apply should only be used on resources created declaratively by either oc create -save-config or oc apply. The missing annotation will be patched automatically.
 
 configmap/cloud-provider-config configured
 
-## 12.3.2. Creating the Nutanix CSI Operator group
+ 12.3.2. Creating the Nutanix CSI Operator group
 
 Create an Operator group for the Nutanix CSI Operator.
 
 For a description of operator groups and related concepts, see Common Operator Framework terms.
 
-## Prerequisites
+ Prerequisites
 
 - You have updated the Nutanix configuration settings.
 
-## Procedure
+ Procedure
 
 1.  Open the Nutanix CSI Operator Group YAML file:
 
@@ -6123,21 +6079,21 @@ apiVersion: operators.coreos.com/v1 kind: OperatorGroup metadata: generateName: 
 
 $ oc create -f openshift-cluster-csi-drivers-operator-group.yaml
 
-## Example output
+ Example output
 
 operatorgroup.operators.coreos.com/openshift-cluster-csi-driversjw9cd created
 
-## 12.3.3. Installing the Nutanix CSI Operator
+ 12.3.3. Installing the Nutanix CSI Operator
 
 The Nutanix Container Storage Interface (CSI) Operator for Kubernetes deploys and manages the Nutanix CSI Driver.
 
 For instructions on performing this step through the OpenShift Container Platform web console, see the Installing the Operator section of the Nutanix CSI Operator documentation.
 
-## Prerequisites
+ Prerequisites
 
 - You have created the Nutanix CSI Operator group.
 
-## Procedure
+ Procedure
 
 1.  Get the parameter values for the Nutanix CSI Operator YAML file:
 - a.  Check that the Nutanix CSI Operator exists:
@@ -6146,7 +6102,7 @@ $ oc get packagemanifests | grep nutanix
 
 Example output
 
-## Example output
+ Example output
 
 nutanixcsioperator   Certified Operators   129m
 
@@ -6174,7 +6130,7 @@ $ cat &lt;&lt; EOF &gt; nutanixcsioperator.yaml apiVersion: operators.coreos.com
 
 $ oc apply -f nutanixcsioperator.yaml
 
-## Example output
+ Example output
 
 subscription.operators.coreos.com/nutanixcsioperator created
 
@@ -6182,57 +6138,57 @@ subscription.operators.coreos.com/nutanixcsioperator created
 
 $ oc get subscription nutanixcsioperator -n openshift-cluster-csi-drivers -o 'jsonpath= {..status.state}'
 
-## 12.3.4. Deploying the Nutanix CSI storage driver
+ 12.3.4. Deploying the Nutanix CSI storage driver
 
 The Nutanix Container Storage Interface (CSI) Driver for Kubernetes provides scalable and persistent storage for stateful applications.
 
 For instructions on performing this step through the OpenShift Container Platform web console, see the Installing the CSI Driver using the Operator  section of the Nutanix CSI Operator documentation.
 
-## Prerequisites
+ Prerequisites
 
 - You have installed the Nutanix CSI Operator.
 
-## Procedure
+ Procedure
 
 1.  Create a NutanixCsiStorage resource to deploy the driver:
 
 $ cat &lt;&lt;EOF | oc create -f apiVersion: crd.nutanix.com/v1alpha1 kind: NutanixCsiStorage metadata: name: nutanixcsistorage namespace: openshift-cluster-csi-drivers spec: {} EOF
 
-## Example output
+ Example output
 
 snutanixcsistorage.crd.nutanix.com/nutanixcsistorage created
 
 2.  Create a Nutanix secret YAML file for the CSI storage driver:
 
-<!-- image -->
 
-## Example output
+
+ Example output
 
 secret/nutanix-secret created
 
-## 12.3.5. Validating the postinstallation configurations
+ 12.3.5. Validating the postinstallation configurations
 
 Verify that you can create a storage class and a bound persistent volume claim.
 
-## Prerequisites
+ Prerequisites
 
 - You have deployed the Nutanix CSI storage driver.
 
-## Procedure
+ Procedure
 
 1.  Verify that you can create a storage class:
 
 $ cat &lt;&lt;EOF | oc create -f kind: StorageClass apiVersion: storage.k8s.io/v1 metadata: name: nutanix-volume annotations: storageclass.kubernetes.io/is-default-class: 'true' provisioner: csi.nutanix.com parameters: csi.storage.k8s.io/fstype: ext4 csi.storage.k8s.io/provisioner-secret-namespace: openshift-cluster-csi-drivers csi.storage.k8s.io/provisioner-secret-name: ntnx-secret storageContainer: &lt;nutanix\_storage\_container&gt; 1 csi.storage.k8s.io/controller-expand-secret-name: ntnx-secret csi.storage.k8s.io/node-publish-secret-namespace: openshift-cluster-csi-drivers storageType: NutanixVolumes csi.storage.k8s.io/node-publish-secret-name: ntnx-secret csi.storage.k8s.io/controller-expand-secret-namespace: openshift-cluster-csi-drivers reclaimPolicy: Delete allowVolumeExpansion: true volumeBindingMode: Immediate EOF
 
-<!-- image -->
 
-## NOTE
 
-<!-- image -->
+ NOTE
+
+
 
 Take &lt;nutanix\_storage\_container&gt; from the Nutanix configuration; for example, SelfServiceContainer.
 
-## Example output
+ Example output
 
 storageclass.storage.k8s.io/nutanix-volume created
 
@@ -6245,7 +6201,7 @@ $ cat &lt;&lt;EOF | oc create -f kind: PersistentVolumeClaim apiVersion: v1 meta
 annotations: volume.beta.kubernetes.io/storage-provisioner: csi.nutanix.com volume.kubernetes.io/storage-provisioner: csi.nutanix.com finalizers: - kubernetes.io/pvc-protection spec: accessModes: - ReadWriteOnce resources: requests: storage: 1Gi storageClassName: nutanix-volume volumeMode: Filesystem EOF
 ```
 
-## Example output
+ Example output
 
 persistentvolumeclaim/nutanix-volume-pvc created
 
@@ -6253,25 +6209,25 @@ persistentvolumeclaim/nutanix-volume-pvc created
 
 $ oc get pvc -n openshift-cluster-csi-drivers
 
-## Example output
+ Example output
 
 |                                                                                        | NAME                 STATUS    VOLUME   CAPACITY   ACCESS MODES   |
 |----------------------------------------------------------------------------------------|-------------------------------------------------------------------|
 | STORAGECLASS     AGE                                                                   |                                                                   |
 | nutanix-volume-pvc   Bound                                        nutanix-volume   52s |                                                                   |
 
-## Additional resources
+ Additional resources
 
 - Creating a machine set on Nutanix.
 - Storage Management
 
-## CHAPTER 13. INSTALLING ON VSPHERE
+# CHAPTER 13. INSTALLING ON VSPHERE
 
 The Assisted Installer integrates the OpenShift Container Platform cluster with the vSphere platform, which exposes the Machine API to vSphere and enables autoscaling.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 General support for the following Broadcom products ends on the dates specified:
 
@@ -6296,7 +6252,7 @@ To add hosts on vSphere with the vSphere govc CLI, generate the discovery image 
 
 After this is complete, you must create an image for the vSphere platform and create the vSphere virtual machines.
 
-## Prerequisites
+ Prerequisites
 
 - You are using vSphere 8.0 or higher.
 - You have the vSphere govc CLI tool installed and configured.
@@ -6306,7 +6262,7 @@ After this is complete, you must create an image for the vSphere platform and cr
 
 - You have exported your infrastructure environment ID in your shell as $INFRA\_ENV\_ID .
 
-## Procedure
+ Procedure
 
 1.  Configure the discovery image if you want it to boot with an ignition file.
 2. In Cluster details , select vSphere from the Integrate with external partner platforms dropdown list. The Include custom manifest checkbox is optional.
@@ -6316,19 +6272,19 @@ After this is complete, you must create an image for the vSphere platform and cr
 - b.  In the SSH public key field, click Browse to upload the id\_rsa.pub file containing the SSH public key. Alternatively, drag and drop the file into the field from the file manager. To see the file in the file manager, select Show hidden files in the menu.
 5.  Select the required discovery image ISO.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 Minimal image file: Provision with virtual media downloads a smaller image that will fetch the data needed to boot.
 
-## 6. In Networking , select Cluster-managed networking or User-managed networking :
+ 6. In Networking , select Cluster-managed networking or User-managed networking :
 
 - a.  Optional: If the cluster hosts require the use of a proxy, select Configure cluster-wide proxy settings . Enter the username, password, required domains or IP addresses, and port for the HTTP and HTTPS URLs of the proxy server. If the cluster hosts are behind a firewall, allow the nodes to access the required domains or IP addresses through the firewall. See Configuring your firewall for OpenShift Container Platform  for more information.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 The proxy username and password must be URL-encoded.
 
@@ -6362,9 +6318,9 @@ $ govc datastore.upload -ds &lt;iso\_datastore&gt;  vsphere-discovery-image.iso
 
 Replace &lt;iso\_datastore&gt; with the name of the data store.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 All nodes in the cluster must boot from the discovery image.
 
@@ -6376,9 +6332,9 @@ $ govc vm.create -net.adapter &lt;network\_adapter\_type&gt; \
 
 See vm.create for details.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 The foregoing example illustrates the minimum required resources for control plane nodes.
 
@@ -6390,9 +6346,9 @@ $ govc vm.create -net.adapter &lt;network\_adapter\_type&gt; \
 
 See vm.create for details.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 The foregoing example illustrates the minimum required resources for worker nodes.
 
@@ -6408,15 +6364,15 @@ $ for VM in $(govc ls /&lt;datacenter&gt;/vm/&lt;folder\_name&gt;) do govc vm.po
 
 Replace &lt;datacenter&gt; with the name of the data center. Replace &lt;folder\_name&gt; with the name of the VM inventory folder.
 
-## 17.  Set the disk.EnableUUID setting to TRUE :
+ 17.  Set the disk.EnableUUID setting to TRUE :
 
 $ for VM in $(govc ls /&lt;datacenter&gt;/vm/&lt;folder\_name&gt;) do govc vm.change -vm $VM -e disk.EnableUUID=TRUE done
 
 Replace &lt;datacenter&gt; with the name of the data center. Replace &lt;folder\_name&gt; with the name of the VM inventory folder.
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 You must set disk.EnableUUID to TRUE on all of the nodes to enable autoscaling with vSphere.
 
@@ -6424,7 +6380,7 @@ You must set disk.EnableUUID to TRUE on all of the nodes to enable autoscaling w
 
 $ for VM in $(govc ls /&lt;datacenter&gt;/vm/&lt;folder\_name&gt;)
 
-## do
+ do
 
 govc vm.power -on=true $VM done
 
@@ -6437,7 +6393,7 @@ Replace &lt;datacenter&gt; with the name of the data center. Replace &lt;folder\
 23.  Set the Ingress VIP address.
 24.  Continue with the installation procedure.
 
-## Additional resources
+ Additional resources
 
 - Configuring the discovery image
 
@@ -6453,12 +6409,12 @@ After installing an OpenShift Container Platform cluster by using the Assisted I
 - Data store
 - Folder
 
-## Prerequisites
+ Prerequisites
 
 - The Assisted Installer has finished installing the cluster successfully.
 - The cluster is connected to console.redhat.com.
 
-## Procedure
+ Procedure
 
 1.  Generate a base64-encoded username and password for vCenter:
 
@@ -6527,9 +6483,9 @@ $ oc apply -f cloud-provider-config.yaml
 
 9.  Taint the nodes with the uninitialized taint:
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 Follow steps 9 through 12 if you are installing OpenShift Container Platform 4.13 or later.
 
@@ -6543,7 +6499,7 @@ $ oc adm taint node &lt;node\_name&gt; node.cloudprovider.kubernetes.io/uninitia
 
 Replace &lt;node\_name&gt; with the name of the node.
 
-## Example
+ Example
 
 | $ oc get nodes                                                                                                            | $ oc get nodes                                                                                                            | $ oc get nodes                                                                                                            | $ oc get nodes                                                                                                            |
 |---------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
@@ -6592,30 +6548,30 @@ After installing an OpenShift Container Platform cluster by using the Assisted I
 - Default data store
 - Virtual machine folder
 
-## Prerequisites
+ Prerequisites
 
 - The Assisted Installer has finished installing the cluster successfully.
 - The cluster is connected to console.redhat.com.
 
-## Procedure
+ Procedure
 
 1.  In the Administrator perspective, navigate to Home → Overview .
 2.  Under Status , click vSphere connection to open the vSphere connection configuration wizard.
 3.  In the vCenter field, enter the network address of the vSphere vCenter server. This can be either a domain name or an IP address. It appears in the vSphere web client URL; for example https://[your\_vCenter\_address]/ui .
 4.  In the vCenter cluster field, enter the name of the vSphere vCenter cluster where OpenShift Container Platform is installed.
 
-<!-- image -->
 
-## IMPORTANT
+
+ IMPORTANT
 
 This step is mandatory if you installed OpenShift Container Platform 4.13 or later.
 
 5.  In the Username field, enter your vSphere vCenter username.
 6.  In the Password field, enter your vSphere vCenter password.
 
-<!-- image -->
 
-## WARNING
+
+ WARNING
 
 The system stores the username and password in the vsphere-creds secret in the kube-system namespace of the cluster. An incorrect vCenter username or password makes the cluster nodes unschedulable.
 
@@ -6624,9 +6580,9 @@ The system stores the username and password in the vsphere-creds secret in the k
 7.  In the Datacenter field, enter the name of the vSphere data center that contains the virtual machines used to host the cluster; for example, SDDC-Datacenter .
 8.  In the Default data store field, enter the vSphere data store that stores the persistent data volumes; for example, /SDDC-Datacenter/datastore/datastorename .
 
-<!-- image -->
 
-## WARNING
+
+ WARNING
 
 Updating the vSphere data center or default data store after the configuration has been saved detaches any active vSphere PersistentVolumes .
 
@@ -6637,7 +6593,7 @@ Updating the vSphere data center or default data store after the configuration h
 10.  Click Save Configuration . This updates the cloud-provider-config file in the openshift-config namespace, and starts the configuration process.
 11.  Reopen the vSphere connection configuration wizard and expand the Monitored operators panel. Check that the status of the operators is either Progressing or Healthy .
 
-## Verification
+ Verification
 
 The connection configuration process updates operator statuses and control plane nodes. It takes approximately an hour to complete. During the configuration process, the nodes will reboot. Previously bound PersistentVolumeClaims objects might become disconnected.
 
@@ -6665,7 +6621,7 @@ For instructions, see Dynamic provisioning in the OpenShift Container Platform d
 
 Platform web console.
 
-## CHAPTER 14. INSTALLING ON ORACLE CLOUD INFRASTRUCTURE (OCI)
+# CHAPTER 14. INSTALLING ON ORACLE CLOUD INFRASTRUCTURE (OCI)
 
 From OpenShift Container Platform 4.14 and later versions, you can use the Assisted Installer to install a cluster on an Oracle Cloud Infrastructure virtual machine (VM) by using infrastructure that you provide. Oracle Cloud Infrastructure provides services that can meet your needs for regulatory compliance, performance, and cost-effectiveness. You can access OCI Resource Manager configurations to provision and configure OCI resources.
 
@@ -6673,7 +6629,7 @@ From OpenShift Container Platform 4.16 and later versions, the integration betwe
 
 For details and installation instructions, see Installing a cluster on Oracle Cloud Infrastructure by using the Assisted Installer in the OpenShift Container Platform documentation.
 
-## CHAPTER 15. TROUBLESHOOTING
+# CHAPTER 15. TROUBLESHOOTING
 
 There are cases where the Assisted Installer cannot begin the installation or the cluster fails to install properly. In these events, it is helpful to understand the likely failure modes as well as how to troubleshoot the failure.
 
@@ -6683,16 +6639,16 @@ The Assisted Installer uses an ISO image to run an agent that registers the host
 
 Once you start the host with the discovery ISO image, the Assisted Installer discovers the host and presents it in the Assisted Service web console. See Configuring the discovery image for additional details.
 
-## 15.1.1. Verify the discovery agent is running
+ 15.1.1. Verify the discovery agent is running
 
-## Prerequisites
+ Prerequisites
 
 - You have created an infrastructure environment by using the API or have created a cluster by using the web console.
 - You booted a host with the Infrastructure Environment discovery ISO and the host failed to register.
 - You have SSH access to the host.
 - You provided an SSH public key in the "Add hosts" dialog before generating the Discovery ISO so that you can SSH into your machine without a password.
 
-## Procedure
+ Procedure
 
 1.  Verify that your host machine is powered on.
 2.  If you selected DHCP networking , check that the DHCP server is enabled.
@@ -6709,9 +6665,9 @@ If you fail to connect over SSH to the host, the host failed during boot or it f
 
 Upon login you should see this message:
 
-## Example login
+ Example login
 
-<!-- image -->
+
 
 If you are not seeing this message it means that the host did not boot with the Assisted Installer ISO image. Make sure you configured the boot order properly (The host should boot once from the live-ISO).
 
@@ -6721,21 +6677,21 @@ $ sudo journalctl -u agent.service
 
 In the following example, the errors indicate there is a network issue:
 
-## Example agent service log screenshot of agent service log
+ Example agent service log screenshot of agent service log
 
-<!-- image -->
+
 
 If there is an error pulling the agent image, check the proxy settings. Verify that the host is connected to the network. You can use nmcli to get additional information about your network configuration.
 
-## 15.1.2. Verify the agent can access the assisted-service
+ 15.1.2. Verify the agent can access the assisted-service
 
-## Prerequisites
+ Prerequisites
 
 - You have created an Infrastructure Environment by using the API or have created a cluster by using the web console.
 - You booted a host with the Infrastructure Environment discovery ISO and the host failed to register.
 - You verified the discovery agent is running.
 
-## Procedure
+ Procedure
 
 - Check the agent logs to verify the agent can access the Assisted Service:
 
@@ -6743,41 +6699,41 @@ $ sudo journalctl TAG=agent
 
 The errors in the following example indicate that the agent failed to access the Assisted Service.
 
-## Example agent log
+ Example agent log
 
 Check the proxy settings you configured for the cluster. If configured, the proxy must allow access to the Assisted Service URL.
 
-<!-- image -->
+
 
 ## 15.2. TROUBLESHOOTING MINIMAL DISCOVERY ISO ISSUES
 
 Use the minimal ISO image when the virtual media connection has limited bandwidth. It includes only what the agent requires to boot a host with networking. The majority of the content is downloaded upon boot. The resulting ISO image is about 100MB in size compared to 1GB for the full ISO image.
 
-## 15.2.1. Troubleshooting minimal ISO boot failure by interrupting the boot process
+ 15.2.1. Troubleshooting minimal ISO boot failure by interrupting the boot process
 
 If your environment requires static network configuration to access the Assisted Installer service, any issues with that configuration might prevent the minimal ISO from booting properly. If the boot screen shows that the host has failed to download the root file system image, the network might not be configured correctly.
 
 You can interrupt the kernel boot early in the bootstrap process, before the root file system image is downloaded. This allows you to access the root console and review the network configurations.
 
-## Example rootfs download failure
+ Example rootfs download failure
 
 ```
 ] A start job is runn for Acquire rootfs image (Imin 415 no limit) [ 104.578592] coreos-livepxe-rootfs[922]: cur]: Cou ld not resolve host: openshift com [ 104 .579201] coreos-livepxe-rootfs[849]: Cou ldn' t establish connectivity with the specified by [ 104 .579600] coreos-livepxe-rootfs[849]: coreos live .rootfs_url-https: /api.op enshift com/api/assisted-images/boot-artifacts/rootfs?arch-x86_648version-4.11 [ 104 .580107] coreos-livepxe-rootfs[849]: Retrying in Ss [ A start job is runn for rootfs image (imin 465 no limit) [ 109.619825] coreos-livepxe-rootfs[925]: cur]: (6 ) Cou ld not resolve host: openshift com [ 109 . 620608 ] coreos-livepxe-rootfs[849]: Cou Idn' t establish connectivity with the server specified by [ 109 .621053] coreos-livepxe-rootfs[849]: coreos .live .rootfs_url-https: /api.op [ 109 .621564] coreos-livepxe-rootfs[849]: Retrying in Ss [ start job is running for Acquire rootfs image (1min no limit) [ 114.647843] coreos-livepxe-rootfs[928]: cur]: (6 ) Cou ld resolve host: openshift.com [ 114.648464] coreos-livepxe-rootfs[849]: Cou dn' t establish connectivity with the server specified by [ 114.648821] coreos-livepxe-rootfs[849]: coreos live .rootfs_url=https: /api.op [ 114.649323] coreos-livepxe-rootfs[849]: Retrying in Ss [ start job is runn for Acquire rootfs image (Imin 53s no limit) ing ing Acqu ire api not api ing
 ```
 
-## Procedure
+ Procedure
 
 1.  Add the .spec.kernelArguments stanza to the infraEnv object of the cluster you are deploying:
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 For details on modifying an infrastructure environment, see Additional Resources .
 
-# ... spec: clusterRef: name: sno1 namespace: sno1 cpuArchitecture: x86\_64 ipxeScriptType: DiscoveryImageAlways kernelArguments: - operation: append value: rd.break=initqueue 1 nmStateConfigLabelSelector: matchLabels: nmstate-label: sno1 pullSecretRef: name: assisted-deployment-pull-secret rd.break=initqueue interrupts the boot at the dracut main loop. See  rd.break options for debugging kernel boot for details.
+\# ... spec: clusterRef: name: sno1 namespace: sno1 cpuArchitecture: x86\_64 ipxeScriptType: DiscoveryImageAlways kernelArguments: - operation: append value: rd.break=initqueue 1 nmStateConfigLabelSelector: matchLabels: nmstate-label: sno1 pullSecretRef: name: assisted-deployment-pull-secret rd.break=initqueue interrupts the boot at the dracut main loop. See  rd.break options for debugging kernel boot for details.
 
-<!-- image -->
+
 
 2.  Wait for the related nodes to reboot automatically and for the boot to stop at the iniqueue stage, before rootfs is downloaded. You will be redirected to the root console.
 3.  Identify and change the incorrect network configurations. Here are some useful diagnostic commands:
@@ -6787,16 +6743,16 @@ For details on modifying an infrastructure environment, see Additional Resources
 6. # journalctl -p warning //Sorts logs by warnings
 - b.  View network connection information by using nmcli , as follows:
 
-# nmcli conn show
+\# nmcli conn show
 
 - c.  Check the configuration files for incorrect network connections, for example:
 
-# cat /etc/assisted/network/host0/eno3.nmconnection
+\# cat /etc/assisted/network/host0/eno3.nmconnection
 
 4.  Press control+d to resume the bootstrap process. The server downloads rootfs and completes the process.
 5.  Reopen the infraEnv object and remove the .spec.kernelArguments stanza.
 
-## Additional resources
+ Additional resources
 
 - Modifying an infrastructure environment
 
@@ -6806,7 +6762,7 @@ Once the installation that runs as part of the Discovery Image completes, the As
 
 If the host boots the discovery image again, the Assisted Installer will immediately detect this event and set the host's status to Installing Pending User Action .  Alternatively, if the Assisted Installer does not detect that the host has booted the correct disk within the allotted time, it will also set this host status.
 
-## Procedure
+ Procedure
 
 - Reboot the host and set its boot order to boot from the installation disk. If you didn't select an installation disk, the Assisted Installer selected one for you. To view the selected installation disk, click to expand the host's information in the host inventory, and check which disk has the 'Installation disk' role.
 
@@ -6827,7 +6783,7 @@ error: ignition file download failed.... no route to host
 
 There are several possible reasons for the connectivity failure. Here are some recommended actions.
 
-## Procedure
+ Procedure
 
 1.  Check the IP address and domain name of the cluster:
 - a.  Click the set the IP or domain used to reach the cluster hyperlink.
@@ -6843,9 +6799,9 @@ Update cluster hostname window, enter the correct IP address or domain name for
 
 $ sudo journalctl TAG=agent
 
-<!-- image -->
 
-## NOTE
+
+ NOTE
 
 For more details, see Verify the agent can access the Assisted Service.
 
@@ -6860,7 +6816,7 @@ The web console does not display the suggested\_role field. Therefore, when usin
 
 If you encounter an error, either manually assign a role to each affected node instead of using autoassign, or follow the instructions provided in the error message, where applicable.
 
-## Additional resources
+ Additional resources
 
 - About assigning roles to hosts .
 - Setting the cluster details (web console), step 12

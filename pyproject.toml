@@ -9,4 +9,4 @@ dependencies = [
 ]
 
 [tool.uv.sources]
-lightspeed-rag-content = { git = "https://github.com/Akrog/lightspeed-rag-content.git", branch = "llama-stack-dbs" }
+lightspeed-rag-content = { git = "https://github.com/andrej1991/rag-content.git", branch = "assisted-chat" }
